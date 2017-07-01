@@ -1,7 +1,34 @@
 #include <iostream>
+#include <cmath>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+int main(int argc, char* argv[]) {
+    if (argc != 4) {
+        std::cerr << "You need 4 arguments" << std::endl;
+        return 1;
+    }
+
+    double lhs = std::stod(argv[1]);
+    std::string op = argv[2];
+    double rhs = std::stod(argv[3]);
+
+    if (op == "+") {
+        std::cout << " " << lhs << " + " << rhs << " = " << lhs + rhs << std::endl;
+    } else if (op == "-") {
+        std::cout << " " << lhs << " - " << rhs << " = " << lhs - rhs << std::endl;
+    } else if (op == "x") {
+        std::cout << " " << lhs << " * " << rhs << " = " << lhs * rhs << std::endl;
+    } else if (op == "/") {
+        std::cout << " " << lhs << " / " << rhs << " = " << lhs / rhs << std::endl;
+    } else if (op == "^") {
+        std::cout << " " << lhs << " ^ " << rhs << " = " << std::pow(lhs, rhs) << std::endl;
+    }
+    else {
+        std::cerr << "Operation" << op << "not recognized by system." << std::endl;
+        return 1;
+    }
+
+    /*double operator1;
+    double operator2; */
     return 0;
 }
 
@@ -78,3 +105,99 @@ int main() {
  *      x%2 == 1) (If x is less than 7 and not even; You can also put them on the same line, however, you cannot put parenthesis around the second line)
  *      Short-circuit evaluation: If the statement fails, then the whole statement fails
  * For loop: for (initialization; test (Is this true?); increment/decrement) (This is the old version)
+ * While loop: while ( predicate )
+ *  Ex.
+ *      int attempts = 0;
+ *      bool success = false;
+ *      while (attempts < 3 && !success) (While the attempts are less than 3...) {
+ *          success = login (user, pass); (when the user enters their username and password, change "success" to "true")
+ *          ++attempts; } (Increase the attempt by one each time)
+ * Do while loop: do {
+ *              } while ( predicate ); (While interate at least once, even if the statement is false)
+ *  Ex.
+ *      int attempts = 0;
+ *      bool success = false;
+ *      do {
+ *          success = login (user, pass);
+ *          ++attempts; }
+ *          while (attempts < 3 && !success);
+ * Switch case (Can ONLY be used with "int" or single "char" variables; Needs to have a default case):
+ *                  switch ( <int or char> ) {
+ *                  case <if the int or char is this>:
+ *                      Code...
+ *                      break;
+ *                  default; (This doesn't have to be at the bottom)
+ *                  }
+ *  Ex.
+ *  int dow;
+ *  switch ( dow ) {
+ *                  case 0: (Monday)
+ *                      lunch = "Caesar Salad";
+ *                      break;
+ *                  case 1:
+ *                      lunch = "Mixed  Greens Salad"
+ *                      break;
+ *                  case 2:
+ *                  case 3:
+ *                      lunch = "Cobb Salad"
+ *                      break;
+ *                  case 4:
+ *                      lunch = "Veggie Salad"
+ *                      break;
+ *                  default:
+ *                      break;
+ *                  } (The cases don't need to be in number or alphabetical order)
+ *  If you forget the break statement, then the case will fall to the next one, and execute that one. Usually a hard bug to track down. */
+
+//Statements and Expressions
+/* Statements: Telling the program something
+ *  Compound statements (Blocks of code enclosed in curly brackets ({})
+ *  "If" Statements
+ *  Iteration statement
+ *      While statement
+ *      Do While statement
+ *      For statement
+ *  Declaration statements (Showing the program a new identifier or variable)
+ * Expressions: A sequence of operatings used to specify a computation
+ * L-values and R-values
+ *  Ex.
+ *      std::string band_leader = "Fozy Bear";
+ *             (left hand side)   (right hand side)
+ * Comments
+ *  Single line (//)
+ *  Multi-line (/*)
+ *
+ *  Do's and Don't's of comments
+ *      DO
+ *      Give a "Why"
+ *      Give an explanation of the code
+ *      Keep them up-to-date
+ *      If the code needs to be explained, then it could be simpler
+ *      Come up with a commenting format
+ *      DON'T
+ *      State "What" you're doing
+ *      State "How" you're doing it
+ *      Make unnecessary comments
+ *      Put too many comments on crazy amounts of code
+ *      Put comments in comments or multiple types in one comment */
+
+//Include files with multiple files
+/* Declare and include guards: Wrap the contents of an include file in a header in a name and test, and won't include it if it's defined
+ *  Ex.
+ *      #ifndef GEOMETRY_H_ (if this is not defined)
+ *      #define GEOMETRY_H_ (define it)
+ *
+ *      double calc_circle_area(double radius);
+ *
+ *      #endif
+ * Defining (Creating a ".cpp" file)
+ *      #include <cmath>
+ *      #include <geometry.h>
+ *
+ *      double calc_circle_area(double radius) {
+ *          return 3.145159 * std::pow(radius, 2); }
+ * Sometimes, you may need to include something from the system include path, which will vary from PC to PC
+ * System include path:
+ *  <path> (Be careful with this one, as the angle brackets tell the compiler to search from the beginning
+ * User include path:
+ *  "path" (You can also use relative path by adding ".." at the beginning, however, relative paths are an assumption) */
