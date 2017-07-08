@@ -76,7 +76,7 @@ int main() {
 
 //Allocation
 /*Every allocation must be accompanied by a deallocation at some point.
- *No deallocatioon = memory leak
+ *No deallocation = memory leak
  * Ex.
  *      void my_func() {
  *
