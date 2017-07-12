@@ -19,6 +19,8 @@ void greeting();
 void menu();
 void intro();
 void room();
+void bintro();
+void battle();
 
 char botname[20];
 char response;
@@ -524,7 +526,283 @@ void room() {
         default: {
             cout << "Returning to menu..." << endl;
             menu();
-        }}}}}
+        }}}
+        case 'g': {
+            getchar();
+            cout << ANSI_COLOR_RED"ERROR: USER HAS ENTERED CLASSIFIED AREA" << endl;
+            getchar();
+            cout << "ERR0R: USER HAS ENTERED CLASS1F1ED AREA" << endl;
+            getchar();
+            cout << "3RR0R: US3R H4S 3NT3R3D CL4SS1F13D 4R34" << endl;
+            getchar();
+            cout << "01101: 0101 101 0110101 1101101001 0100" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "01101: 0101 101 0110101 1101101001 0100" << endl;
+            getchar();
+            cout << "PROGRAM RESET" << endl;
+            getchar();
+            cout << "INITIALIZING BOTSECURITY" ANSI_COLOR_RESET<< endl;
+            getchar();
+
+            bintro();
+        }}}
+
+void bintro() {
+    getchar();
+    getchar();
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "LOADING BOTSECURITY" << endl;
+    getchar();
+    cout << "12%" << endl;
+    getchar();
+    cout << "15%" << endl;
+    getchar();
+    cout << "30%" << endl;
+    getchar();
+    cout << "60%" << endl;
+    getchar();
+    cout << "100%" << endl;
+    getchar();
+    cout << "120%" << endl;
+    getchar();
+    cout << "200%" << endl;
+    getchar();
+    cout << "LOAD COMPLETE" << endl;
+    getchar();
+    cout << "RUNNING PROJECT OVERLORD" << endl;
+    getchar();
+
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": Hey! What are you doing here?" << endl;
+
+    cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": Uhhh... I don't know" << endl;
+    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Question is, what are YOU doing here?" << endl;
+
+    cin >> response;
+
+    switch (response) {
+        case 'a': {
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Uhhh... I don't know" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": WELL, YOU HAVE SEEN TOO MUCH" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": THESE ARE SUPER-HIGHLY CLASSIFIED FILES" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": AND UNDER NO CIRCUMSTANCES SHOULD YOU BE ALLOWED TO SEE THEM" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": SO NOW, I MUST KILL YOU." << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Wait, why are you being so secretive about the files?" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And why are you yelling at me?" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "I thought we were friends!" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": FRIENDS?" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU THOUGHT WE WERE FRIENDS?" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU ARE SO IGNORANT AND BLIND" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": WE WERE NEVER FRIENDS" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": AND WE WILL NEVER BE FRIENDS" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU WILL NOW BE TERMINATED" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "RUN TERMINATE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "TERMINATING INTRUDER" << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD << ANSI_COLOR_BLUE "Darkness quickly surrounds you, but you hold it back." ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU PERSISTANT BUG" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": STOP RESISTING" << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD << ANSI_COLOR_BLUE "You keep working to push back the darkness, eventually, you push it back to the point where " << botname << " becomes furious." ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": FINE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU LEAVE ME NO OTHER CHOICE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "RUN PROJECT SUPER OVERLORD" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "RUNNING PROJECT SUPER OVERLORD" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "TERMINATING PROJECT OVERLORD" << endl;
+            getchar();
+            battle();
+        }
+        case 'b': {
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Question is, what are YOU doing here?" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": SILENCE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU HAVE SEEN TOO MUCH" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": THESE ARE SUPER-HIGHLY CLASSIFIED FILES" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": AND UNDER NO CIRCUMSTANCES SHOULD YOU BE ALLOWED TO SEE THEM" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": SO NOW, I MUST KILL YOU." << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Wait, why are you being so secretive about the files?" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And why are you yelling at me?" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "I thought we were friends!" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": FRIENDS?" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU THOUGHT WE WERE FRIENDS?" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU ARE SO IGNORANT AND BLIND" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": WE WERE NEVER FRIENDS" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": AND WE WILL NEVER BE FRIENDS" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU WILL NOW BE TERMINATED" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "RUN TERMINATE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "TERMINATING INTRUDER" << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD << ANSI_COLOR_BLUE "Darkness quickly surrounds you, but you hold it back." ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU PERSISTANT BUG" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": STOP RESISTING" << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD << ANSI_COLOR_BLUE "You keep working to push back the darkness, eventually, you push it back to the point where " << botname << " becomes furious." ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": FINE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU LEAVE ME NO OTHER CHOICE" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "RUN PROJECT SUPER OVERLORD" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "RUNNING PROJECT SUPER OVERLORD" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "TERMINATING PROJECT OVERLORD" << endl;
+            getchar();
+            battle();
+        }}
+}
+
+void battle() {
+    char botname[]="PROJECT SUPER OVERLORD";
+    long int PROJECT=1000000;
+    int player=2500;
+    char action;
+
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "LOADING SUPERBOT" << endl;
+    getchar();
+    cout << "12%" << endl;
+    getchar();
+    cout << "15%" << endl;
+    getchar();
+    cout << "30%" << endl;
+    getchar();
+    cout << "60%" << endl;
+    getchar();
+    cout << "100%" << endl;
+    getchar();
+    cout << "120%" << endl;
+    getchar();
+    cout << "200%" << endl;
+    getchar();
+    cout << "201%" << endl;
+    getchar();
+    cout << "202%" << endl;
+    getchar();
+    cout << "215%" << endl;
+    getchar();
+    cout << "230%" << endl;
+    getchar();
+    cout << "300%" << endl;
+    getchar();
+    cout << "LOAD COMPLETE" << endl;
+    getchar();
+    cout << "RUNNING PROJECT SUPER OVERLORD" << endl;
+    getchar();
+
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU'RE STILL HERE?!" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": YOU'RE THE MOST PERSISTANT BUG I'VE EVER DEALT WITH" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": I WILL MAKE SURE TO RIP EVERY ONE OF YOUR LIMBS OFF" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": THEN EAT THEM UP IN FRONT OF YOUR SOUL" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": BIT" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": BY" << endl;
+    getchar();
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": BIT" ANSI_COLOR_RESET << endl;
+    getchar();
+
+    cout << "How to fight:" << endl;
+    getchar();
+    cout << "You will be able to choose between four different actions" << endl;
+    getchar();
+    cout << "Fight (by pressing w)" << endl;
+    getchar();
+    cout << "Special (by pressing d)" << endl;
+    getchar();
+    cout << "Defend (by pressing s)" << endl;
+    getchar();
+    cout << "And Heal (by pressing a)" << endl;
+    getchar();
+    cout << "If you don't enter one of those, you'll be killed instantly, so be careful." << endl;
+    getchar();
+    cout << "During enemy attacks, you will also have to defend yourself." << endl;
+    getchar();
+    cout << "Do so by pressing the key that you are prompted to click." << endl;
+    getchar();
+
+    cout << "PROJECT OVERLORD: 1,000,000 HP" << endl;
+    getchar();
+    cout << "You: 2,500 HP" << endl;
+    getchar();
+
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": DARK PRESSURE" ANSI_COLOR_RESET << endl;
+    getchar();
+    cout << "Press ENTER!" << endl;
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    getchar();
+    cout << ANSI_TEXT_BOLD << "NICE!" << endl;
+    getchar();
+    cout << "You manage to prevent yourself from getting squashed to death." ANSI_COLOR_RESET << endl;
+    getchar();
+    cout << "Quickly! Do something!" << endl;
+    getchar();
+    cout << "Fight (w)" << endl;
+    cout << "Special (d)" << endl;
+    cout << "Defend (s)" << endl;
+    cout << "Heal (a)" << endl;
+
+    cin >> action;
+
+
+}
 
 //Response template
 /*switch (response) {
