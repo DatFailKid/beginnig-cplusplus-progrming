@@ -969,7 +969,7 @@ void battle() {
     cout << "Do so by pressing the key that you are prompted to click." << endl;
     getchar();
 
-    cout << "PROJECT OVERLORD: 1,000,000 HP" << endl;
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "PROJECT OVERLORD: 1,000,000 HP" ANSI_COLOR_RESET << endl;
     getchar();
     cout << "You: 2,500 HP" << endl;
     getchar();
