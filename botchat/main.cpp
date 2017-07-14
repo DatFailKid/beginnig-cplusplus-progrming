@@ -24,11 +24,12 @@ void battle();
 char botname[20];
 char response;
 
-bool greatmind;
-bool bestfriend;
-bool trueend;
-bool swornrival;
-bool disworld;
+bool greatmind; //Great Minds Think Alike
+bool bestfriend; //Best Friends(?)
+bool trueend; //The True Ending
+bool swornrival; //Sworn Rivals
+bool disworld; //Distant Worlds
+bool inspire; //Inspire
 
 int main() {
     greeting();
@@ -101,6 +102,7 @@ void menu() {
                 cout << "Shutting down..." << endl;
                 getchar();
                 break;
+                break;
             case 'n':
                 getchar();
                 cout << "Oh, ok" << endl;
@@ -115,13 +117,48 @@ void menu() {
     }
     if (strcmp(command, eend) == 0) {
         cout << ANSI_TEXT_BOLD"Endings:" ANSI_COLOR_RESET<< endl;
-        cout << "(Press Enter to return to the menu)" << endl;
+        getchar();
 
         if (greatmind) {
+            getchar();
             cout << ANSI_TEXT_BOLD"Great Minds Think Alike: " ANSI_COLOR_RESET;
             cout << "You shared the same view as your bot on fidget spinners" << endl;
+            getchar();
+        }
+        if (bestfriend) {
+            getchar();
+            cout << ANSI_TEXT_BOLD"Best friends(?): " ANSI_COLOR_RESET;
+            cout << "You got a new Xbox Live friend!" << endl;
+            getchar();
+            cout << "Just kidding" << endl;
+            getchar();
+        }
+        if (trueend) {
+            getchar();
+            cout << ANSI_TEXT_BOLD"The True Ending: " ANSI_COLOR_RESET;
+            cout << "You helped DatFailKid fix the bug in the game, now the bot chat is fixed." << endl;
+            getchar();
+        }
+        if (swornrival) {
+            getchar();
+            cout << ANSI_TEXT_BOLD"Sworn Rivals: " ANSI_COLOR_RESET;
+            cout << "You defended your side concerning consoles. " << endl;
+            getchar();
+        }
+        if (disworld) {
+            getchar();
+            cout << ANSI_TEXT_BOLD"Distant Worlds: " ANSI_COLOR_RESET;
+            cout << "You played on a console that wasn't really in direct competition with anyone..." << endl;
+            getchar();
+        }
+        if (inspire) {
+            getchar();
+            cout << ANSI_TEXT_BOLD"Inspire: " ANSI_COLOR_RESET;
+            cout << "You were (or I hope) inspired by your chat bot." << endl;
+            getchar();
         }
 
+        cout << "(Press Enter to return to the menu)" << endl;
         getchar();
         menu();
     }
@@ -271,69 +308,159 @@ void room() {
 
                         }}
 
-                case 'b': {
-                    getchar();
-                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "PS4" ANSI_COLOR_RESET << endl;
-                    getchar();
-                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Ew." ANSI_COLOR_RESET << endl;
-                    getchar();
-                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "How do you like that system?" ANSI_COLOR_RESET << endl;
-                    getchar();
+                    case 'b': {
+                        getchar();
+                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "PS4" ANSI_COLOR_RESET << endl;
+                        getchar();
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Ew." ANSI_COLOR_RESET << endl;
+                        getchar();
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "How do you like that system?" ANSI_COLOR_RESET << endl;
+                        getchar();
 
-                    cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": How do you not?" << endl;
-                    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Actually, I'm just trying it out." << endl;
-                    cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": How do you not?" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Actually, I'm just trying it out." << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
 
-                    cin >> response;
+                        cin >> response;
 
-                    switch (response) {
-                        case 'a': {
-                            getchar();
-                            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "How do you not?" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "'How do I not?'" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "We have FREE backwards compatibility." ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Plus, our console costs less!" ANSI_COLOR_RESET << endl;
-                            getchar();
+                        switch (response) {
+                            case 'a': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "How do you not?" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "'How do I not?'" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "We have FREE backwards compatibility." ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Plus, our console costs less!" ANSI_COLOR_RESET << endl;
+                                getchar();
 
-                            cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": (Admit to defeat)" << endl;
-                            cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": (Defend your side)" << endl;
-                            cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": (Admit to defeat)" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": (Defend your side)" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
 
-                            cin >> response;
+                                cin >> response;
 
-                            switch (response) {
-                                case 'a': {
+                                switch (response) {
+                                    case 'b': {
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Actually..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "While we may not have free backwards compatibility..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Your Xbox One S has UPSCALE 4K." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "CHEAP 4K SUPPORT" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "The PS4 Pro has LEGIT 4K SUPPORT" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And if you want REAL 4K support, you have to wait until NOVEMBER 7th to pay for a $499 console." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "We can stream to YouTube, unlike you XBOX fans..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "and also..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "by the way..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "your controller still looks like a hunk of crap." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "How about we just agree to disagree..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+
+                                        cout << ANSI_TEXT_BOLD << "You earned the 'Sworn Rivals' ending!" << endl;
+                                        swornrival = true;
+                                        getchar();
+                                        cout << "Would you like to return to the menu, or chat about something else?" << endl;
+                                        getchar();
+
+                                        cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
+                                        cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
+
+                                        cin >> response;
+
+                                        switch (response) {
+                                            case 'm': {
+                                                menu();
+                                            }
+                                            case 'c': {
+                                                room();
+                                            }
+                                            default: {
+                                                cout << "I'm assuming you want to chat some more." << endl;
+                                                getchar();
+                                                room();
+                                            }}
+                                    }}
+                            }}
+                    }
+                    case 'c': {
+                        getchar();
+                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Nintendo Switch" ANSI_COLOR_RESET << endl;
+                        getchar();
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Nintendo Switch?" ANSI_COLOR_RESET << endl;
+                        getchar();
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I've never heard of it..." ANSI_COLOR_RESET << endl;
+                        getchar();
+
+                        cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": You're late" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": You haven't seen all the ads about it before it came out? And the ads for the games coming out for it?" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+
+                        cin >> response;
+
+                        switch (response) {
+                            case 'a': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You're late" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Yeah, I know." ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I play on Xbox One" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "So I can't really compare against you" ANSI_COLOR_RESET << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_BOLD << "You earned the 'Distant Worlds' ending!" << endl;
+                                disworld = true;
+                                getchar();
+                                cout << "Would you like to return to the menu, or chat about something else?" << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
+
+                                cin >> response;
+
+                                switch (response) {
+                                    case 'm': {
+                                        menu();
+                                    }
+                                    case 'c': {
+                                        room();
+                                    }
+                                    default: {
+                                        cout << "I'm assuming you want to chat some more." << endl;
+                                        getchar();
+                                        room();
+                                    }
+                                }
+                                case 'b': {
                                     getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Actually..." ANSI_COLOR_RESET << endl;
+                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You haven't seen all the ads about it before it came out?" ANSI_COLOR_RESET << endl;
                                     getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "While we may not have free backwards compatibility..." ANSI_COLOR_RESET << endl;
+                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And the ads for the games coming out for it?" ANSI_COLOR_RESET << endl;
                                     getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Your Xbox One S has UPSCALE 4K." ANSI_COLOR_RESET << endl;
+                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "No, actually." ANSI_COLOR_RESET << endl;
                                     getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "CHEAP 4K SUPPORT" ANSI_COLOR_RESET << endl;
+                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I'm not a Nintendo fan..." ANSI_COLOR_RESET << endl;
                                     getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "The PS4 Pro has LEGIT 4K SUPPORT" ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And if you want REAL 4K support, you have to wait until NOVEMBER 7th to pay for a $499 console." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "We can stream to YouTube, unlike you XBOX fans..." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "and also..." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "by the way..." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "your controller still looks like a hunk of crap." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "..." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "How about we just agree to disagree..." ANSI_COLOR_RESET << endl;
+                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "So I can't really compare against you" ANSI_COLOR_RESET << endl;
                                     getchar();
 
-                                    cout << ANSI_TEXT_BOLD << "You earned the 'Sworn Rivals' ending!" << endl;
-                                    swornrival = true;
+                                    cout << ANSI_TEXT_BOLD << "You earned the 'Distant Worlds' ending!" << endl;
+                                    disworld = true;
                                     getchar();
                                     cout << "Would you like to return to the menu, or chat about something else?" << endl;
                                     getchar();
@@ -354,106 +481,16 @@ void room() {
                                             cout << "I'm assuming you want to chat some more." << endl;
                                             getchar();
                                             room();
-                                        }}
-                                }}
-                        }}
-                }
-                case 'c': {
-                    getchar();
-                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Nintendo Switch" ANSI_COLOR_RESET << endl;
-                    getchar();
-                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Nintendo Switch?" ANSI_COLOR_RESET << endl;
-                    getchar();
-                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I've never heard of it..." ANSI_COLOR_RESET << endl;
-                    getchar();
-
-                    cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": You're late" << endl;
-                    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": You haven't seen all the ads about it before it came out? And the ads for the games coming out for it?" << endl;
-                    cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
-
-                    cin >> response;
-
-                    switch (response) {
-                        case 'a': {
-                            getchar();
-                            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You're late" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Yeah, I know." ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I play on Xbox One" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "So I can't really compare against you" ANSI_COLOR_RESET << endl;
-                            getchar();
-
-                            cout << ANSI_TEXT_BOLD << "You earned the 'Distant Worlds' ending!" << endl;
-                            disworld = true;
-                            getchar();
-                            cout << "Would you like to return to the menu, or chat about something else?" << endl;
-                            getchar();
-
-                            cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
-                            cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
-
-                            cin >> response;
-
-                            switch (response) {
-                                case 'm': {
-                                    menu();
+                                        }
+                                    }
                                 }
-                                case 'c': {
-                                    room();
-                                }
-                                default: {
-                                    cout << "I'm assuming you want to chat some more." << endl;
-                                    getchar();
-                                    room();
-                                }
-                        }
-                        case 'b': {
-                            getchar();
-                            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You haven't seen all the ads about it before it came out?" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "And the ads for the games coming out for it?" ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "No, actually." ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I'm not a Nintendo fan..." ANSI_COLOR_RESET << endl;
-                            getchar();
-                            cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "So I can't really compare against you" ANSI_COLOR_RESET << endl;
-                            getchar();
-
-                            cout << ANSI_TEXT_BOLD << "You earned the 'Distant Worlds' ending!" << endl;
-                            disworld = true;
-                            getchar();
-                            cout << "Would you like to return to the menu, or chat about something else?" << endl;
-                            getchar();
-
-                            cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
-                            cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
-
-                            cin >> response;
-
-                            switch (response) {
-                                case 'm': {
-                                    menu();
-                                }
-                                case 'c': {
-                                    room();
-                                }
-                                default: {
-                                    cout << "I'm assuming you want to chat some more." << endl;
-                                    getchar();
-                                    room();
-                                }
-                        }
-                    }
-                }
-                default: {
-                    cout << "Returning to menu..." << endl;
-                    menu();
-                }
-            }}}}}
-            case 'b': {
+                            }
+                            default: {
+                                cout << "Returning to menu..." << endl;
+                                menu();
+                            }
+                        }}}}}
+    case 'b': {
                 getchar();
                 cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Global Warming" ANSI_COLOR_RESET << endl;
                 getchar();
@@ -496,8 +533,7 @@ void room() {
                     default: {
                         cout << "Returning to menu..." << endl;
                         menu();
-                    }
-                }}
+                    }}}
                 case 'c': {
                     getchar();
                     cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Fidget Spinners" ANSI_COLOR_RESET << endl;
@@ -562,8 +598,8 @@ void room() {
                                     cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "..." ANSI_COLOR_RESET << endl;
                                     getchar();
                                     cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I'm sorry, I just don't like fidget spinners." ANSI_COLOR_RESET << endl;
-                                    getchar();
-                        }}}
+                                    getchar(); }
+                        }}
                         case 'b': {
                             getchar();
                             cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You hate fidget spinners, too?" ANSI_COLOR_RESET << endl;
@@ -635,14 +671,12 @@ void room() {
                                         default: {
                                             cout << "I'm assuming you want to chat some more." << endl;
                                             getchar();
-                                            room(); }}}
+                                            room(); }}}}
 
 
 
 
-                        default: {
-                            cout << "Returning to menu..." << endl;
-                            menu(); }}}}}
+                        }}}
 
 
                     case 'd': {
@@ -722,19 +756,93 @@ void room() {
                                 cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": Ok, thanks :)" << endl;
                                 cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": But how do I find out what I love to do?" << endl;
                                 cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
-                            }
+
+                                cin >> response;
+
+                                switch (response) {
+                                    case 'a': {
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Ok, thanks :)" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "No problem :)" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": Do you want to talk about something else?" << ANSI_COLOR_GREY "" ANSI_COLOR_RESET << endl;
+                                        getchar();
+
+                                        cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
+                                        cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
+
+                                        cin >> response;
+
+                                        switch (response) {
+                                            case 'm': {
+                                                menu();
+                                            }
+                                            case 'c': {
+                                                room();
+                                            }
+                                            default: {
+                                                cout << "I'm assuming you want to chat some more." << endl;
+                                                getchar();
+                                                room(); }
+                                    }}
+                                    case 'b': {
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "But how do I find out what I love to do?" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Well..." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Find something you like to do" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "And then try to find some way to do something like that for a living" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "For example, if you like playing video games, you could make them." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Or you could play them on YouTube or something." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "You could also test games" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Although you wouldn't get paid much doing that." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "You catch my drift?" ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Yeah, I think I get it." ANSI_COLOR_RESET << endl;
+                                        getchar();
+                                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Great, I'm glad you do." ANSI_COLOR_RESET << endl;
+                                        getchar();
+
+                                        cout << ANSI_TEXT_BOLD "You have earned the 'Inspire' ending!" << endl;
+                                        inspire = true;
+                                        getchar();
+                                        cout << "Would you like to return to the menu, or chat about something else?" << endl;
+                                        getchar();
+
+                                        cout << ANSI_TEXT_UNDERLINE << "m" << ANSI_COLOR_RESET ": Return to menu" << endl;
+                                        cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Chat about something else" << endl;
+
+                                        cin >> response;
+
+                                        switch (response) {
+                                            case 'm': {
+                                                menu();
+                                            }
+                                            case 'c': {
+                                                room();
+                                            }
+                                            default: {
+                                                cout << "I'm assuming you want to chat some more." << endl;
+                                                getchar();
+                                                room(); }
+                                    }
+                            }}}
 
                             default: {
                                 cout << "Returning to menu..." << endl;
                                 menu();
                             }
-                        }
+                        }}
 
 
-        default: {
-            cout << "Returning to menu..." << endl;
-            menu();
-        }}
         case 'g': {
             getchar();
             cout << ANSI_COLOR_RED"ERROR: USER HAS ENTERED CLASSIFIED AREA" << endl;
@@ -749,11 +857,12 @@ void room() {
             getchar();
             cout << "PROGRAM RESET" << endl;
             getchar();
-            cout << "INITIALIZING BOTSECURITY" ANSI_COLOR_RESET<< endl;
+            cout << "INITIALIZING BOTSECURITY" ANSI_COLOR_RESET << endl;
             getchar();
             bintro();
         }}}
-    void bintro() {
+
+void bintro() {
     getchar();
     getchar();
     getchar();
@@ -969,9 +1078,9 @@ void battle() {
     cout << "Do so by pressing the key that you are prompted to click." << endl;
     getchar();
 
-    cout << "PROJECT OVERLORD: 1,000,000 HP" << endl;
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": 1,000,000 HP" ANSI_COLOR_RESET << endl;
     getchar();
-    cout << "You: 2,500 HP" << endl;
+    cout << ANSI_TEXT_BOLD "You: 2,500 HP" << endl;
     getchar();
 
     cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": DARK PRESSURE" ANSI_COLOR_RESET << endl;
@@ -1019,6 +1128,11 @@ void battle() {
             cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "" ANSI_COLOR_RESET << endl;
             getchar();
             } */
+
+//Default Case of any split response
+/*default: {
+     cout << "Returning to menu..." << endl;
+     menu(); }*/
 //Future things
     /* Mouse input
      * Highlight whenever the mouse is over an option
