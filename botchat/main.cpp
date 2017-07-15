@@ -1008,7 +1008,7 @@ void bintro() {
 }
 
 void battle() {
-    char botname[]="PROJECT SUPER OVERLORD";
+    char botname[]= "PROJECT SUPER OVERLORD";
     long int PROJECT=1000000;
     int player=2500;
     char action;
@@ -1113,11 +1113,106 @@ void battle() {
     cout << "Special (d)" << endl;
     cout << "Defend (s)" << endl;
     cout << "Heal (a)" << endl;
+    getchar();
+
+    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": " << PROJECT << " HP" ANSI_COLOR_RESET << endl;
+    cout << ANSI_TEXT_BOLD "You: " << player << " HP" ANSI_COLOR_RESET << endl;
 
     cin >> action;
 
+    switch (action) {
+        case 'w': {
+            getchar();
+            cout << "You throw a few punches at " << botname << ", however, it doesn't do anything, and now, your knuckles hurt" << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": ENERBALLS!" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << "Press A and D to move side to side and deflect the EnerBalls. When you press A or D, press ENTER!" << endl;
+            getchar();
+            cout << "In the event that there are two EnerBalls coming at you, press A and D, then ENTER!" << endl;
+            getchar();
+            cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "---O" ANSI_COLOR_RESET << endl;
 
-}
+            cin >> action;
+
+            switch (action) {
+                case 'a': {
+                    cout << ANSI_TEXT_BOLD << "GOOD!" << endl;
+                    cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "O---" ANSI_COLOR_RESET << endl;
+                    cin >> action;
+                    switch (action) {
+                        case 'a': {
+                            player = player-32;
+                            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "-32" << endl;
+                            cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "---0" ANSI_COLOR_RESET << endl;
+
+                            cin >> action;
+                    }
+                        case 'd': {
+                            cout << ANSI_TEXT_BOLD << "GREAT!" << endl;
+                            cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "---0" ANSI_COLOR_RESET << endl;
+                            cin >> action;
+                        }
+                }}
+                case 'd': {
+                    player = player-32;
+                    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "-32" << endl;
+                    cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "O---" ANSI_COLOR_RESET << endl;
+
+                    cin >> action;
+                }
+                default: {
+                    player = player-64;
+                    cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "-64" << endl;
+                    cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "O---" ANSI_COLOR_RESET << endl;
+
+                    cin >> action;
+                }
+            }
+        }
+        case 'd': {
+            cout << ANSI_TEXT_BOLD "Special" ANSI_COLOR_RESET << endl;
+            cout << "Fireball (f)" << endl;
+            cout << "Iceball (i)" << endl;
+            cout << "Lightbeam (l)" << endl;
+            cout << "Dark Shower (d)" << endl;
+        }
+        case 's': {
+            cout << "You brace for an attack from " << botname << "..." << endl;
+        }
+        case 'a': {
+            cout << "You didn't lose any HP from the last attack, so you didn't heal, therefore, wasting your turn." << endl;
+        }
+        default: {
+            cout << "That is not a valid move..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": END" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << "Darkness quickly surrounds you..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "GAME OVER" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "Try again? (y/n)" ANSI_COLOR_RESET << endl;
+
+            cin >> action;
+
+            switch (action) {
+                case 'y': {
+                    battle();
+                }
+                case 'n': {
+                    cout << "Returning to menu..." << endl;
+                    getchar();
+                    menu();
+                }
+                default: {
+                    cout << "Returning to menu..." << endl;
+                    getchar();
+                    menu();
+                }
+        }
+    }
+}}
 
 //Response template
 /*switch (response) {
