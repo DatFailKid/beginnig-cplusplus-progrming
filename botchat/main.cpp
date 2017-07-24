@@ -102,7 +102,6 @@ void menu() {
                 cout << "Shutting down..." << endl;
                 getchar();
                 break;
-                break;
             case 'n':
                 getchar();
                 cout << "Oh, ok" << endl;
@@ -116,46 +115,49 @@ void menu() {
         }
     }
     if (strcmp(command, eend) == 0) {
-        cout << ANSI_TEXT_BOLD"Endings:" ANSI_COLOR_RESET<< endl;
+        cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Endings:" ANSI_COLOR_RESET<< endl;
         getchar();
 
         if (greatmind) {
             getchar();
-            cout << ANSI_TEXT_BOLD"Great Minds Think Alike: " ANSI_COLOR_RESET;
-            cout << "You shared the same view as your bot on fidget spinners" << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Great Minds Think Alike: " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW"You shared the same view as your bot on fidget spinners" ANSI_COLOR_RESET << endl;
             getchar();
         }
         if (bestfriend) {
             getchar();
-            cout << ANSI_TEXT_BOLD"Best friends(?): " ANSI_COLOR_RESET;
-            cout << "You got a new Xbox Live friend!" << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Best friends(?): " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW "You got a new Xbox Live friend!" ANSI_COLOR_RESET << endl;
             getchar();
             cout << "Just kidding" << endl;
             getchar();
         }
         if (trueend) {
             getchar();
-            cout << ANSI_TEXT_BOLD"The True Ending: " ANSI_COLOR_RESET;
-            cout << "You helped DatFailKid fix the bug in the game, now the bot chat is fixed." << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"The True Ending: " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW "You helped DatFailKid fix the bug in the game, now the bot chat is fixed." ANSI_COLOR_RESET << endl;
             getchar();
         }
         if (swornrival) {
             getchar();
-            cout << ANSI_TEXT_BOLD"Sworn Rivals: " ANSI_COLOR_RESET;
-            cout << "You defended your side concerning consoles. " << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Sworn Rivals: " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW "You defended your side concerning consoles." ANSI_COLOR_RESET << endl;
             getchar();
         }
         if (disworld) {
             getchar();
-            cout << ANSI_TEXT_BOLD"Distant Worlds: " ANSI_COLOR_RESET;
-            cout << "You played on a console that wasn't really in direct competition with anyone..." << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Distant Worlds: " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW "You played on a console that wasn't really in direct competition with anyone..." ANSI_COLOR_RESET << endl;
             getchar();
         }
         if (inspire) {
             getchar();
-            cout << ANSI_TEXT_BOLD"Inspire: " ANSI_COLOR_RESET;
-            cout << "You were (or I hope) inspired by your chat bot." << endl;
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"Inspire: " ANSI_COLOR_RESET;
+            cout << ANSI_COLOR_YELLOW << "You were (or I hope) inspired by your chat bot." ANSI_COLOR_RESET << endl;
             getchar();
+        }
+        else {
+            cout << ANSI_COLOR_YELLOW << ANSI_TEXT_BOLD"You have completed no endings..." ANSI_COLOR_RESET << endl;
         }
 
         cout << "(Press Enter to return to the menu)" << endl;
@@ -306,7 +308,11 @@ void room() {
                                     room();
                                 }}
 
-                        }}
+                        }
+                        default: {
+                            cout << "Returning to menu..." << endl;
+                            menu(); }
+                    }
 
                     case 'b': {
                         getchar();
@@ -392,8 +398,16 @@ void room() {
                                                 getchar();
                                                 room();
                                             }}
-                                    }}
-                            }}
+                                    }
+                                    default: {
+                                        cout << "Returning to menu..." << endl;
+                                        menu();}
+                                }
+                            }
+                            default: {
+                                cout << "Returning to menu..." << endl;
+                                menu();}
+                        }
                     }
                     case 'c': {
                         getchar();
@@ -489,8 +503,12 @@ void room() {
                                 cout << "Returning to menu..." << endl;
                                 menu();
                             }
-                        }}}}}
-    case 'b': {
+                        }}}
+                default: {
+                    cout << "Returning to menu..." << endl;
+                    menu();}
+            }}
+        case 'b': {
                 getchar();
                 cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Global Warming" ANSI_COLOR_RESET << endl;
                 getchar();
@@ -534,7 +552,7 @@ void room() {
                         cout << "Returning to menu..." << endl;
                         menu();
                     }}}
-                case 'c': {
+        case 'c': {
                     getchar();
                     cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Fidget Spinners" ANSI_COLOR_RESET << endl;
                     getchar();
@@ -599,7 +617,10 @@ void room() {
                                     getchar();
                                     cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I'm sorry, I just don't like fidget spinners." ANSI_COLOR_RESET << endl;
                                     getchar(); }
-                        }}
+                                default: {
+                                    cout << "Returning to menu..." << endl;
+                                    menu(); }
+                            }}
                         case 'b': {
                             getchar();
                             cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You hate fidget spinners, too?" ANSI_COLOR_RESET << endl;
@@ -671,15 +692,23 @@ void room() {
                                         default: {
                                             cout << "I'm assuming you want to chat some more." << endl;
                                             getchar();
-                                            room(); }}}}
+                                            room(); }}}
+                                default: {
+                                    cout << "Returning to menu..." << endl;
+                                    menu();}
+                            }
 
 
 
 
-                        }}}
+                        }
+                        default: {
+                            cout << "Returning to menu..." << endl;
+                            menu();}
+                    }}
 
 
-                    case 'd': {
+        case 'd': {
                         getchar();
                         cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Dreams" ANSI_COLOR_RESET << endl;
                         getchar();
@@ -834,7 +863,11 @@ void room() {
                                                 getchar();
                                                 room(); }
                                     }
-                            }}}
+                            }
+                                    default: {
+                                        cout << "Returning to menu..." << endl;
+                                        menu();}
+                                }}
 
                             default: {
                                 cout << "Returning to menu..." << endl;
@@ -860,7 +893,10 @@ void room() {
             cout << "INITIALIZING BOTSECURITY" ANSI_COLOR_RESET << endl;
             getchar();
             bintro();
-        }}}
+        }
+        default: {
+            cout << "Returning to menu..." << endl;
+            menu();}}}
 
 void bintro() {
     getchar();
@@ -891,6 +927,7 @@ void bintro() {
 
     cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": Uhhh... I don't know" << endl;
     cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Question is, what are YOU doing here?" << endl;
+    cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Run away)" << endl;
 
     cin >> response;
 
@@ -1004,7 +1041,11 @@ void bintro() {
             cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "TERMINATING PROJECT OVERLORD" << endl;
             getchar();
             battle();
-        }}
+        }
+        default: {
+            cout << "You run away in fear..." << endl;
+            menu(); }
+    }
 }
 
 void battle() {
@@ -1153,7 +1194,14 @@ void battle() {
                             cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "---0" ANSI_COLOR_RESET << endl;
                             cin >> action;
                         }
-                }}
+                        default: {
+                            player = player-64;
+                            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "-64" << endl;
+                            cout << ANSI_COLOR_CYAN << ANSI_TEXT_BOLD "---0" ANSI_COLOR_RESET << endl;
+
+                            cin >> action;
+                        }
+                    }}
                 case 'd': {
                     player = player-32;
                     cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << "-32" << endl;
@@ -1212,7 +1260,38 @@ void battle() {
                 }
         }
     }
-}}
+}
+
+//Invalid Move
+/*default: {
+            cout << "That is not a valid move..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD << botname << ": END" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << "Darkness quickly surrounds you..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RED << ANSI_TEXT_BOLD "GAME OVER" ANSI_COLOR_RESET << endl;
+            getchar();
+            cout << ANSI_TEXT_BOLD "Try again? (y/n)" ANSI_COLOR_RESET << endl;
+
+            cin >> action;
+
+            switch (action) {
+                case 'y': {
+                    battle();
+                }
+                case 'n': {
+                    cout << "Returning to menu..." << endl;
+                    getchar();
+                    menu();
+                }
+                default: {
+                    cout << "Returning to menu..." << endl;
+                    getchar();
+                    menu();
+                }
+        }*/
+}
 
 //Response template
 /*switch (response) {
