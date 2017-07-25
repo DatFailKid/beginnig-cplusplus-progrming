@@ -237,7 +237,7 @@ void room() {
 
     cout << "Choose a response from below:" << endl;
     cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": Video Games" << endl;
-    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Global Warming" << endl;
+    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Trees" << endl;
     cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": Fidget Spinners" << endl;
     cout << ANSI_TEXT_UNDERLINE << "d" << ANSI_COLOR_RESET ": Dreams" << endl;
     cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
@@ -403,6 +403,21 @@ void room() {
                                         cout << "Returning to menu..." << endl;
                                         menu();}
                                 }
+                                case 'b': {
+                                    getchar();
+                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Actually, I'm just trying it out." ANSI_COLOR_RESET << endl;
+                                    getchar();
+                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "You wasted $300 on a console you're 'trying out'?" ANSI_COLOR_RESET << endl;
+                                    getchar();
+                                    cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Yeah" ANSI_COLOR_RESET << endl;
+                                    getchar();
+                                    cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "And how are you liking it?" ANSI_COLOR_RESET << endl;
+                                    getchar();
+
+                                    cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": I like it!" << endl;
+                                    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": I'm not liking it very much..." << endl;
+                                    cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                                }
                             }
                             default: {
                                 cout << "Returning to menu..." << endl;
@@ -510,16 +525,15 @@ void room() {
             }}
         case 'b': {
                 getchar();
-                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Global Warming" ANSI_COLOR_RESET << endl;
+                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Trees" ANSI_COLOR_RESET << endl;
                 getchar();
                 cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Ok" ANSI_COLOR_RESET << endl;
                 getchar();
-                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Do you think that global warming is a thing?" ANSI_COLOR_RESET << endl;
+                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I don't like how much trees have been cut down over the years..." ANSI_COLOR_RESET << endl;
                 getchar();
 
-                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": Yes, obviously" << endl;
-                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": No, I don't think so..." << endl;
-                cout << ANSI_TEXT_UNDERLINE << "c" << ANSI_COLOR_RESET ": What's global warming?" << endl;
+                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": I agree" << endl;
+                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": I don't mind it" << endl;
                 cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
 
                 cin >> response;
@@ -527,26 +541,106 @@ void room() {
                 switch (response) {
                     case 'a': {
                         getchar();
-                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Yes, obviously" ANSI_COLOR_RESET << endl;
+                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "I agree" ANSI_COLOR_RESET << endl;
                         getchar();
-                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Yeah, I agree!" ANSI_COLOR_RESET << endl;
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "We're practically ridding ourselves of our only source of oxygen!" ANSI_COLOR_RESET << endl;
                         getchar();
-                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I don't see how some people can deny that global warming is a thing." ANSI_COLOR_RESET << endl;
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I just don't see how someone could just deny that this is a problem!" ANSI_COLOR_RESET << endl;
                         getchar();
+
+                        cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": I know!" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": Now you're starting to sound like the Lorax..." << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+
+                        cin >> response;
+
+                        switch (response) {
+                            case 'a': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "I know!" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I wonder what the world is gonna do when there's no more trees left." ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "No more wood burning" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "No more oxygen..." ANSI_COLOR_RESET << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": That's a good question, what are we going to do when we have no more trees left?" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": You do realize that other plants make oxygen, too, right?" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                            }
+                            case 'b': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "Now you're starting to sound like the Lorax..." ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << "Lorax" << ": " << ANSI_COLOR_GREY "What if I was the Lorax?" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << "Lorax" << ": " << ANSI_COLOR_GREY "I am the Lorax!" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << "Lorax" << ": " << ANSI_COLOR_GREY "I speak for the trees!" ANSI_COLOR_RESET << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": NO, STOP! XD" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": I bet the world would still hack away trees..." << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                            }
+                            default: {
+                                cout << "Returning to menu..." << endl;
+                                menu();
+                            }
+                        }
                     }
                     case 'b': {
                         getchar();
-                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "No, I don't think so" ANSI_COLOR_RESET << endl;
+                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "I don't mind it" ANSI_COLOR_RESET << endl;
                         getchar();
                         cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "HOW?!" ANSI_COLOR_RESET << endl;
                         getchar();
-                    }
-                    case 'c': {
+                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "We're practically ridding ourselves of our only source of oxygen!" ANSI_COLOR_RESET << endl;
                         getchar();
-                        cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "What's global warming?" ANSI_COLOR_RESET << endl;
-                        getchar();
-                        cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Basically, it means that the earth is getting warmer over time." ANSI_COLOR_RESET << endl;
-                        getchar();
+
+                        cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": You know, you do have a point..." << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": You know there are such thing as plants, right?" << endl;
+                        cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+
+                        cin >> response;
+
+                        switch (response) {
+                            case 'a': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You know, you do have a point..." ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "You see why I'm concerned about this?" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "If we keep going on, we're gonna create a problem that our children, grandchildren, maybe our great-grandchildren will have to deal with!" ANSI_COLOR_RESET << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": That's a good question, what are we going to do when we have no more trees left?" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": You do realize that other plants make oxygen, too, right?" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                            }
+                            case 'b': {
+                                getchar();
+                                cout << ANSI_TEXT_BOLD "You: " << ANSI_COLOR_BLUE "You know there are such thing as plants, right?" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "I know" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "But most of them make less oxygen than trees do" ANSI_COLOR_RESET << endl;
+                                getchar();
+                                cout << ANSI_TEXT_BOLD << botname << ": " << ANSI_COLOR_GREY "Especially the giant ones!" ANSI_COLOR_RESET << endl;
+                                getchar();
+
+                                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": NO, STOP! XD" << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": I bet the world would still hack away trees..." << endl;
+                                cout << ANSI_TEXT_UNDERLINE << "Any other character" << ANSI_COLOR_RESET ": (Return to menu)" << endl;
+                            }
+                            default: {
+                                cout << "Returning to menu..." << endl;
+                                menu();
+                            }
+                        }
+
                     }
                     default: {
                         cout << "Returning to menu..." << endl;
