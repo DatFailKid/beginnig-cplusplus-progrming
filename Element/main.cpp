@@ -16,17 +16,25 @@ using namespace std;
 void greeting();
 void title();
 void intro();
+void forest();
+void village();
+void field();
 
 char pname[15];
-char pgender=' ';
-char pweight=' ';
-char pelement=' ';
-char pclass=' ';
+char pgender;
+char pweight;
+char pelement;
+char pclass;
+char page;
 
+char choice;
+
+bool firstv=true;
 int main() {
     greeting();
     return 0;
 }
+
 void greeting() {
     std::cout << ANSI_TEXT_BOLD << ANSI_COLOR_RED "DatFailKid " << ANSI_TEXT_BOLD "Presents" ANSI_COLOR_RESET << std::endl;
     std::cout << "(Press Enter)" << std::endl;
@@ -471,6 +479,84 @@ void intro() {
             pclass=='X' ||
             pclass=='Y' ||
             pclass=='Z');
+
+    do {
+        cout << ANSI_COLOR_YELLOW "Choose your character's age! (This will change how characters interact with you)." << endl;
+        getchar();
+        cout << "(a) = Adult" << endl;
+        cout << "(t) = Teenager" << endl;
+        cin >> page;
+        if (page=='a') {
+            cout << ANSI_COLOR_RESET"Age = " << page << " (Adult)" << endl;
+            break;
+        }
+        if (page=='t') {
+            cout << ANSI_COLOR_RESET"Gender = " << page << " (Teenager)" << endl;
+            break;
+        }
+        if (page=='A') {
+            page='a';
+            cout << ANSI_COLOR_RESET"Gender = " << page << " (Adult)" << endl;
+            break;
+        }
+        if (page=='T') {
+            page='t';
+            cout << ANSI_COLOR_RESET"Gender = " << page << " (Teenager)" << endl;
+            break;
+        }
+        else {
+            continue;
+        }
+
+    } while (page==' ' ||
+            page=='b' ||
+            page=='c' ||
+            page=='d' ||
+            page=='e' ||
+            page=='f' ||
+            page=='g' ||
+            page=='h' ||
+            page=='i' ||
+            page=='j' ||
+            page=='k' ||
+            page=='l' ||
+            page=='m' ||
+            page=='n' ||
+            page=='o' ||
+            page=='p' ||
+            page=='q' ||
+            page=='r' ||
+            page=='s' ||
+            page=='u' ||
+            page=='v' ||
+            page=='w' ||
+            page=='x' ||
+            page=='y' ||
+            page=='z' ||
+            page=='B' ||
+            page=='C' ||
+            page=='D' ||
+            page=='E' ||
+            page=='F' ||
+            page=='G' ||
+            page=='H' ||
+            page=='I' ||
+            page=='J' ||
+            page=='K' ||
+            page=='L' ||
+             page=='M' ||
+            page=='N' ||
+            page=='O' ||
+            page=='P' ||
+            page=='Q' ||
+            page=='R' ||
+            page=='S' ||
+            page=='U' ||
+            page=='V' ||
+            page=='W' ||
+            page=='X' ||
+            page=='Y' ||
+            page=='Z');
     getchar();
     cout << ANSI_COLOR_RESET"'Now, go my hero', the voice says again." << endl;
     getchar();
@@ -484,11 +570,27 @@ void intro() {
     if (pweight=='t') {
         cout << "All too soon, you plummet into the ground, creating a crater around you." << endl;
         getchar();
-        cout << "All too soon, you plummet into the ground, creating a crater around you." << endl;
+        cout << "You slowly get up, and climb out of the crater." << endl;
+        cout << ANSI_TEXT_BOLD "Press 'Enter' to climb!" << endl;
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        getchar();
+        cout << "You manage to get yourself out of the crater and to the surface." << endl;
+        getchar();
+        cout << "And thankfully, you didn't crash into the village nearby." << endl;
+        field();
     }
     if (pweight=='f') {
         cout << "Thankfully, you're just falling fast enough that you can make a safe landing in the middle of some plains." << endl;
         getchar();
+        field();
     }
     else {
         cout << "Within a few minutes, you crash into the ground, burying your head underground." << endl;
@@ -510,4 +612,268 @@ void intro() {
         getchar();
     }
     cout << "You look around at the grasslands you've landed in." << endl;
+    field(); }
+
+void field() {
+
+    cout << "You see a heavy forest, and a village nearby." << endl;
+
+    do {
+        cout << "Which do you go to? (v=village, f=forest)" << endl;
+        cin >> choice;
+
+        if (choice=='f') {
+            cout << "You walk cautiously towards the forest..." << endl;
+            getchar();
+            //forest();
+        }
+        if (choice=='v') {
+            cout << "You walk to the village..." << endl;
+            getchar();
+            village();
+        }
+        if (choice=='F') {
+            choice='f';
+            cout << "You walk cautiously towards the forest..." << endl;
+            getchar();
+            //forest();
+        }
+        if (choice=='V') {
+            choice='v';
+            cout << "You walk to the village..." << endl;
+            getchar();
+            village();
+        }
+    } while (choice==' ' ||
+            choice=='a' ||
+            choice=='b' ||
+            choice=='c' ||
+            choice=='d' ||
+            choice=='e' ||
+            choice=='g' ||
+            choice=='h' ||
+            choice=='i' ||
+            choice=='j' ||
+            choice=='k' ||
+            choice=='l' ||
+            choice=='m' ||
+            choice=='n' ||
+            choice=='o' ||
+            choice=='p' ||
+            choice=='q' ||
+            choice=='r' ||
+            choice=='s' ||
+            choice=='t' ||
+            choice=='u' ||
+            choice=='w' ||
+            choice=='x' ||
+            choice=='y' ||
+            choice=='z' ||
+            choice=='A' ||
+            choice=='B' ||
+            choice=='C' ||
+            choice=='D' ||
+            choice=='E' ||
+            choice=='G' ||
+            choice=='H' ||
+            choice=='I' ||
+            choice=='J' ||
+            choice=='K' ||
+            choice=='L' ||
+            choice=='M' ||
+            choice=='N' ||
+            choice=='O' ||
+            choice=='P' ||
+            choice=='Q' ||
+            choice=='R' ||
+            choice=='S' ||
+            choice=='T' ||
+            choice=='U' ||
+            choice=='W' ||
+            choice=='X' ||
+            choice=='Y' ||
+            choice=='Z');
+
+
 }
+
+void village() {
+    if (firstv){
+        if (pweight=='t') {
+            cout << "Some of the villagers watch you as you walk" << endl;
+            cout << "into the village, some take quick looks at " << endl;
+            cout << "you while whispering to people nearby." << endl;
+            getchar();
+            if (page=='t') {
+                cout << "A lady comes up to you" << endl;
+                getchar();
+                cout << "Excuse me sir, where are your parents?" << endl;
+                getchar();
+                do {
+                    cout << "Respond with one of the following:" << endl;
+                    cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": I don't have parents..." << endl;
+                    cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": They're at another village" << endl;
+                    cin >> choice;
+
+                    if (choice=='a') {
+                        cout << "I don't have parents..." << endl;
+                        getchar();
+
+                    }
+                    if (choice=='b') {
+                        cout << "They're at another village" << endl;
+                        getchar();
+
+                    }
+                    if (choice=='A') {
+                        choice='a';
+                        cout << "I don't have parents..." << endl;
+                        getchar();
+
+                    }
+                    if (choice=='B') {
+                        choice='b';
+                        cout << "They're at another village" << endl;
+                        getchar();
+
+                    }
+                } while (choice==' ' ||
+                         choice=='c' ||
+                         choice=='d' ||
+                         choice=='e' ||
+                         choice=='f' ||
+                         choice=='g' ||
+                         choice=='h' ||
+                         choice=='i' ||
+                         choice=='j' ||
+                         choice=='k' ||
+                         choice=='l' ||
+                         choice=='m' ||
+                         choice=='n' ||
+                         choice=='o' ||
+                         choice=='p' ||
+                         choice=='q' ||
+                         choice=='r' ||
+                         choice=='s' ||
+                         choice=='t' ||
+                         choice=='u' ||
+                         choice=='v' ||
+                         choice=='w' ||
+                         choice=='x' ||
+                         choice=='y' ||
+                         choice=='z' ||
+                         choice=='C' ||
+                         choice=='D' ||
+                         choice=='E' ||
+                         choice=='F' ||
+                         choice=='G' ||
+                         choice=='H' ||
+                         choice=='I' ||
+                         choice=='J' ||
+                         choice=='K' ||
+                         choice=='L' ||
+                         choice=='M' ||
+                         choice=='N' ||
+                         choice=='O' ||
+                         choice=='P' ||
+                         choice=='Q' ||
+                         choice=='R' ||
+                         choice=='S' ||
+                         choice=='T' ||
+                         choice=='U' ||
+                         choice=='V' ||
+                         choice=='W' ||
+                         choice=='X' ||
+                         choice=='Y' ||
+                         choice=='Z');
+                cout << "Respond with one of the following:" << endl;
+                cout << ANSI_TEXT_UNDERLINE << "a" << ANSI_COLOR_RESET ": I don't have parents..." << endl;
+                cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": They're at another village" << endl;
+                cin >> choice;
+                }
+            }
+        }
+    }
+
+//Choice template
+/*
+   do {
+        cout << " ( = ,  = )" << endl;
+        cin >> choice;
+
+        if (choice==' ') {
+            cout << " " << endl;
+            getchar();
+
+        }
+        if (choice==' ') {
+            cout << " " << endl;
+            getchar();
+
+        }
+        if (choice==' ') {
+            choice=' ';
+            cout << " " << endl;
+            getchar();
+
+        }
+        if (choice==' ') {
+            choice=' ';
+            cout << " " << endl;
+            getchar();
+
+        }
+    } while (choice==' ' ||
+            choice=='a' ||
+            choice=='b' ||
+            choice=='c' ||
+            choice=='d' ||
+            choice=='e' ||
+            choice=='f' ||
+            choice=='g' ||
+            choice=='h' ||
+            choice=='i' ||
+            choice=='j' ||
+            choice=='k' ||
+            choice=='l' ||
+            choice=='m' ||
+            choice=='n' ||
+            choice=='o' ||
+            choice=='p' ||
+            choice=='q' ||
+            choice=='r' ||
+            choice=='s' ||
+            choice=='t' ||
+            choice=='u' ||
+            choice=='v' ||
+            choice=='w' ||
+            choice=='x' ||
+            choice=='y' ||
+            choice=='z' ||
+            choice=='A' ||
+            choice=='B' ||
+            choice=='C' ||
+            choice=='D' ||
+            choice=='E' ||
+            choice=='F' ||
+            choice=='G' ||
+            choice=='H' ||
+            choice=='I' ||
+            choice=='J' ||
+            choice=='K' ||
+            choice=='L' ||
+            choice=='M' ||
+            choice=='N' ||
+            choice=='O' ||
+            choice=='P' ||
+            choice=='Q' ||
+            choice=='R' ||
+            choice=='S' ||
+            choice=='T' ||
+            choice=='U' ||
+            choice=='V' ||
+            choice=='W' ||
+            choice=='X' ||
+            choice=='Y' ||
+            choice=='Z');
+ */
