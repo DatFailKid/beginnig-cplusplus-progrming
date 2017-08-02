@@ -44,6 +44,11 @@ void greeting() {
     getchar();
     std::cout << ANSI_TEXT_BOLD << ANSI_COLOR_GREEN "Element" ANSI_COLOR_RESET<< std::endl;
     getchar();
+    std::cout << ANSI_TEXT_BOLD << ANSI_COLOR_GREY "If you are getting weird characters before the outputs, then your"
+            "\ncompiler cannot output the defined colors. Please download a" << endl;
+         cout << "compiler that can output defined colors, or choose a different OS"
+                 "\nto run this on." ANSI_COLOR_RESET<< std::endl;
+    getchar();
     title();
 };
 
@@ -706,13 +711,13 @@ void field() {
 
 void village() {
     getchar();
-    if (firstv){
-        if (pweight=='t') {
+    if (firstv) {
+        if (pweight == 't') {
             cout << "Some of the villagers watch you as you walk" << endl;
             cout << "into the village, some take quick looks at " << endl;
             cout << "you while whispering to people nearby." << endl;
             getchar();
-            if (page=='t') {
+            if (page == 't') {
                 cout << "A lady comes up to you." << endl;
                 getchar();
                 cout << "Excuse me sir, where are your parents?" << endl;
@@ -723,43 +728,49 @@ void village() {
                     cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": They're at another village" << endl;
                     cin >> choice;
 
-                    if (choice=='a' && pelement=='f') {
+                    if (choice == 'a' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='w') {
+                    if (choice == 'a' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='e') {
+                    if (choice == 'a' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='i') {
+                    if (choice == 'a' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='d') {
+                    if (choice == 'a' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='l') {
+                    if (choice == 'a' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='b' && pelement=='f') {
+                    if (choice == 'b' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -767,7 +778,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='w') {
+                    if (choice == 'b' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -775,7 +786,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='e') {
+                    if (choice == 'b' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -783,7 +794,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='i') {
+                    if (choice == 'b' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -791,7 +802,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='d') {
+                    if (choice == 'b' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -799,7 +810,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='l') {
+                    if (choice == 'b' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -807,50 +818,56 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='A' && pelement=='f') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'f') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='w') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'w') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='e') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'e') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='i') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'i') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='d') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'd') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='l') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'l') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='B' && pelement=='f') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'f') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -858,8 +875,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='w') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'w') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -867,8 +884,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='e') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'e') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -876,8 +893,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='i') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'i') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -885,8 +902,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='d') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'd') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -894,8 +911,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='l') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'l') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -903,56 +920,56 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                } while (choice==' ' ||
-                         choice=='c' ||
-                         choice=='d' ||
-                         choice=='e' ||
-                         choice=='f' ||
-                         choice=='g' ||
-                         choice=='h' ||
-                         choice=='i' ||
-                         choice=='j' ||
-                         choice=='k' ||
-                         choice=='l' ||
-                         choice=='m' ||
-                         choice=='n' ||
-                         choice=='o' ||
-                         choice=='p' ||
-                         choice=='q' ||
-                         choice=='r' ||
-                         choice=='s' ||
-                         choice=='t' ||
-                         choice=='u' ||
-                         choice=='v' ||
-                         choice=='w' ||
-                         choice=='x' ||
-                         choice=='y' ||
-                         choice=='z' ||
-                         choice=='C' ||
-                         choice=='D' ||
-                         choice=='E' ||
-                         choice=='F' ||
-                         choice=='G' ||
-                         choice=='H' ||
-                         choice=='I' ||
-                         choice=='J' ||
-                         choice=='K' ||
-                         choice=='L' ||
-                         choice=='M' ||
-                         choice=='N' ||
-                         choice=='O' ||
-                         choice=='P' ||
-                         choice=='Q' ||
-                         choice=='R' ||
-                         choice=='S' ||
-                         choice=='T' ||
-                         choice=='U' ||
-                         choice=='V' ||
-                         choice=='W' ||
-                         choice=='X' ||
-                         choice=='Y' ||
-                         choice=='Z');
-                }
+                } while (choice == ' ' ||
+                         choice == 'c' ||
+                         choice == 'd' ||
+                         choice == 'e' ||
+                         choice == 'f' ||
+                         choice == 'g' ||
+                         choice == 'h' ||
+                         choice == 'i' ||
+                         choice == 'j' ||
+                         choice == 'k' ||
+                         choice == 'l' ||
+                         choice == 'm' ||
+                         choice == 'n' ||
+                         choice == 'o' ||
+                         choice == 'p' ||
+                         choice == 'q' ||
+                         choice == 'r' ||
+                         choice == 's' ||
+                         choice == 't' ||
+                         choice == 'u' ||
+                         choice == 'v' ||
+                         choice == 'w' ||
+                         choice == 'x' ||
+                         choice == 'y' ||
+                         choice == 'z' ||
+                         choice == 'C' ||
+                         choice == 'D' ||
+                         choice == 'E' ||
+                         choice == 'F' ||
+                         choice == 'G' ||
+                         choice == 'H' ||
+                         choice == 'I' ||
+                         choice == 'J' ||
+                         choice == 'K' ||
+                         choice == 'L' ||
+                         choice == 'M' ||
+                         choice == 'N' ||
+                         choice == 'O' ||
+                         choice == 'P' ||
+                         choice == 'Q' ||
+                         choice == 'R' ||
+                         choice == 'S' ||
+                         choice == 'T' ||
+                         choice == 'U' ||
+                         choice == 'V' ||
+                         choice == 'W' ||
+                         choice == 'X' ||
+                         choice == 'Y' ||
+                         choice == 'Z');
+            }
             getchar();
             cout << "You look down at your clothes, which you don't remember putting on," << endl;
             cout << "realizing how much dirt is on it." << endl;
@@ -963,13 +980,13 @@ void village() {
             cout << "Or it could just be your weight..." << endl;
             getchar();
             cout << "There doesn't seem to be anyone else who has an unusual weight." << endl;
-            }
-        if (pweight=='r') {
+        }
+        if (pweight == 'r') {
             cout << "Some of the villagers watch you as you walk" << endl;
             cout << "into the village, some take quick looks at " << endl;
             cout << "you while whispering to people nearby." << endl;
             getchar();
-            if (page=='t') {
+            if (page == 't') {
                 cout << "A lady comes up to you." << endl;
                 getchar();
                 cout << "Excuse me sir, where are your parents?" << endl;
@@ -980,43 +997,49 @@ void village() {
                     cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": They're at another village" << endl;
                     cin >> choice;
 
-                    if (choice=='a' && pelement=='f') {
+                    if (choice == 'a' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='w') {
+                    if (choice == 'a' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='e') {
+                    if (choice == 'a' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='i') {
+                    if (choice == 'a' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='d') {
+                    if (choice == 'a' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='l') {
+                    if (choice == 'a' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='b' && pelement=='f') {
+                    if (choice == 'b' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1024,7 +1047,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='w') {
+                    if (choice == 'b' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1032,7 +1055,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='e') {
+                    if (choice == 'b' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1040,7 +1063,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='i') {
+                    if (choice == 'b' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1048,7 +1071,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='d') {
+                    if (choice == 'b' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1056,7 +1079,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='l') {
+                    if (choice == 'b' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1064,50 +1087,56 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='A' && pelement=='f') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'f') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='w') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'w') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='e') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'e') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='i') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'i') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='d') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'd') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='l') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'l') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='B' && pelement=='f') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'f') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1115,8 +1144,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='w') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'w') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1124,8 +1153,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='e') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'e') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1133,8 +1162,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='i') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'i') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1142,8 +1171,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='d') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'd') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1151,8 +1180,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='l') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'l') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1160,55 +1189,55 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                } while (choice==' ' ||
-                         choice=='c' ||
-                         choice=='d' ||
-                         choice=='e' ||
-                         choice=='f' ||
-                         choice=='g' ||
-                         choice=='h' ||
-                         choice=='i' ||
-                         choice=='j' ||
-                         choice=='k' ||
-                         choice=='l' ||
-                         choice=='m' ||
-                         choice=='n' ||
-                         choice=='o' ||
-                         choice=='p' ||
-                         choice=='q' ||
-                         choice=='r' ||
-                         choice=='s' ||
-                         choice=='t' ||
-                         choice=='u' ||
-                         choice=='v' ||
-                         choice=='w' ||
-                         choice=='x' ||
-                         choice=='y' ||
-                         choice=='z' ||
-                         choice=='C' ||
-                         choice=='D' ||
-                         choice=='E' ||
-                         choice=='F' ||
-                         choice=='G' ||
-                         choice=='H' ||
-                         choice=='I' ||
-                         choice=='J' ||
-                         choice=='K' ||
-                         choice=='L' ||
-                         choice=='M' ||
-                         choice=='N' ||
-                         choice=='O' ||
-                         choice=='P' ||
-                         choice=='Q' ||
-                         choice=='R' ||
-                         choice=='S' ||
-                         choice=='T' ||
-                         choice=='U' ||
-                         choice=='V' ||
-                         choice=='W' ||
-                         choice=='X' ||
-                         choice=='Y' ||
-                         choice=='Z');
+                } while (choice == ' ' ||
+                         choice == 'c' ||
+                         choice == 'd' ||
+                         choice == 'e' ||
+                         choice == 'f' ||
+                         choice == 'g' ||
+                         choice == 'h' ||
+                         choice == 'i' ||
+                         choice == 'j' ||
+                         choice == 'k' ||
+                         choice == 'l' ||
+                         choice == 'm' ||
+                         choice == 'n' ||
+                         choice == 'o' ||
+                         choice == 'p' ||
+                         choice == 'q' ||
+                         choice == 'r' ||
+                         choice == 's' ||
+                         choice == 't' ||
+                         choice == 'u' ||
+                         choice == 'v' ||
+                         choice == 'w' ||
+                         choice == 'x' ||
+                         choice == 'y' ||
+                         choice == 'z' ||
+                         choice == 'C' ||
+                         choice == 'D' ||
+                         choice == 'E' ||
+                         choice == 'F' ||
+                         choice == 'G' ||
+                         choice == 'H' ||
+                         choice == 'I' ||
+                         choice == 'J' ||
+                         choice == 'K' ||
+                         choice == 'L' ||
+                         choice == 'M' ||
+                         choice == 'N' ||
+                         choice == 'O' ||
+                         choice == 'P' ||
+                         choice == 'Q' ||
+                         choice == 'R' ||
+                         choice == 'S' ||
+                         choice == 'T' ||
+                         choice == 'U' ||
+                         choice == 'V' ||
+                         choice == 'W' ||
+                         choice == 'X' ||
+                         choice == 'Y' ||
+                         choice == 'Z');
             }
             getchar();
             cout << "You look down at your clothes, which you don't remember putting on," << endl;
@@ -1217,13 +1246,12 @@ void village() {
             cout << "That may explain why all the villagers were watching you as you" << endl;
             cout << "came in..." << endl;
             getchar();
-        }
-        else {
+        } else {
             cout << "Some of the villagers watch you as you walk" << endl;
             cout << "into the village, however, most of them" << endl;
             cout << "turn back to what they were doing." << endl;
             getchar();
-            if (page=='t') {
+            if (page == 't') {
                 cout << "A lady comes up to you." << endl;
                 getchar();
                 cout << "Excuse me sir, where are your parents?" << endl;
@@ -1234,43 +1262,49 @@ void village() {
                     cout << ANSI_TEXT_UNDERLINE << "b" << ANSI_COLOR_RESET ": They're at another village" << endl;
                     cin >> choice;
 
-                    if (choice=='a' && pelement=='f') {
+                    if (choice == 'a' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='w') {
+                    if (choice == 'a' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='e') {
+                    if (choice == 'a' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='i') {
+                    if (choice == 'a' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='d') {
+                    if (choice == 'a' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='a' && pelement=='l') {
+                    if (choice == 'a' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='b' && pelement=='f') {
+                    if (choice == 'b' && pelement == 'f') {
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1278,7 +1312,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='w') {
+                    if (choice == 'b' && pelement == 'w') {
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1286,7 +1320,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='e') {
+                    if (choice == 'b' && pelement == 'e') {
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1294,7 +1328,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='i') {
+                    if (choice == 'b' && pelement == 'i') {
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1302,7 +1336,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='d') {
+                    if (choice == 'b' && pelement == 'd') {
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1310,7 +1344,7 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='b' && pelement=='l') {
+                    if (choice == 'b' && pelement == 'l') {
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1318,50 +1352,56 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='A' && pelement=='f') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'f') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RED"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='w') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'w') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='e') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'e') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='i') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'i') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='d') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'd') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='A' && pelement=='l') {
-                        choice='a';
+                    if (choice == 'A' && pelement == 'l') {
+                        choice = 'a';
                         getchar();
                         cout << ANSI_COLOR_RESET"'I don't have parents...', you respond." << endl;
                         getchar();
-                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away." << endl;
+                        cout << ANSI_COLOR_RESET"'Oh, well, sorry to hear that...', the lady says, then walks away."
+                             << endl;
                     }
-                    if (choice=='B' && pelement=='f') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'f') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RED"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1369,8 +1409,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='w') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'w') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_BLUE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1378,8 +1418,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='e') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'e') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_YELLOW"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1387,8 +1427,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='i') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'i') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_CYAN"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1396,8 +1436,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='d') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'd') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_PURPLE"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1405,8 +1445,8 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                    if (choice=='B' && pelement=='l') {
-                        choice='b';
+                    if (choice == 'B' && pelement == 'l') {
+                        choice = 'b';
                         getchar();
                         cout << ANSI_COLOR_RESET"'They're at another village,' you reply, knowing good" << endl;
                         cout << "and well that wasn't true." << endl;
@@ -1414,55 +1454,55 @@ void village() {
                         cout << ANSI_COLOR_RESET"'Well, they must have a good son to sent him off into" << endl;
                         cout << "another village by himself,' the lady replies with a smile, walking off." << endl;
                     }
-                } while (choice==' ' ||
-                         choice=='c' ||
-                         choice=='d' ||
-                         choice=='e' ||
-                         choice=='f' ||
-                         choice=='g' ||
-                         choice=='h' ||
-                         choice=='i' ||
-                         choice=='j' ||
-                         choice=='k' ||
-                         choice=='l' ||
-                         choice=='m' ||
-                         choice=='n' ||
-                         choice=='o' ||
-                         choice=='p' ||
-                         choice=='q' ||
-                         choice=='r' ||
-                         choice=='s' ||
-                         choice=='t' ||
-                         choice=='u' ||
-                         choice=='v' ||
-                         choice=='w' ||
-                         choice=='x' ||
-                         choice=='y' ||
-                         choice=='z' ||
-                         choice=='C' ||
-                         choice=='D' ||
-                         choice=='E' ||
-                         choice=='F' ||
-                         choice=='G' ||
-                         choice=='H' ||
-                         choice=='I' ||
-                         choice=='J' ||
-                         choice=='K' ||
-                         choice=='L' ||
-                         choice=='M' ||
-                         choice=='N' ||
-                         choice=='O' ||
-                         choice=='P' ||
-                         choice=='Q' ||
-                         choice=='R' ||
-                         choice=='S' ||
-                         choice=='T' ||
-                         choice=='U' ||
-                         choice=='V' ||
-                         choice=='W' ||
-                         choice=='X' ||
-                         choice=='Y' ||
-                         choice=='Z');
+                } while (choice == ' ' ||
+                         choice == 'c' ||
+                         choice == 'd' ||
+                         choice == 'e' ||
+                         choice == 'f' ||
+                         choice == 'g' ||
+                         choice == 'h' ||
+                         choice == 'i' ||
+                         choice == 'j' ||
+                         choice == 'k' ||
+                         choice == 'l' ||
+                         choice == 'm' ||
+                         choice == 'n' ||
+                         choice == 'o' ||
+                         choice == 'p' ||
+                         choice == 'q' ||
+                         choice == 'r' ||
+                         choice == 's' ||
+                         choice == 't' ||
+                         choice == 'u' ||
+                         choice == 'v' ||
+                         choice == 'w' ||
+                         choice == 'x' ||
+                         choice == 'y' ||
+                         choice == 'z' ||
+                         choice == 'C' ||
+                         choice == 'D' ||
+                         choice == 'E' ||
+                         choice == 'F' ||
+                         choice == 'G' ||
+                         choice == 'H' ||
+                         choice == 'I' ||
+                         choice == 'J' ||
+                         choice == 'K' ||
+                         choice == 'L' ||
+                         choice == 'M' ||
+                         choice == 'N' ||
+                         choice == 'O' ||
+                         choice == 'P' ||
+                         choice == 'Q' ||
+                         choice == 'R' ||
+                         choice == 'S' ||
+                         choice == 'T' ||
+                         choice == 'U' ||
+                         choice == 'V' ||
+                         choice == 'W' ||
+                         choice == 'X' ||
+                         choice == 'Y' ||
+                         choice == 'Z');
             }
             getchar();
         }
@@ -1471,7 +1511,7 @@ void village() {
         cout << "a board, filled with announcements, requests and a few" << endl;
         cout << "other things." << endl;
         getchar();
-        firstv=false;
+        firstv = false;
     }
     cout << "Where are you going to go?" << endl;
     getchar();
@@ -1480,11 +1520,537 @@ void village() {
     cout << "(v) = village square" << endl;
     cout << "(b) = board" << endl;
     cin >> choice;
-    if (choice=='s') {
+    if (choice == 's') {
         getchar();
         cout << "You head to one of the shops." << endl;
-        if (gold<1) {
+        if (gold < 1) {
             cout << "Unfortunately, you don't have any money to spend." << endl;
+        }
+        if (gold >= 1) {
+            do {
+                cout << "What would you like to buy?" << endl;
+                cout << "===========================" << endl;
+                cout << "Name            Key   Price" << endl;
+                cout << "---------------------------" << endl;
+                cout << "Iron Sword      (a) = 10 g" << endl;
+                cout << "Iron Gloves     (b) = 10 g" << endl;
+                cout << "Iron Blaster    (c) = 10 g" << endl;
+                cout << "Iron Cores (20) (d) = 5  g" << endl;
+                cout << "Iron Backpack   (e) = 25 g" << endl;
+                cout << "Iron Armor      (f) = 50 g" << endl;
+                cout << "===========================" << endl;
+                cout << "Enter an item's key to view it's information." << endl;
+                cout << "Enter 'z' to exit the shop." << endl;
+                cin >> choice;
+
+                if (choice == 'a') {
+                    do {
+                    cout << "Iron Sword" << endl;
+                    cout << "==========" << endl;
+                    if (pclass != 's') {
+                        cout << "No one in your party is a Swordsman" << endl;
+                        cout << "Enter 'z' to go back to the main shop page." << endl;
+                        cin >> choice;
+                    }
+                    if (pclass == 's') {
+                        cout << "Damage  = 1-5" << endl;
+                        cout << "Defense = N/A" << endl;
+                        cout << "A regular Iron Sword... What else "
+                                "\ndo you expect?" << endl;
+                        cout << "Price = 10 gold" << endl;
+                        cout << "Gold  = " << gold << " gold" << endl;
+                        cout << "===========================" << endl;
+                        cout << "Enter 'y' to buy this." << endl;
+                        cout << "Enter 'z' to exit the shop" << endl;
+                        cin >> choice;
+                        if (choice=='y') {
+                            cout << "Are you sure? (y/n)" << endl;
+                            cin >> choice;
+                            if (choice=='y') {
+                                gold-10;
+                                cout << "Thank you for your purchase!" << endl;
+                                getchar();
+                            }
+                        }
+                    }} while (choice==' ' ||
+                              choice=='a' ||
+                              choice=='b' ||
+                              choice=='c' ||
+                              choice=='d' ||
+                              choice=='e' ||
+                              choice=='f' ||
+                              choice=='g' ||
+                              choice=='h' ||
+                              choice=='i' ||
+                              choice=='j' ||
+                              choice=='k' ||
+                              choice=='l' ||
+                              choice=='m' ||
+                              choice=='n' ||
+                              choice=='o' ||
+                              choice=='p' ||
+                              choice=='q' ||
+                              choice=='r' ||
+                              choice=='s' ||
+                              choice=='t' ||
+                              choice=='u' ||
+                              choice=='v' ||
+                              choice=='w' ||
+                              choice=='x' ||
+                              choice=='A' ||
+                              choice=='B' ||
+                              choice=='C' ||
+                              choice=='D' ||
+                              choice=='E' ||
+                              choice=='F' ||
+                              choice=='G' ||
+                              choice=='H' ||
+                              choice=='I' ||
+                              choice=='J' ||
+                              choice=='K' ||
+                              choice=='L' ||
+                              choice=='M' ||
+                              choice=='N' ||
+                              choice=='O' ||
+                              choice=='P' ||
+                              choice=='Q' ||
+                              choice=='R' ||
+                              choice=='S' ||
+                              choice=='T' ||
+                              choice=='U' ||
+                              choice=='V' ||
+                              choice=='W' ||
+                              choice=='X' );}
+                if (choice == 'b') {
+                    do {
+                        cout << "Iron Gloves" << endl;
+                        cout << "==========" << endl;
+                        if (pclass != 'f') {
+                            cout << "No one in your party is a Fighter" << endl;
+                            cout << "Enter 'z' to go back to the main shop page." << endl;
+                            cin >> choice;
+                        }
+                        if (pclass == 'f') {
+                            cout << "Damage  = 1-5" << endl;
+                            cout << "Defense = 1" << endl;
+                            cout << "A pair of Iron Gloves. Good for beating"
+                                    "\nbeating up bullies!" << endl;
+                            cout << "Price = 10 gold" << endl;
+                            cout << "Gold  = " << gold << " gold" << endl;
+                            cout << "===========================" << endl;
+                            cout << "Enter 'y' to buy this." << endl;
+                            cout << "Enter 'z' to go back to the main shop page." << endl;
+                            cin >> choice;
+                            if (choice=='y') {
+                                cout << "Are you sure? (y/n)" << endl;
+                                cin >> choice;
+                                if (choice=='y') {
+                                    gold-10;
+                                    cout << "Thank you for your purchase!" << endl;
+                                    getchar();
+                                }
+                            }
+                        }} while (choice==' ' ||
+                                  choice=='a' ||
+                                  choice=='b' ||
+                                  choice=='c' ||
+                                  choice=='d' ||
+                                  choice=='e' ||
+                                  choice=='f' ||
+                                  choice=='g' ||
+                                  choice=='h' ||
+                                  choice=='i' ||
+                                  choice=='j' ||
+                                  choice=='k' ||
+                                  choice=='l' ||
+                                  choice=='m' ||
+                                  choice=='n' ||
+                                  choice=='o' ||
+                                  choice=='p' ||
+                                  choice=='q' ||
+                                  choice=='r' ||
+                                  choice=='s' ||
+                                  choice=='t' ||
+                                  choice=='u' ||
+                                  choice=='v' ||
+                                  choice=='w' ||
+                                  choice=='x' ||
+                                  choice=='A' ||
+                                  choice=='B' ||
+                                  choice=='C' ||
+                                  choice=='D' ||
+                                  choice=='E' ||
+                                  choice=='F' ||
+                                  choice=='G' ||
+                                  choice=='H' ||
+                                  choice=='I' ||
+                                  choice=='J' ||
+                                  choice=='K' ||
+                                  choice=='L' ||
+                                  choice=='M' ||
+                                  choice=='N' ||
+                                  choice=='O' ||
+                                  choice=='P' ||
+                                  choice=='Q' ||
+                                  choice=='R' ||
+                                  choice=='S' ||
+                                  choice=='T' ||
+                                  choice=='U' ||
+                                  choice=='V' ||
+                                  choice=='W' ||
+                                  choice=='X' );}
+
+                        if (choice == 'c') {
+                            do {
+                            cout << "Iron Blaster" << endl;
+                            cout << "==========" << endl;
+                            if (pclass != 'b') {
+                                cout << "No one in your party is a Blaster" << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                            }
+                            if (pclass == 'b') {
+                                cout << "Damage Multiplier  = 1x-5x" << endl;
+                                cout << "Defense            = N/A" << endl;
+                                cout << "Don't ask me how they managed to make a"
+                                        "\nblaster out of iron, but it works!" << endl;
+                                cout << "Price = 10 gold" << endl;
+                                cout << "Gold  = " << gold << " gold" << endl;
+                                cout << "===========================" << endl;
+                                cout << "Enter 'y' to buy this." << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                                if (choice=='y') {
+                                    cout << "Are you sure? (y/n)" << endl;
+                                    cin >> choice;
+                                    if (choice=='y') {
+                                        gold-10;
+                                        cout << "Thank you for your purchase!" << endl;
+                                        getchar();
+                                    }
+                                }
+                            }
+                        } while (choice==' ' ||
+                                  choice=='a' ||
+                                  choice=='b' ||
+                                  choice=='c' ||
+                                  choice=='d' ||
+                                  choice=='e' ||
+                                  choice=='f' ||
+                                  choice=='g' ||
+                                  choice=='h' ||
+                                  choice=='i' ||
+                                  choice=='j' ||
+                                  choice=='k' ||
+                                  choice=='l' ||
+                                  choice=='m' ||
+                                  choice=='n' ||
+                                  choice=='o' ||
+                                  choice=='p' ||
+                                  choice=='q' ||
+                                  choice=='r' ||
+                                  choice=='s' ||
+                                  choice=='t' ||
+                                  choice=='u' ||
+                                  choice=='v' ||
+                                  choice=='w' ||
+                                  choice=='x' ||
+                                  choice=='A' ||
+                                  choice=='B' ||
+                                  choice=='C' ||
+                                  choice=='D' ||
+                                  choice=='E' ||
+                                  choice=='F' ||
+                                  choice=='G' ||
+                                  choice=='H' ||
+                                  choice=='I' ||
+                                  choice=='J' ||
+                                  choice=='K' ||
+                                  choice=='L' ||
+                                  choice=='M' ||
+                                  choice=='N' ||
+                                  choice=='O' ||
+                                  choice=='P' ||
+                                  choice=='Q' ||
+                                  choice=='R' ||
+                                  choice=='S' ||
+                                  choice=='T' ||
+                                  choice=='U' ||
+                                  choice=='V' ||
+                                  choice=='W' ||
+                                  choice=='X' );}
+                        if (choice == 'd') {
+                            do {
+                            cout << "Iron Cores (20)" << endl;
+                            cout << "==========" << endl;
+                            if (pclass != 'b') {
+                                cout << "No one in your party is a Blaster" << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                            }
+                            if (pclass == 'b') {
+                                cout << "Damage       = 1-5" << endl;
+                                cout << "Defense      = N/A" << endl;
+                                cout << "Regeneration = 3 turns" << endl;
+                                cout << "20 iron cores for your blaster. They"
+                                        "\nregenerate after three turns, but do a"
+                                        "\ngood bit of damage." << endl;
+                                cout << "Price = 5 gold" << endl;
+                                cout << "Gold  = " << gold << " gold" << endl;
+                                cout << "===========================" << endl;
+                                cout << "Enter 'y' to buy this." << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                                if (choice=='y') {
+                                    cout << "Are you sure? (y/n)" << endl;
+                                    cin >> choice;
+                                    if (choice=='y') {
+                                        gold-5;
+                                        cout << "Thank you for your purchase!" << endl;
+                                        getchar();
+                                    }
+                                }
+                            }
+                        } while (choice==' ' ||
+                                  choice=='a' ||
+                                  choice=='b' ||
+                                  choice=='c' ||
+                                  choice=='d' ||
+                                  choice=='e' ||
+                                  choice=='f' ||
+                                  choice=='g' ||
+                                  choice=='h' ||
+                                  choice=='i' ||
+                                  choice=='j' ||
+                                  choice=='k' ||
+                                  choice=='l' ||
+                                  choice=='m' ||
+                                  choice=='n' ||
+                                  choice=='o' ||
+                                  choice=='p' ||
+                                  choice=='q' ||
+                                  choice=='r' ||
+                                  choice=='s' ||
+                                  choice=='t' ||
+                                  choice=='u' ||
+                                  choice=='v' ||
+                                  choice=='w' ||
+                                  choice=='x' ||
+                                  choice=='A' ||
+                                  choice=='B' ||
+                                  choice=='C' ||
+                                  choice=='D' ||
+                                  choice=='E' ||
+                                  choice=='F' ||
+                                  choice=='G' ||
+                                  choice=='H' ||
+                                  choice=='I' ||
+                                  choice=='J' ||
+                                  choice=='K' ||
+                                  choice=='L' ||
+                                  choice=='M' ||
+                                  choice=='N' ||
+                                  choice=='O' ||
+                                  choice=='P' ||
+                                  choice=='Q' ||
+                                  choice=='R' ||
+                                  choice=='S' ||
+                                  choice=='T' ||
+                                  choice=='U' ||
+                                  choice=='V' ||
+                                  choice=='W' ||
+                                  choice=='X' );}
+                    if (choice == 'e') {
+                        do {
+                            cout << "Iron Backpack" << endl;
+                            cout << "==========" << endl;
+                            if (pclass != 'b') {
+                                cout << "No one in your party is a Blaster" << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                            }
+                            if (pclass == 'b') {
+                                cout << "Damage  = 1-5" << endl;
+                                cout << "Defense = 0.5" << endl;
+                                cout << "Storage = 40" << endl;
+                                cout << "A backpack used to hold blaster cores, and"
+                                        "\nprotect your back." << endl;
+                                cout << "Price = 25 gold" << endl;
+                                cout << "Gold  = " << gold << " gold" << endl;
+                                cout << "===========================" << endl;
+                                cout << "Enter 'y' to buy this." << endl;
+                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cin >> choice;
+                                if (choice=='y') {
+                                    cout << "Are you sure? (y/n)" << endl;
+                                    cin >> choice;
+                                    if (choice=='y') {
+                                        gold-25;
+                                        cout << "Thank you for your purchase!" << endl;
+                                        getchar();
+                                    }
+                                }
+                            }
+                        } while (choice==' ' ||
+                                  choice=='a' ||
+                                  choice=='b' ||
+                                  choice=='c' ||
+                                  choice=='d' ||
+                                  choice=='e' ||
+                                  choice=='f' ||
+                                  choice=='g' ||
+                                  choice=='h' ||
+                                  choice=='i' ||
+                                  choice=='j' ||
+                                  choice=='k' ||
+                                  choice=='l' ||
+                                  choice=='m' ||
+                                  choice=='n' ||
+                                  choice=='o' ||
+                                  choice=='p' ||
+                                  choice=='q' ||
+                                  choice=='r' ||
+                                  choice=='s' ||
+                                  choice=='t' ||
+                                  choice=='u' ||
+                                  choice=='v' ||
+                                  choice=='w' ||
+                                  choice=='x' ||
+                                  choice=='A' ||
+                                  choice=='B' ||
+                                  choice=='C' ||
+                                  choice=='D' ||
+                                  choice=='E' ||
+                                  choice=='F' ||
+                                  choice=='G' ||
+                                  choice=='H' ||
+                                  choice=='I' ||
+                                  choice=='J' ||
+                                  choice=='K' ||
+                                  choice=='L' ||
+                                  choice=='M' ||
+                                  choice=='N' ||
+                                  choice=='O' ||
+                                  choice=='P' ||
+                                  choice=='Q' ||
+                                  choice=='R' ||
+                                  choice=='S' ||
+                                  choice=='T' ||
+                                  choice=='U' ||
+                                  choice=='V' ||
+                                  choice=='W' ||
+                                  choice=='X' );}
+                    if (choice == 'f') {
+                        do {
+                            cout << "Iron Armor" << endl;
+                            cout << "==========" << endl;
+                            cout << "Damage  = N/A" << endl;
+                            cout << "Defense = 5" << endl;
+                            cout << "Standard Iron Armor. Pretty durable, and"
+                                    "\nkeeps you from dying... for a while..." << endl;
+                            cout << "Price = 50 gold" << endl;
+                            cout << "Gold  = " << gold << " gold" << endl;
+                            cout << "===========================" << endl;
+                            cout << "Enter 'y' to buy this." << endl;
+                            cout << "Enter 'z' to go back to the main shop page." << endl;
+                            cin >> choice;
+                        if (choice=='y') {
+                            cout << "Are you sure? (y/n)" << endl;
+                            cin >> choice;
+                            if (choice=='y') {
+                                gold-50;
+                                cout << "Thank you for your purchase!" << endl;
+                                getchar();
+                            }
+                        }
+                        } while (choice==' ' ||
+                             choice=='a' ||
+                             choice=='b' ||
+                             choice=='c' ||
+                             choice=='d' ||
+                             choice=='e' ||
+                             choice=='f' ||
+                             choice=='g' ||
+                             choice=='h' ||
+                             choice=='i' ||
+                             choice=='j' ||
+                             choice=='k' ||
+                             choice=='l' ||
+                             choice=='m' ||
+                             choice=='n' ||
+                             choice=='o' ||
+                             choice=='p' ||
+                             choice=='q' ||
+                             choice=='r' ||
+                             choice=='s' ||
+                             choice=='t' ||
+                             choice=='u' ||
+                             choice=='v' ||
+                             choice=='w' ||
+                             choice=='x' ||
+                             choice=='A' ||
+                             choice=='B' ||
+                             choice=='C' ||
+                             choice=='D' ||
+                             choice=='E' ||
+                             choice=='F' ||
+                             choice=='G' ||
+                             choice=='H' ||
+                             choice=='I' ||
+                             choice=='J' ||
+                             choice=='K' ||
+                             choice=='L' ||
+                             choice=='M' ||
+                             choice=='N' ||
+                             choice=='O' ||
+                             choice=='P' ||
+                             choice=='Q' ||
+                             choice=='R' ||
+                             choice=='S' ||
+                             choice=='T' ||
+                             choice=='U' ||
+                             choice=='V' ||
+                             choice=='W' ||
+                             choice=='X' );}
+            } while (choice==' ' ||
+                     choice=='g' ||
+                     choice=='h' ||
+                     choice=='i' ||
+                     choice=='j' ||
+                     choice=='k' ||
+                     choice=='l' ||
+                     choice=='m' ||
+                     choice=='n' ||
+                     choice=='o' ||
+                     choice=='p' ||
+                     choice=='q' ||
+                     choice=='r' ||
+                     choice=='s' ||
+                     choice=='t' ||
+                     choice=='u' ||
+                     choice=='v' ||
+                     choice=='w' ||
+                     choice=='x' ||
+                     choice=='y' ||
+                     choice=='G' ||
+                     choice=='H' ||
+                     choice=='I' ||
+                     choice=='J' ||
+                     choice=='K' ||
+                     choice=='L' ||
+                     choice=='M' ||
+                     choice=='N' ||
+                     choice=='O' ||
+                     choice=='P' ||
+                     choice=='Q' ||
+                     choice=='R' ||
+                     choice=='S' ||
+                     choice=='T' ||
+                     choice=='U' ||
+                     choice=='V' ||
+                     choice=='W' ||
+                     choice=='X' ||
+                     choice=='Y' );
         }
     }
 }
