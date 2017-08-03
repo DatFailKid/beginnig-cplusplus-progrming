@@ -19,6 +19,7 @@ void intro();
 void forest();
 void village();
 void field();
+void fvillage();
 
 char pname[15];
 char pgender;
@@ -30,9 +31,12 @@ char page;
 char choice;
 
 int pHP=50;
+int pHPmax=50;
 int gold=0;
 
 bool firstv=true;
+bool pursenab=false;
+
 int main() {
     greeting();
     return 0;
@@ -642,7 +646,12 @@ void field() {
         if (choice=='v') {
             cout << "You walk to the village..." << endl;
             getchar();
-            village();
+            if (firstv) {
+            fvillage();
+            }
+            if (firstv==false) {
+                village();
+            }
         }
         if (choice=='F') {
             choice='f';
@@ -654,7 +663,12 @@ void field() {
             choice='v';
             cout << "You walk to the village..." << endl;
             getchar();
-            village();
+            if (firstv) {
+                fvillage();
+            }
+            if (firstv==false) {
+                village();
+            }
         }
     } while (choice==' ' ||
             choice=='a' ||
@@ -709,9 +723,8 @@ void field() {
 
 }
 
-void village() {
+void fvillage() {
     getchar();
-    if (firstv) {
         if (pweight == 't') {
             cout << "Some of the villagers watch you as you walk" << endl;
             cout << "into the village, some take quick looks at " << endl;
@@ -980,6 +993,7 @@ void village() {
             cout << "Or it could just be your weight..." << endl;
             getchar();
             cout << "There doesn't seem to be anyone else who has an unusual weight." << endl;
+            getchar();
         }
         if (pweight == 'r') {
             cout << "Some of the villagers watch you as you walk" << endl;
@@ -1246,7 +1260,7 @@ void village() {
             cout << "That may explain why all the villagers were watching you as you" << endl;
             cout << "came in..." << endl;
             getchar();
-        } else {
+        } if (pweight=='f') {
             cout << "Some of the villagers watch you as you walk" << endl;
             cout << "into the village, however, most of them" << endl;
             cout << "turn back to what they were doing." << endl;
@@ -1512,7 +1526,10 @@ void village() {
         cout << "other things." << endl;
         getchar();
         firstv = false;
+    village();
     }
+
+void village(){
     cout << "Where are you going to go?" << endl;
     getchar();
     cout << "(s) = shop" << endl;
@@ -1524,7 +1541,13 @@ void village() {
         getchar();
         cout << "You head to one of the shops." << endl;
         if (gold < 1) {
+            getchar();
             cout << "Unfortunately, you don't have any money to spend." << endl;
+            if (pursenab) {
+                getchar();
+                cout << "Surprisingly, you end up finding 70 gold in your pockets!" << endl;
+                gold=70;
+            }
         }
         if (gold >= 1) {
             do {
@@ -2052,6 +2075,113 @@ void village() {
                      choice=='X' ||
                      choice=='Y' );
         }
+    }
+    if (choice=='i') {
+        printf("You go to one of the inns...\n");
+        if (pHP < pHPmax) {
+            printf("Welcome to the Sleeper's Inn!\n");
+            do {
+                printf("One night = 10 gold\n");
+                printf("Enter 'y' to stay for a night.\n");
+                printf("Enter 'n' to exit the inn.\n");
+                cin >> choice;
+                if (choice == 'y' && gold >= 10) {
+                    gold-10;
+                    printf("Have a great stay!\n");
+                    pHP=pHPmax;
+                    getchar();
+                    printf("You wake up refreshed...\n");
+                }
+                if (choice == 'y' && gold < 10) {
+                    printf("I'm sorry, but you don't have enough gold to stay a night.\n");
+                }
+            } while (choice==' ' ||
+                     choice=='a' ||
+                     choice=='b' ||
+                     choice=='c' ||
+                     choice=='d' ||
+                     choice=='e' ||
+                     choice=='f' ||
+                     choice=='g' ||
+                     choice=='h' ||
+                     choice=='i' ||
+                     choice=='j' ||
+                     choice=='k' ||
+                     choice=='l' ||
+                     choice=='m' ||
+                     choice=='o' ||
+                     choice=='p' ||
+                     choice=='q' ||
+                     choice=='r' ||
+                     choice=='s' ||
+                     choice=='t' ||
+                     choice=='u' ||
+                     choice=='v' ||
+                     choice=='w' ||
+                     choice=='x' ||
+                     choice=='z' ||
+                     choice=='A' ||
+                     choice=='B' ||
+                     choice=='C' ||
+                     choice=='D' ||
+                     choice=='E' ||
+                     choice=='F' ||
+                     choice=='G' ||
+                     choice=='H' ||
+                     choice=='I' ||
+                     choice=='J' ||
+                     choice=='K' ||
+                     choice=='L' ||
+                     choice=='M' ||
+                     choice=='O' ||
+                     choice=='P' ||
+                     choice=='Q' ||
+                     choice=='R' ||
+                     choice=='S' ||
+                     choice=='T' ||
+                     choice=='U' ||
+                     choice=='V' ||
+                     choice=='W' ||
+                     choice=='X' ||
+                     choice=='Z');
+        }
+    }
+    if (choice=='b') {
+        cout << "You head back to the board..." << endl;
+        getchar();
+        cout << "There are a few quests on the board..." << endl;
+        getchar();
+        cout << "Unfortunately, there are no quests on"
+                "\nthe board right now..." << endl;
+    }
+    if (choice=='v') {
+        getchar();
+        cout << "You head to the village square..." << endl;
+        getchar();
+        cout << "When you get to the square, you see a"
+                "\nboy shouting at a man with a mask"
+                "\ncovering his face." << endl;
+        getchar();
+        cout << "'Give me my purse back!', the boy yells." << endl;
+        getchar();
+        cout << "'Make me give it back!', the masked"
+                "\nthief responds." << endl;
+        getchar();
+        cout << "The boy lunges at the thief, however,"
+                "\nhe's too slow." << endl;
+        getchar();
+        cout << "The thief dodges him, then takes off,"
+                "\nknocking you over in the process." << endl;
+        getchar();
+        cout << "The boy gets back up, yells, 'Get back"
+                "\nhere, you thief!', then takes off after him." << endl;
+        getchar();
+        pursenab=true;
+        cout << "You get back up, then look in the direction the "
+                "\nkid chased after, deciding that you have to go"
+                "\nafter him." << endl;
+        getchar();
+        cout << "But you'll need gear first..." << endl;
     }
 }
 
