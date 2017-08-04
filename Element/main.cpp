@@ -13,6 +13,7 @@
 #define ANSI_COLOR_GREY "\x1b[37m"
 
 using namespace std;
+
 void greeting();
 void title();
 void intro();
@@ -28,7 +29,13 @@ char pelement;
 char pclass;
 char page;
 
+int parmor;
+int pweapon;
+int pcore;
+int pcoremax=3;
+
 char choice;
+int count;
 
 int pHP=50;
 int pHPmax=50;
@@ -1545,7 +1552,7 @@ void village(){
             cout << "Unfortunately, you don't have any money to spend." << endl;
             if (pursenab) {
                 getchar();
-                cout << "Surprisingly, you end up finding 70 gold in your pockets!" << endl;
+                cout << "Surprisingly, you end up finding 40 gold in your pockets!" << endl;
                 gold=70;
             }
         }
@@ -1558,7 +1565,7 @@ void village(){
                 cout << "Iron Sword      (a) = 10 g" << endl;
                 cout << "Iron Gloves     (b) = 10 g" << endl;
                 cout << "Iron Blaster    (c) = 10 g" << endl;
-                cout << "Iron Cores (20) (d) = 5  g" << endl;
+                cout << "Iron Cores (x)  (d) = 5  g" << endl;
                 cout << "Iron Backpack   (e) = 25 g" << endl;
                 cout << "Iron Armor      (f) = 50 g" << endl;
                 cout << "===========================" << endl;
@@ -1589,9 +1596,15 @@ void village(){
                         if (choice=='y') {
                             cout << "Are you sure? (y/n)" << endl;
                             cin >> choice;
-                            if (choice=='y') {
+                            if (choice=='y' && gold >= 10) {
+                                pweapon=11;
                                 gold-10;
                                 cout << "Thank you for your purchase!" << endl;
+                                getchar();
+                            }
+                            if (choice=='y' && gold < 10) {
+                                cout << "I'm sorry, you do not have"
+                                        "\nenough gold for this item." << endl;
                                 getchar();
                             }
                         }
@@ -1667,9 +1680,15 @@ void village(){
                             if (choice=='y') {
                                 cout << "Are you sure? (y/n)" << endl;
                                 cin >> choice;
-                                if (choice=='y') {
+                                if (choice=='y' && gold >= 10) {
+                                    pweapon=21;
                                     gold-10;
                                     cout << "Thank you for your purchase!" << endl;
+                                    getchar();
+                                }
+                                if (choice=='y' && gold < 10) {
+                                    cout << "I'm sorry, you do not have"
+                                            "\nenough gold for this item." << endl;
                                     getchar();
                                 }
                             }
@@ -1746,9 +1765,15 @@ void village(){
                                 if (choice=='y') {
                                     cout << "Are you sure? (y/n)" << endl;
                                     cin >> choice;
-                                    if (choice=='y') {
+                                    if (choice=='y' && gold >= 10) {
+                                        pweapon=31;
                                         gold-10;
                                         cout << "Thank you for your purchase!" << endl;
+                                        getchar();
+                                    }
+                                    if (choice=='y' && gold < 10) {
+                                        cout << "I'm sorry, you do not have"
+                                                "\nenough gold for this item." << endl;
                                         getchar();
                                     }
                                 }
@@ -1804,7 +1829,7 @@ void village(){
                                   choice=='X' );}
                         if (choice == 'd') {
                             do {
-                            cout << "Iron Cores (20)" << endl;
+                            cout << "Iron Cores" << endl;
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << "No one in your party is a Blaster" << endl;
@@ -1815,21 +1840,29 @@ void village(){
                                 cout << "Damage       = 1-5" << endl;
                                 cout << "Defense      = N/A" << endl;
                                 cout << "Regeneration = 3 turns" << endl;
-                                cout << "20 iron cores for your blaster. They"
+                                cout << "Iron cores for your blaster. They"
                                         "\nregenerate after three turns, but do a"
                                         "\ngood bit of damage." << endl;
-                                cout << "Price = 5 gold" << endl;
+                                cout << "Price = 1 per core" << endl;
                                 cout << "Gold  = " << gold << " gold" << endl;
                                 cout << "===========================" << endl;
                                 cout << "Enter 'y' to buy this." << endl;
                                 cout << "Enter 'z' to go back to the main shop page." << endl;
                                 cin >> choice;
                                 if (choice=='y') {
-                                    cout << "Are you sure? (y/n)" << endl;
-                                    cin >> choice;
-                                    if (choice=='y') {
-                                        gold-5;
+                                    cout << "How many do you want to buy?" << endl;
+                                    cin >> count;
+                                    cout << count << " cores will cost you " << 1 * count << " gold." << endl;
+                                    cout << "Are you sure you want to buy this many?" << endl;
+                                    if (choice=='y' && gold >= 1 * count) {
+                                        gold=gold - (1 * count);
                                         cout << "Thank you for your purchase!" << endl;
+                                        cout << "Gold left: " << gold << endl;
+                                        getchar();
+                                    }
+                                    if (choice=='y' && gold < (1*count)) {
+                                        cout << "I'm sorry, you do not have"
+                                                "\nenough gold for this item." << endl;
                                         getchar();
                                     }
                                 }
@@ -1908,6 +1941,7 @@ void village(){
                                     cout << "Are you sure? (y/n)" << endl;
                                     cin >> choice;
                                     if (choice=='y') {
+                                        pcoremax=40;
                                         gold-25;
                                         cout << "Thank you for your purchase!" << endl;
                                         getchar();
@@ -1981,6 +2015,7 @@ void village(){
                             cout << "Are you sure? (y/n)" << endl;
                             cin >> choice;
                             if (choice=='y') {
+                                parmor=1;
                                 gold-50;
                                 cout << "Thank you for your purchase!" << endl;
                                 getchar();
