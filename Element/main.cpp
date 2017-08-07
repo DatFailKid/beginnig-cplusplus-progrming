@@ -39,9 +39,11 @@ int count;
 
 int pHP=50;
 int pHPmax=50;
+int pdefense;
 int gold=0;
 
 bool firstv=true;
+bool firstf=true;
 bool pursenab=false;
 
 int main() {
@@ -646,9 +648,17 @@ void field() {
         cin >> choice;
 
         if (choice=='f') {
-            cout << "You walk cautiously towards the forest..." << endl;
-            getchar();
-            //forest();
+            if (!pursenab && firstf) {
+                cout << "You approach the forest..." << endl;
+                getchar();
+                cout << "However, you quickly walk away, remembering you don't have any gear." << endl;
+                getchar();
+            }
+            if (pursenab && firstf) {
+                cout << "You walk cautiously towards the forest..." << endl;
+                getchar();
+                //forest();
+            }
         }
         if (choice=='v') {
             cout << "You walk to the village..." << endl;
@@ -656,15 +666,23 @@ void field() {
             if (firstv) {
             fvillage();
             }
-            if (firstv==false) {
+            if (!firstv) {
                 village();
             }
         }
         if (choice=='F') {
             choice='f';
-            cout << "You walk cautiously towards the forest..." << endl;
-            getchar();
-            //forest();
+            if (!pursenab && firstf) {
+                cout << "You approach the forest..." << endl;
+                getchar();
+                cout << "However, you quickly walk away, remembering you don't have any gear." << endl;
+                getchar();
+            }
+            if (pursenab && firstf) {
+                cout << "You walk cautiously towards the forest..." << endl;
+                getchar();
+                //forest();
+            }
         }
         if (choice=='V') {
             choice='v';
@@ -673,7 +691,7 @@ void field() {
             if (firstv) {
                 fvillage();
             }
-            if (firstv==false) {
+            if (!firstv) {
                 village();
             }
         }
@@ -1552,8 +1570,8 @@ void village(){
             cout << "Unfortunately, you don't have any money to spend." << endl;
             if (pursenab) {
                 getchar();
-                cout << "Surprisingly, you end up finding 40 gold in your pockets!" << endl;
-                gold=70;
+                cout << "Actually, you surprisingly have 40 gold in your pockets!" << endl;
+                gold=40;
             }
         }
         if (gold >= 1) {
@@ -1565,7 +1583,7 @@ void village(){
                 cout << "Iron Sword      (a) = 10 g" << endl;
                 cout << "Iron Gloves     (b) = 10 g" << endl;
                 cout << "Iron Blaster    (c) = 10 g" << endl;
-                cout << "Iron Cores (x)  (d) = 5  g" << endl;
+                cout << "Iron Cores (x)  (d) = ?? g" << endl;
                 cout << "Iron Backpack   (e) = 25 g" << endl;
                 cout << "Iron Armor      (f) = 50 g" << endl;
                 cout << "===========================" << endl;
@@ -1585,7 +1603,7 @@ void village(){
                     if (pclass == 's') {
                         cout << "Damage  = 1-5" << endl;
                         cout << "Defense = N/A" << endl;
-                        cout << "A regular Iron Sword... What else "
+                        cout << "A regular Iron Sword... What else"
                                 "\ndo you expect?" << endl;
                         cout << "Price = 10 gold" << endl;
                         cout << "Gold  = " << gold << " gold" << endl;
@@ -1598,7 +1616,7 @@ void village(){
                             cin >> choice;
                             if (choice=='y' && gold >= 10) {
                                 pweapon=11;
-                                gold-10;
+                                gold=gold-10;
                                 cout << "Thank you for your purchase!" << endl;
                                 getchar();
                             }
@@ -1682,7 +1700,8 @@ void village(){
                                 cin >> choice;
                                 if (choice=='y' && gold >= 10) {
                                     pweapon=21;
-                                    gold-10;
+                                    pdefense=pdefense+1;
+                                    gold=gold-10;
                                     cout << "Thank you for your purchase!" << endl;
                                     getchar();
                                 }
@@ -1754,8 +1773,9 @@ void village(){
                             if (pclass == 'b') {
                                 cout << "Damage Multiplier  = 1x-5x" << endl;
                                 cout << "Defense            = N/A" << endl;
-                                cout << "Don't ask me how they managed to make a"
-                                        "\nblaster out of iron, but it works!" << endl;
+                                cout << "Don't ask me how someone managed to"
+                                        "\nmake a blaster out of iron, but it"
+                                        "\nworks!" << endl;
                                 cout << "Price = 10 gold" << endl;
                                 cout << "Gold  = " << gold << " gold" << endl;
                                 cout << "===========================" << endl;
@@ -1767,7 +1787,7 @@ void village(){
                                     cin >> choice;
                                     if (choice=='y' && gold >= 10) {
                                         pweapon=31;
-                                        gold-10;
+                                        gold=gold-10;
                                         cout << "Thank you for your purchase!" << endl;
                                         getchar();
                                     }
@@ -1851,11 +1871,16 @@ void village(){
                                 cin >> choice;
                                 if (choice=='y') {
                                     cout << "How many do you want to buy?" << endl;
+                                    cout << "You can currently buy up to " << pcoremax << " cores." << endl;
                                     cin >> count;
+                                    if (count > pcoremax) {
+                                        count = pcoremax;
+                                    }
                                     cout << count << " cores will cost you " << 1 * count << " gold." << endl;
                                     cout << "Are you sure you want to buy this many?" << endl;
-                                    if (choice=='y' && gold >= 1 * count) {
+                                    if (choice=='y' && gold >= (1 * count)) {
                                         gold=gold - (1 * count);
+                                        pcore = count;
                                         cout << "Thank you for your purchase!" << endl;
                                         cout << "Gold left: " << gold << endl;
                                         getchar();
@@ -1940,15 +1965,19 @@ void village(){
                                 if (choice=='y') {
                                     cout << "Are you sure? (y/n)" << endl;
                                     cin >> choice;
-                                    if (choice=='y') {
-                                        pcoremax=40;
-                                        gold-25;
+                                    if (choice=='y' && gold >= 25) {
+                                        pcoremax=10;
+                                        gold=gold-25;
                                         cout << "Thank you for your purchase!" << endl;
                                         getchar();
                                     }
-                                }
+                                    if (choice=='y' && gold < 25) {
+                                        cout << "I'm sorry, you do not have"
+                                                "\nenough gold for this item." << endl;
+                                        getchar();
+                                    }
                             }
-                        } while (choice==' ' ||
+                        }} while (choice==' ' ||
                                   choice=='a' ||
                                   choice=='b' ||
                                   choice=='c' ||
@@ -2014,10 +2043,16 @@ void village(){
                         if (choice=='y') {
                             cout << "Are you sure? (y/n)" << endl;
                             cin >> choice;
-                            if (choice=='y') {
+                            if (choice=='y' && gold >= 50) {
                                 parmor=1;
-                                gold-50;
+                                pdefense=pdefense+5;
+                                gold=gold-50;
                                 cout << "Thank you for your purchase!" << endl;
+                                getchar();
+                            }
+                            if (choice=='y' && gold < 50) {
+                                cout << "I'm sorry, you do not have"
+                                        "\nenough gold for this item." << endl;
                                 getchar();
                             }
                         }
@@ -2121,8 +2156,9 @@ void village(){
                 printf("Enter 'n' to exit the inn.\n");
                 cin >> choice;
                 if (choice == 'y' && gold >= 10) {
-                    gold-10;
+                    gold=gold-10;
                     printf("Have a great stay!\n");
+                    cout << "Gold left: " << gold << " gold" << endl;
                     pHP=pHPmax;
                     getchar();
                     printf("You wake up refreshed...\n");
@@ -2191,7 +2227,7 @@ void village(){
     }
     if (choice=='v') {
         getchar();
-        cout << "You head to the village square..." << endl;
+        cout << "You head back to the village square..." << endl;
         getchar();
         cout << "When you get to the square, you see a"
                 "\nboy shouting at a man with a mask"
