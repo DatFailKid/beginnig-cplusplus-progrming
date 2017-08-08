@@ -18,6 +18,33 @@ void greeting();
 void title();
 void intro();
 void forest();
+
+void forest11(); //Areas of the Dead Forest (void function "forest"); Has a 5x5 array
+void forest12();
+void forest13();
+void forest14();
+void forest15();
+void forest21();
+void forest22();
+void forest23();
+void forest24();
+void forest25();
+void forest31();
+void forest32();
+void forest33();
+void forest34();
+void forest35();
+void forest41();
+void forest42();
+void forest43();
+void forest44();
+void forest45();
+void forest51();
+void forest52();
+void forest53();
+void forest54();
+void forest55();
+
 void village();
 void field();
 void fvillage();
@@ -33,6 +60,8 @@ int parmor;
 int pweapon;
 int pcore;
 int pcoremax=3;
+int pdamage;
+int pcrit;
 
 char choice;
 int count;
@@ -67,10 +96,10 @@ void greeting() {
 
 void title() {
     char command[10];
-    char start[]="start";
-    char settings[]="set";
-    char end[]="exit";
-    char ans=' ';
+    char start[] = "start";
+    char settings[] = "set";
+    char end[] = "exit";
+    char ans = ' ';
 
     cout << "Use Enter to progress through menus" << endl;
     cout << "Type one of the underlined following:" << endl;
@@ -84,7 +113,7 @@ void title() {
     }
     if (strcmp(command, settings) == 0) {
         getchar();
-        cout << ANSI_COLOR_RED "Not done with this yet!" ANSI_COLOR_RESET<< endl;
+        cout << ANSI_COLOR_RED "Not done with this yet!" ANSI_COLOR_RESET << endl;
         getchar();
         title();
 
@@ -96,7 +125,7 @@ void title() {
 
     if (strcmp(command, end) == 0) {
         cout << ANSI_COLOR_CYAN"Are you sure you want to exit?" << endl;
-        cout << "Type 'y' for 'yes', type 'n' for 'no'." ANSI_COLOR_RESET<< endl;
+        cout << "Type 'y' for 'yes', type 'n' for 'no'." ANSI_COLOR_RESET << endl;
         cin >> ans;
 
         switch (ans) {
@@ -653,11 +682,14 @@ void field() {
                 getchar();
                 cout << "However, you quickly walk away, remembering you don't have any gear." << endl;
                 getchar();
+                continue;
             }
             if (pursenab && firstf) {
-                cout << "You walk cautiously towards the forest..." << endl;
+                cout << "You see the kid from earlier bolt into the forest." << endl;
                 getchar();
-                //forest();
+                cout << "So you run after him..." << endl;
+                getchar();
+                forest();
             }
         }
         if (choice=='v') {
@@ -679,9 +711,11 @@ void field() {
                 getchar();
             }
             if (pursenab && firstf) {
-                cout << "You walk cautiously towards the forest..." << endl;
+                cout << "You see the kid from earlier bolt into the forest." << endl;
                 getchar();
-                //forest();
+                cout << "So you run after him..." << endl;
+                getchar();
+                forest();
             }
         }
         if (choice=='V') {
@@ -1561,6 +1595,8 @@ void village(){
     cout << "(i) = inn" << endl;
     cout << "(v) = village square" << endl;
     cout << "(b) = board" << endl;
+    cout << "(Any other character)"
+            "\n= exit village" << endl;
     cin >> choice;
     if (choice == 's') {
         getchar();
@@ -1597,8 +1633,11 @@ void village(){
                     cout << "==========" << endl;
                     if (pclass != 's') {
                         cout << "No one in your party is a Swordsman" << endl;
-                        cout << "Enter 'z' to go back to the main shop page." << endl;
+                        cout << "Enter 'z' to go back to exit the shop." << endl;
                         cin >> choice;
+                        if (choice=='z') {
+                            continue;
+                        }
                     }
                     if (pclass == 's') {
                         cout << "Damage  = 1-5" << endl;
@@ -1618,6 +1657,7 @@ void village(){
                                 pweapon=11;
                                 gold=gold-10;
                                 cout << "Thank you for your purchase!" << endl;
+                                cout << "Gold left: " << gold << endl;
                                 getchar();
                             }
                             if (choice=='y' && gold < 10) {
@@ -1681,8 +1721,11 @@ void village(){
                         cout << "==========" << endl;
                         if (pclass != 'f') {
                             cout << "No one in your party is a Fighter" << endl;
-                            cout << "Enter 'z' to go back to the main shop page." << endl;
+                            cout << "Enter 'z' to go back to exit the shop." << endl;
                             cin >> choice;
+                            if (choice=='z') {
+                                continue;
+                            }
                         }
                         if (pclass == 'f') {
                             cout << "Damage  = 1-5" << endl;
@@ -1703,6 +1746,7 @@ void village(){
                                     pdefense=pdefense+1;
                                     gold=gold-10;
                                     cout << "Thank you for your purchase!" << endl;
+                                    cout << "Gold left: " << gold << endl;
                                     getchar();
                                 }
                                 if (choice=='y' && gold < 10) {
@@ -1767,8 +1811,11 @@ void village(){
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << "No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cout << "Enter 'z' to go back to exit the shop." << endl;
                                 cin >> choice;
+                                if (choice=='z') {
+                                    continue;
+                                }
                             }
                             if (pclass == 'b') {
                                 cout << "Damage Multiplier  = 1x-5x" << endl;
@@ -1789,6 +1836,7 @@ void village(){
                                         pweapon=31;
                                         gold=gold-10;
                                         cout << "Thank you for your purchase!" << endl;
+                                        cout << "Gold left: " << gold << endl;
                                         getchar();
                                     }
                                     if (choice=='y' && gold < 10) {
@@ -1853,8 +1901,11 @@ void village(){
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << "No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cout << "Enter 'z' to go back to exit the shop." << endl;
                                 cin >> choice;
+                                if (choice=='z') {
+                                    continue;
+                                }
                             }
                             if (pclass == 'b') {
                                 cout << "Damage       = 1-5" << endl;
@@ -1947,8 +1998,11 @@ void village(){
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << "No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cout << "Enter 'z' to go back to exit the shop." << endl;
                                 cin >> choice;
+                                if (choice=='z') {
+                                    continue;
+                                }
                             }
                             if (pclass == 'b') {
                                 cout << "Damage  = 1-5" << endl;
@@ -1969,6 +2023,7 @@ void village(){
                                         pcoremax=10;
                                         gold=gold-25;
                                         cout << "Thank you for your purchase!" << endl;
+                                        cout << "Gold left: " << gold << endl;
                                         getchar();
                                     }
                                     if (choice=='y' && gold < 25) {
@@ -2038,8 +2093,11 @@ void village(){
                             cout << "Gold  = " << gold << " gold" << endl;
                             cout << "===========================" << endl;
                             cout << "Enter 'y' to buy this." << endl;
-                            cout << "Enter 'z' to go back to the main shop page." << endl;
+                            cout << "Enter 'z' to go back to exit the shop." << endl;
                             cin >> choice;
+                            if (choice=='z') {
+                                continue;
+                            }
                         if (choice=='y') {
                             cout << "Are you sure? (y/n)" << endl;
                             cin >> choice;
@@ -2048,6 +2106,7 @@ void village(){
                                 pdefense=pdefense+5;
                                 gold=gold-50;
                                 cout << "Thank you for your purchase!" << endl;
+                                cout << "Gold left: " << gold << endl;
                                 getchar();
                             }
                             if (choice=='y' && gold < 50) {
@@ -2164,7 +2223,8 @@ void village(){
                     printf("You wake up refreshed...\n");
                 }
                 if (choice == 'y' && gold < 10) {
-                    printf("I'm sorry, but you don't have enough gold to stay a night.\n");
+                    printf("I'm sorry, but you don't have"
+                           "\nenough gold to stay a night.\n");
                 }
             } while (choice==' ' ||
                      choice=='a' ||
@@ -2216,6 +2276,11 @@ void village(){
                      choice=='X' ||
                      choice=='Z');
         }
+        if (pHP==pHPmax) {
+            getchar();
+            cout << "However, you don't feel tired..." << endl;
+            getchar();
+        }
     }
     if (choice=='b') {
         cout << "You head back to the board..." << endl;
@@ -2248,12 +2313,104 @@ void village(){
                 "\nhere, you thief!', then takes off after him." << endl;
         getchar();
         pursenab=true;
-        cout << "You get back up, then look in the direction the "
+        cout << "You get back up, then look in the direction the"
                 "\nkid chased after, deciding that you have to go"
                 "\nafter him." << endl;
         getchar();
         cout << "But you'll need gear first..." << endl;
+        village();
     }
+    if (choice != 's' && choice != 'i' && choice != 'v' && choice != 'b') {
+        field();
+    }
+}
+
+void forest() {
+    if (firstf) {
+        char direction;
+        cout << "The doesn't smell like a forest.." << endl;
+        getchar();
+        cout << "Actually, it smells like death." << endl;
+        getchar();
+        cout << "Way to kill the mood..." << endl;
+        getchar();
+        cout << "This is how exploration works in this game:" << endl;
+        getchar();
+        cout << "You will be given some directions that you can go to." << endl;
+        getchar();
+        cout << "Either forward (w), backwards (s), left (a), or right"
+                "\n(d) (Although not all the areas will have all four "
+                "\ndirections)." << endl;
+        getchar();
+        cout << "Enter one of the letters to move in that direction." << endl;
+        getchar();
+        cout << "Some of the areas may have events." << endl;
+        cout << "These can either be battles, finding loot, or"
+                "\nchoices you can make." << endl;
+        firstf = false;
+        getchar();
+    }
+    do {
+        cout << "Choose a direction to go in:" << endl;
+        cout << "Forward (w)" << endl;
+        cin >> choice;
+        if (choice == 'w') {
+            //forest13();
+        }
+        if (choice == 'W') {
+            //forest13();
+        }
+    } while (choice == ' ' ||
+             choice == 'a' ||
+             choice == 'b' ||
+             choice == 'c' ||
+             choice == 'd' ||
+             choice == 'e' ||
+             choice == 'f' ||
+             choice == 'g' ||
+             choice == 'h' ||
+             choice == 'i' ||
+             choice == 'j' ||
+             choice == 'k' ||
+             choice == 'l' ||
+             choice == 'm' ||
+             choice == 'n' ||
+             choice == 'o' ||
+             choice == 'p' ||
+             choice == 'q' ||
+             choice == 'r' ||
+             choice == 's' ||
+             choice == 't' ||
+             choice == 'u' ||
+             choice == 'v' ||
+             choice == 'x' ||
+             choice == 'y' ||
+             choice == 'z' ||
+             choice == 'A' ||
+             choice == 'B' ||
+             choice == 'C' ||
+             choice == 'D' ||
+             choice == 'E' ||
+             choice == 'F' ||
+             choice == 'G' ||
+             choice == 'H' ||
+             choice == 'I' ||
+             choice == 'J' ||
+             choice == 'K' ||
+             choice == 'L' ||
+             choice == 'M' ||
+             choice == 'N' ||
+             choice == 'O' ||
+             choice == 'P' ||
+             choice == 'Q' ||
+             choice == 'R' ||
+             choice == 'S' ||
+             choice == 'T' ||
+             choice == 'U' ||
+             choice == 'V' ||
+             choice == 'X' ||
+             choice == 'Y' ||
+             choice == 'Z');
 }
 
 //Choice template
