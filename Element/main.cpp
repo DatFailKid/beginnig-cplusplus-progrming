@@ -45,20 +45,27 @@ void forest53();
 void forest54();
 void forest55();
 
+void goblinbat1();
+
+void levelup();
+
 void village();
 void field();
 void fvillage();
 
-char pname[15];
+char pname[15]=" ";
 char pgender;
 char pweight;
 char pelement;
 char pclass;
 char page;
+int plevel=1;
+int pexp=0;
 
 int parmor;
 int pweapon;
 int pcore;
+int pcoret;
 int pcoremax=3;
 int pdamage;
 int pcrit;
@@ -68,11 +75,13 @@ int count;
 
 int pHP=50;
 int pHPmax=50;
-int pdefense;
+int pdefense=0;
+
 int gold=0;
 
 bool firstv=true;
 bool firstf=true;
+bool firstb=true;
 bool pursenab=false;
 
 int main() {
@@ -99,12 +108,14 @@ void title() {
     char start[] = "start";
     char settings[] = "set";
     char end[] = "exit";
+    char credit[] = "cred";
     char ans = ' ';
 
     cout << "Use Enter to progress through menus" << endl;
     cout << "Type one of the underlined following:" << endl;
     cout << ANSI_COLOR_GREEN << ANSI_TEXT_UNDERLINE "start" ANSI_COLOR_RESET << ": Start your adventurre" << endl;
     cout << ANSI_COLOR_GREY << ANSI_TEXT_UNDERLINE "set" ANSI_COLOR_RESET << ": Settings, change stuff..." << endl;
+    cout << ANSI_COLOR_RED << ANSI_TEXT_UNDERLINE "cred" ANSI_COLOR_RESET<< ": Credits" << endl;
     cout << ANSI_COLOR_CYAN << ANSI_TEXT_UNDERLINE "exit" ANSI_COLOR_RESET << ": Exit the game" << endl;
     cin >> command;
 
@@ -146,6 +157,24 @@ void title() {
                 title();
         }
     }
+        if (strcmp(command, credit) == 0) {
+            cout << "Credits" << end;
+            getchar();
+            cout << "This text-based RPG was inspired by a few RPG's that I've loved." << endl;
+            getchar();
+            cout << "Super Mario RPG: Legend of the Seven Stars" << endl;
+            cout << "Made by Square" << endl;
+            cout << "Published by Nintendo" << endl;
+            getchar();
+            cout << "Oh yeah, by the way, Nintendo, you guys need to make a sequel." << endl;
+            getchar();
+            cout << "I'm serious." << endl;
+            getchar();
+            cout << "The 'Mario & Luigi' RPG series" << endl;
+            cout << "Made by AlphaDream" << endl;
+            cout << "Published by Nintendo" << endl;
+            getchar();
+        }
     else {
         title();
     }
@@ -1604,10 +1633,11 @@ void village(){
         if (gold < 1) {
             getchar();
             cout << "Unfortunately, you don't have any money to spend." << endl;
+            getchar();
             if (pursenab) {
-                getchar();
                 cout << "Actually, you surprisingly have 40 gold in your pockets!" << endl;
                 gold=40;
+                getchar();
             }
         }
         if (gold >= 1) {
@@ -1636,11 +1666,11 @@ void village(){
                         cout << "Enter 'z' to go back to exit the shop." << endl;
                         cin >> choice;
                         if (choice=='z') {
-                            continue;
+                            return village();
                         }
                     }
                     if (pclass == 's') {
-                        cout << "Damage  = 1-5" << endl;
+                        cout << "Damage  = 10" << endl;
                         cout << "Defense = N/A" << endl;
                         cout << "A regular Iron Sword... What else"
                                 "\ndo you expect?" << endl;
@@ -1657,6 +1687,7 @@ void village(){
                                 pweapon=11;
                                 gold=gold-10;
                                 cout << "Thank you for your purchase!" << endl;
+                                getchar();
                                 cout << "Gold left: " << gold << endl;
                                 getchar();
                             }
@@ -1728,7 +1759,7 @@ void village(){
                             }
                         }
                         if (pclass == 'f') {
-                            cout << "Damage  = 1-5" << endl;
+                            cout << "Damage  = 10" << endl;
                             cout << "Defense = 1" << endl;
                             cout << "A pair of Iron Gloves. Good for beating"
                                     "\nbeating up bullies!" << endl;
@@ -1746,6 +1777,7 @@ void village(){
                                     pdefense=pdefense+1;
                                     gold=gold-10;
                                     cout << "Thank you for your purchase!" << endl;
+                                    getchar();
                                     cout << "Gold left: " << gold << endl;
                                     getchar();
                                 }
@@ -1818,7 +1850,7 @@ void village(){
                                 }
                             }
                             if (pclass == 'b') {
-                                cout << "Damage Multiplier  = 1x-5x" << endl;
+                                cout << "Damage Multiplier  = 1x" << endl;
                                 cout << "Defense            = N/A" << endl;
                                 cout << "Don't ask me how someone managed to"
                                         "\nmake a blaster out of iron, but it"
@@ -1836,6 +1868,7 @@ void village(){
                                         pweapon=31;
                                         gold=gold-10;
                                         cout << "Thank you for your purchase!" << endl;
+                                        getchar();
                                         cout << "Gold left: " << gold << endl;
                                         getchar();
                                     }
@@ -1908,7 +1941,7 @@ void village(){
                                 }
                             }
                             if (pclass == 'b') {
-                                cout << "Damage       = 1-5" << endl;
+                                cout << "Damage       = 10" << endl;
                                 cout << "Defense      = N/A" << endl;
                                 cout << "Regeneration = 3 turns" << endl;
                                 cout << "Iron cores for your blaster. They"
@@ -1932,7 +1965,9 @@ void village(){
                                     if (choice=='y' && gold >= (1 * count)) {
                                         gold=gold - (1 * count);
                                         pcore = count;
+                                        pcoret=1;
                                         cout << "Thank you for your purchase!" << endl;
+                                        getchar();
                                         cout << "Gold left: " << gold << endl;
                                         getchar();
                                     }
@@ -2006,7 +2041,7 @@ void village(){
                             }
                             if (pclass == 'b') {
                                 cout << "Damage  = 1-5" << endl;
-                                cout << "Defense = 0.5" << endl;
+                                cout << "Defense = 1" << endl;
                                 cout << "Storage = 40" << endl;
                                 cout << "A backpack used to hold blaster cores, and"
                                         "\nprotect your back." << endl;
@@ -2021,8 +2056,10 @@ void village(){
                                     cin >> choice;
                                     if (choice=='y' && gold >= 25) {
                                         pcoremax=10;
+                                        pdefense=pdefense+1;
                                         gold=gold-25;
                                         cout << "Thank you for your purchase!" << endl;
+                                        getchar();
                                         cout << "Gold left: " << gold << endl;
                                         getchar();
                                     }
@@ -2106,6 +2143,7 @@ void village(){
                                 pdefense=pdefense+5;
                                 gold=gold-50;
                                 cout << "Thank you for your purchase!" << endl;
+                                getchar();
                                 cout << "Gold left: " << gold << endl;
                                 getchar();
                             }
@@ -2164,6 +2202,9 @@ void village(){
                              choice=='V' ||
                              choice=='W' ||
                              choice=='X' );}
+                if (choice == 'z') {
+                    return village();
+                }
             } while (choice==' ' ||
                      choice=='g' ||
                      choice=='h' ||
@@ -2221,6 +2262,7 @@ void village(){
                     pHP=pHPmax;
                     getchar();
                     printf("You wake up refreshed...\n");
+                    return village();
                 }
                 if (choice == 'y' && gold < 10) {
                     printf("I'm sorry, but you don't have"
@@ -2318,17 +2360,16 @@ void village(){
                 "\nafter him." << endl;
         getchar();
         cout << "But you'll need gear first..." << endl;
-        village();
+        return village();
     }
     if (choice != 's' && choice != 'i' && choice != 'v' && choice != 'b') {
-        field();
+        return field();
     }
 }
 
 void forest() {
     if (firstf) {
-        char direction;
-        cout << "The doesn't smell like a forest.." << endl;
+        cout << "The forest doesn't smell like a forest.." << endl;
         getchar();
         cout << "Actually, it smells like death." << endl;
         getchar();
@@ -2355,10 +2396,10 @@ void forest() {
         cout << "Forward (w)" << endl;
         cin >> choice;
         if (choice == 'w') {
-            //forest13();
+            forest13();
         }
         if (choice == 'W') {
-            //forest13();
+            forest13();
         }
     } while (choice == ' ' ||
              choice == 'a' ||
@@ -2411,6 +2452,388 @@ void forest() {
              choice == 'X' ||
              choice == 'Y' ||
              choice == 'Z');
+}
+
+void forest13() {
+    getchar();
+    cout << "You end up getting ambushed by a small party of goblins!" << endl;
+    getchar();
+    goblinbat1();
+    getchar();
+    cout << "Choose a direction:" << endl;
+    cout << "Forward (w)" << endl;
+    cout << "Backward (Out of the forest) (s)" << endl;
+    cout << "Left (a)" << endl;
+    cout << "Right (d)" << endl;
+}
+
+void goblinbat1() {
+    int goblin1HP = 10;
+    int goblin2HP = 10;
+    int goblin3HP = 10;
+
+    if (firstb) {
+        cout << "This how battling works in the game:" << endl;
+        getchar();
+        cout << "You will have to choose between one"
+                "\nof the following every time it's"
+                "\nyour turn:" << endl;
+        getchar();
+        cout << "Attack  (a)" << endl;
+        getchar();
+        cout << "Special (w)" << endl;
+        getchar();
+        cout << "Item    (d)" << endl;
+        getchar();
+        cout << "Other   (s)" << endl;
+        getchar();
+        cout << "\nAttack will do a normal attack to"
+                "\nthe enemy you choose by entering a"
+                "\ncertain button" << endl;
+        getchar();
+        cout << "Special will attack an enemy (or"
+                "\nsometimes the whole enemy party)"
+                "\nusing your element or some other"
+                "\nform of magic." << endl;
+        getchar();
+        cout << "Item will allow you to use an item"
+                "\nthat can heal you, raise stats, or"
+                "\neven give your party certain "
+                "\neffects" << endl;
+        getchar();
+        cout << "Other does... well... other stuff." << endl;
+        getchar();
+        cout << "You can run away from a battle (in most cases), or you can defend yourself and stop taking damage."
+             << endl;
+        getchar();
+        firstb = false;
+    }
+    do {
+        if (pname != " ") {
+            cout << pname << "'s turn" << endl;
+            cout << "HP: " << pHP << endl;
+            cout << "Attack  (a)" << endl;
+            cout << "Special (w)" << endl;
+            cout << "Item    (d)" << endl;
+            cout << "Other   (s)" << endl;
+            cin >> choice;
+            if (choice == 'a') {
+                cout << "Select target" << endl;
+                if (goblin1HP > 0) {
+                    cout << "Goblin 1 (a)" << endl;
+                    cout << "HP: " << goblin1HP << endl;
+                }
+                if (goblin2HP > 0) {
+                    cout << "Goblin 2 (b)" << endl;
+                    cout << "HP: " << goblin2HP << endl;
+                }
+                if (goblin3HP > 0) {
+                    cout << "Goblin 3 (c)" << endl;
+                    cout << "HP: " << goblin3HP << endl;
+                }
+                cin >> choice;
+                if (choice == 'a') {
+                    if (pweapon == 11) {
+                        getchar();
+                        cout << "You struck Goblin 1 with your sword." << endl;
+                        getchar();
+                        goblin1HP = goblin1HP - 10;
+                        cout << "Goblin 1 took 10 damage." << endl;
+                        getchar();
+                        if (goblin1HP <= 0) {
+                            cout << "Goblin 1 is now dead" << endl;
+                            getchar();
+                        }
+                        else if (goblin1HP > 0) {
+                            cout << "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP=pHP-5;
+                            cout << "You took 5 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                            getchar();
+                        }
+                    } else if (pweapon == 21) {
+                        cout << "You gave Goblin 1 good punch to the face." << endl;
+                        goblin1HP = goblin1HP - 10;
+                        cout << "Goblin 1 took 10 damage." << endl;
+                        if (goblin1HP == 0) {
+                            cout << "Goblin 1 is now dead" << endl;
+                        }
+                        else if (goblin1HP > 0) {
+                            cout << "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP=pHP-5;
+                            cout << "You took 5 damage." << endl;
+                        }
+                        if (goblin2HP > 0) {
+                            cout << "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                        }
+                        if (goblin3HP > 0) {
+                            cout << "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                        }
+                    } else if (pweapon == 31) {
+                        pcore = pcore - 1;
+                        cout << "You have " << pcore << " cores left." << endl;
+                        getchar();
+                        cout << "You charged up your blaster...." << endl;
+                        getchar();
+                        cout << "Then BOOOOM!" << endl;
+                        getchar();
+                        cout << "You shot a beam of raw energy at Goblin 1" << endl;
+                        if (pcoret == 1) {
+                            goblin1HP = goblin1HP - (1 * 10);
+                            cout << "Goblin 1 took 10 damage." << endl;
+                        }
+                        if (goblin1HP <= 0) {
+                            cout << "Goblin 1 is now dead" << endl;
+                        }
+                        else if (goblin1HP > 0) {
+                            cout << "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP=pHP-5;
+                            cout << "You took 5 damage." << endl;
+                        }
+                        if (goblin2HP > 0) {
+                            cout << "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                        }
+                        if (goblin3HP > 0) {
+                            cout << "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP=pHP-2;
+                            cout << "You took 2 damage" << endl;
+                        }
+                    }
+                }
+            }
+            if (choice == 'b') {
+                if (pweapon == 11) {
+                    cout << "You struck Goblin 2 with your sword." << endl;
+                    goblin2HP = goblin2HP - 10;
+                    cout << "Goblin 2 took 10 damage." << endl;
+                    if (goblin2HP <= 0) {
+                        cout << "Goblin 2 is now dead" << endl;
+                    }
+                    else if (goblin2HP>0) {
+                        cout << "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage." << endl;
+                    }
+                    if (goblin1HP > 0) {
+                        cout << "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP=pHP-5;
+                        cout << "You took 5 damage" << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage" << endl;
+                    }
+                }
+                if (pweapon == 21) {
+                    cout << "You gave Goblin 2 good punch to the face." << endl;
+                    goblin2HP = goblin2HP - 10;
+                    cout << "Goblin 2 took 10 damage." << endl;
+                    if (goblin2HP <= 0) {
+                        cout << "Goblin 2 is now dead" << endl;
+
+                    }
+                    else if (goblin2HP>0) {
+                        cout << "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage." << endl;
+                    }
+                    if (goblin1HP > 0) {
+                        cout << "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP=pHP-5;
+                        cout << "You took 5 damage" << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage" << endl;
+                    }
+                }
+                if (pweapon == 31) {
+                    pcore = pcore - 1;
+                    cout << "You have " << pcore << " cores left." << endl;
+                    getchar();
+                    cout << "You charged up your blaster...." << endl;
+                    getchar();
+                    cout << "Then BOOOOM!" << endl;
+                    getchar();
+                    cout << "You shot a beam of raw energy at Goblin 2" << endl;
+                    if (pcoret == 1) {
+                        goblin2HP = goblin2HP - (1 * 10);
+                        cout << "Goblin 2 took 10 damage." << endl;
+                    }
+                    if (goblin2HP <= 0) {
+                        cout << "Goblin 2 is now dead" << endl;
+                    }
+                    else if (goblin2HP>0) {
+                        cout << "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage." << endl;
+                    }
+                    if (goblin1HP > 0) {
+                        cout << "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP=pHP-5;
+                        cout << "You took 5 damage" << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP=pHP-2;
+                        cout << "You took 2 damage" << endl;
+                    }
+                }
+            }
+        }
+        if (choice == 'c') {
+            if (pweapon == 11) {
+                cout << "You struck Goblin 3 with your sword." << endl;
+                goblin3HP = goblin3HP - 10;
+                cout << "Goblin 3 took 10 damage." << endl;
+                if (goblin3HP <= 0) {
+                    cout << "Goblin 3 is now dead" << endl;
+                }
+                else if (goblin3HP>0) {
+                    cout << "Goblin 3 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage." << endl;
+                }
+                if (goblin1HP > 0) {
+                    cout << "Goblin 1 shanked you with a dagger." << endl;
+                    getchar();
+                    pHP=pHP-5;
+                    cout << "You took 5 damage" << endl;
+                }
+                if (goblin2HP > 0) {
+                    cout << "Goblin 2 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage" << endl;
+                }
+            }
+            if (pweapon == 21) {
+                cout << "You gave Goblin 3 good punch to the face." << endl;
+                goblin3HP = goblin3HP - 10;
+                cout << "Goblin 3 took 10 damage." << endl;
+                if (goblin3HP <= 0) {
+                    cout << "Goblin 3 is now dead" << endl;
+                }
+                else if (goblin3HP>0) {
+                    cout << "Goblin 3 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage." << endl;
+                }
+                if (goblin1HP > 0) {
+                    cout << "Goblin 1 shanked you with a dagger." << endl;
+                    getchar();
+                    pHP=pHP-5;
+                    cout << "You took 5 damage" << endl;
+                }
+                if (goblin2HP > 0) {
+                    cout << "Goblin 2 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage" << endl;
+                }
+            }
+            if (pweapon == 31) {
+                pcore = pcore - 1;
+                cout << "You have " << pcore << " cores left." << endl;
+                getchar();
+                cout << "You charged up your blaster...." << endl;
+                getchar();
+                cout << "Then BOOOOM!" << endl;
+                getchar();
+                cout << "You shot a beam of raw energy at Goblin 3" << endl;
+                if (pcoret == 1) {
+                    goblin3HP = goblin3HP - (1 * 10);
+                    cout << "Goblin 3 took 10 damage." << endl;
+                }
+                if (goblin3HP <= 0) {
+                    cout << "Goblin 3 is now dead" << endl;
+                }
+                else if (goblin3HP>0) {
+                    cout << "Goblin 3 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage." << endl;
+                }
+                if (goblin1HP > 0) {
+                    cout << "Goblin 1 shanked you with a dagger." << endl;
+                    getchar();
+                    pHP=pHP-5;
+                    cout << "You took 5 damage" << endl;
+                }
+                if (goblin2HP > 0) {
+                    cout << "Goblin 2 punched you in the gut." << endl;
+                    getchar();
+                    pHP=pHP-2;
+                    cout << "You took 2 damage" << endl;
+                }
+            }
+        }
+        if (goblin1HP<=0 && goblin2HP<=0 && goblin3HP<=0) {
+            cout << "You won!" << endl;
+            getchar();
+            cout << "Level " << plevel << endl;
+            cout << "EXP: " << pexp << " + 6" << endl;
+            cout << "Gold: " << gold << " + 1" << endl;
+            pexp=pexp+6;
+            if (pexp<=20) {
+                plevel=2;
+                levelup();
+            }
+        }
+        if (pHP <=0) {
+            cout << "GAME OVER..." << endl;
+            getchar();
+            forest13();
+        }
+    } while (goblin1HP > 0 ||
+             goblin2HP > 0 ||
+             goblin3HP > 0);
+}
+void levelup() {
+    if (plevel==2) {
+        pHPmax = 65;
+        pHP = pHPmax;
+        pdefense=pdefense+2;
+    }
 }
 
 //Choice template
