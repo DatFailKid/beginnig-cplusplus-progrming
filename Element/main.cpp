@@ -96,9 +96,9 @@ void greeting() {
     std::cout << ANSI_TEXT_BOLD << ANSI_COLOR_GREEN "Element" ANSI_COLOR_RESET<< std::endl;
     getchar();
     std::cout << ANSI_TEXT_BOLD << ANSI_COLOR_GREY "If you are getting weird characters before the outputs, then your"
-            "\ncompiler cannot output the defined colors. Please download a" << endl;
-         cout << "compiler that can output defined colors, or choose a different OS"
-                 "\nto run this on." ANSI_COLOR_RESET<< std::endl;
+                                                   "\ncompiler cannot output the defined colors. Please download a" << endl;
+         cout <<                                   "compiler that can output defined colors, or consider choosing"
+                                                   "\na different OS to run this on." ANSI_COLOR_RESET<< std::endl;
     getchar();
     title();
 };
@@ -111,9 +111,9 @@ void title() {
     char credit[] = "cred";
     char ans = ' ';
 
-    cout << "Use Enter to progress through menus" << endl;
+    cout << ANSI_COLOR_RESET"Use Enter to progress through menus" << endl;
     cout << "Type one of the underlined following:" << endl;
-    cout << ANSI_COLOR_GREEN << ANSI_TEXT_UNDERLINE "start" ANSI_COLOR_RESET << ": Start your adventurre" << endl;
+    cout << ANSI_COLOR_GREEN << ANSI_TEXT_UNDERLINE "start" ANSI_COLOR_RESET << ": Start your adventure" << endl;
     cout << ANSI_COLOR_GREY << ANSI_TEXT_UNDERLINE "set" ANSI_COLOR_RESET << ": Settings, change stuff..." << endl;
     cout << ANSI_COLOR_RED << ANSI_TEXT_UNDERLINE "cred" ANSI_COLOR_RESET<< ": Credits" << endl;
     cout << ANSI_COLOR_CYAN << ANSI_TEXT_UNDERLINE "exit" ANSI_COLOR_RESET << ": Exit the game" << endl;
@@ -130,7 +130,6 @@ void title() {
 
         /* Add in:
          * Turn highlight on/off
-         * Change text color
          * Mouse input on/off*/
     }
 
@@ -158,25 +157,26 @@ void title() {
         }
     }
         if (strcmp(command, credit) == 0) {
-            cout << "Credits" << end;
+            cout << ANSI_COLOR_RED "Credits" << endl;
             getchar();
             cout << "This text-based RPG was inspired by a few RPG's that I've loved." << endl;
             getchar();
-            cout << "Super Mario RPG: Legend of the Seven Stars" << endl;
-            cout << "Made by Square" << endl;
-            cout << "Published by Nintendo" << endl;
+            cout << ANSI_COLOR_RED << ANSI_TEXT_UNDERLINE "Super Mario RPG: Legend of the Seven Stars" << endl;
+            cout << ANSI_COLOR_RED"Made by Square" << endl;
+            cout << ANSI_COLOR_RED"Published by Nintendo" << endl;
             getchar();
             cout << "Oh yeah, by the way, Nintendo, you guys need to make a sequel." << endl;
             getchar();
             cout << "I'm serious." << endl;
             getchar();
-            cout << "The 'Mario & Luigi' RPG series" << endl;
-            cout << "Made by AlphaDream" << endl;
-            cout << "Published by Nintendo" << endl;
+            cout << ANSI_COLOR_RED << ANSI_TEXT_UNDERLINE "The 'Mario & Luigi' RPG series" << endl;
+            cout << ANSI_COLOR_RED"Made by AlphaDream" << endl;
+            cout << ANSI_COLOR_RED"Published by Nintendo" << endl;
             getchar();
+            title();
         }
     else {
-        title();
+
     }
 }
 
