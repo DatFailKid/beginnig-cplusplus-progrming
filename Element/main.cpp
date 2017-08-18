@@ -53,7 +53,9 @@ void village(); //Oakwood Village
 void field();
 void fvillage();
 
-char pname[15]=" ";
+void menu();
+
+char pname[15]="???";
 char pgender;
 char pweight;
 char pelement;
@@ -62,11 +64,12 @@ char page;
 int plevel=1;
 int pexp=0;
 
-int parmor;
-int pweapon;
-int pcore;
-int pcoret;
-int pcoremax=3;
+int parmor=0; //The Player's armor
+int pweapon=0; //The Player's weapon
+int pcore=0; //How many Blaster cores a player is holding
+int pcoret=0; //The type of cores the player is holding
+int pcoremax=3; //The maximum amount of Blaster cores a player can hold at once
+int paccess=0; //The Player's Accessory
 int pdamage;
 int pcrit;
 
@@ -84,6 +87,29 @@ int count;
 float pHP=50;
 int pHPmax=50;
 int pdefense=0;
+int pFP=10; //Fire Points
+int pFPmax=10; //Max Fire Points
+int pSP=10; //Spark Points
+int pSPmax=10; //Max Spark Points
+int pAP=10; //Aqua Points
+int pAPmax=10; //Max Aqua Points
+int pIP=10; //Ice Points
+int pIPmax=10; //Max Ice Points
+int pLP=10; //Light Points
+int pLPmax=10; //Max Light Points
+int pVP=10; //Void Points
+int pVPmax=10; //Max Void Points
+
+int tealmush=0; //Teal Mushroom; Restores HP
+int flampeach=0; //Flaming Peach; Restore Fire Points (FP)
+int shinrock=0; //Shiny Rock; Restores Spark Points (SP)
+int watbulb=0; //Water Bulb; Restores Aqua Points (AP)
+int iceblos=0; //Ice Blossom; Restores Ice Points (IP)
+int starbot=0; //Bottled Star; Restores Light Points (LP)
+int bholebot=0; //Bottled Black Hole; Restores Void Points (VP)
+
+int bagmax=10;
+int bag=tealmush+flampeach+shinrock+watbulb+iceblos+starbot+bholebot;
 
 int gold=0;
 
@@ -706,7 +732,7 @@ void intro() {
         getchar();
         cout << ANSI_COLOR_GREEN"You manage to get yourself out of the crater and to the surface." << endl;
         getchar();
-        cout << "And thankfully, you didn't crash into the village nearby." << endl;
+        cout << ANSI_COLOR_RESET"And thankfully, you didn't crash into the village nearby." << endl;
         getchar();
     }
     if (pweight=='f') {
@@ -715,7 +741,7 @@ void intro() {
         getchar();
 
     }
-    else {
+    if (pweight=='r') {
         getchar();
         cout << "Within a few minutes, you crash into the ground, burying your head underground." << endl;
         getchar();
@@ -747,8 +773,11 @@ void field() {
         cout << ANSI_COLOR_RESET"Choose a location to go to:" << endl;
         cout << "(v) = Oakwood Village" << endl;
         cout << "(f) = The Dead Forest" << endl;
+        cout << "(q) = Menu" << endl;
         cin >> choice;
-
+        if (choice=='q') {
+            menu();
+        }
         if (choice=='f') {
             if (!pursenab && firstf) {
                 cout << ANSI_COLOR_CYAN"You approach the forest..." << endl;
@@ -1663,234 +1692,239 @@ void fvillage() {
 
 void village(){
     getchar();
-    cout << ANSI_COLOR_RESET "Where are you going to go?" << endl;
-    getchar();
-    cout << "(s) = shop" << endl;
-    cout << "(i) = inn" << endl;
-    cout << "(v) = village square" << endl;
-    cout << "(b) = board" << endl;
-    cout << "(Any other character)"
-            "\n= exit village" << endl;
-    cin >> choice;
-    if (choice == 's') {
+    do {
+        cout << ANSI_COLOR_RESET "Where are you going to go?" << endl;
         getchar();
-        cout << ANSI_COLOR_CYAN"You head to one of the shops." << endl;
-        if (gold < 1) {
-            getchar();
-            cout << ANSI_COLOR_RED"Unfortunately, you don't have any money to spend." << endl;
-            getchar();
-            if (pursenab) {
-                cout << ANSI_COLOR_GREEN"Actually, you surprisingly have 40 gold in your pockets!" << endl;
-                gold=40;
-                getchar();
-            }
+        cout << "(s) = shop" << endl;
+        cout << "(i) = inn" << endl;
+        cout << "(v) = village square" << endl;
+        cout << "(b) = board" << endl;
+        cout << "(q) = menu" << endl;
+        cout << "(Any other character)"
+                "\n= exit village" << endl;
+        cin >> choice;
+        if (choice == 'q') {
+            menu();
         }
-        if (gold >= 1) {
-            do {
-                cout << ANSI_COLOR_RESET"What would you like to buy?" << endl;
-                cout << "===========================" << endl;
-                cout << "Name            Key   Price" << endl;
-                cout << "---------------------------" << endl;
-                cout << ANSI_COLOR_RESET"Iron Sword      (a) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
-                cout << ANSI_COLOR_RESET"Iron Gloves     (b) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
-                cout << ANSI_COLOR_RESET"Iron Blaster    (c) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
-                cout << ANSI_COLOR_RESET"Iron Cores (x)  (d) = " << ANSI_COLOR_YELLOW << "?? g" << endl;
-                cout << ANSI_COLOR_RESET"Iron Backpack   (e) = " << ANSI_COLOR_YELLOW << "25 g" << endl;
-                cout << ANSI_COLOR_RESET"Iron Armor      (f) = " << ANSI_COLOR_YELLOW << "50 g" << endl;
-                cout << ANSI_COLOR_RESET"===========================" << endl;
-                cout << "Enter an item's key to view it's information." << endl;
-                cout << "Enter 'z' to exit the shop." << endl;
-                cin >> choice;
+        if (choice == 's') {
+            getchar();
+            cout << ANSI_COLOR_CYAN"You head to one of the shops." << endl;
+            if (gold < 1) {
+                getchar();
+                cout << ANSI_COLOR_RED"Unfortunately, you don't have any money to spend." << endl;
+                getchar();
+                if (pursenab) {
+                    cout << ANSI_COLOR_GREEN"Actually, you surprisingly have 40 gold in your pockets!" << endl;
+                    gold = 40;
+                    getchar();
+                }
+            }
+            if (gold >= 1) {
+                do {
+                    cout << ANSI_COLOR_RESET"What would you like to buy?" << endl;
+                    cout << "===========================" << endl;
+                    cout << "Name            Key   Price" << endl;
+                    cout << "---------------------------" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Sword      (a) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Gloves     (b) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Blaster    (c) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Cores (x)  (d) = " << ANSI_COLOR_YELLOW << "?? g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Backpack   (e) = " << ANSI_COLOR_YELLOW << "25 g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Armor      (f) = " << ANSI_COLOR_YELLOW << "50 g" << endl;
+                    cout << ANSI_COLOR_RESET"===========================" << endl;
+                    cout << "Enter an item's key to view it's information." << endl;
+                    cout << "Enter 'x' to exit the shop." << endl;
+                    cin >> choice;
 
-                if (choice == 'a') {
-                    do {
-                    cout << "Iron Sword" << endl;
-                    cout << "==========" << endl;
-                    if (pclass != 's') {
-                        cout << ANSI_COLOR_RED"No one in your party is a Swordsman" << endl;
-                        cout << "Enter 'z' to go back to exit the shop." << endl;
-                        cin >> choice;
-                        if (choice=='z') {
-                            continue;
-                        }
-                    }
-                    if (pclass == 's') {
-                        cout << "Damage  = 10" << endl;
-                        cout << "Defense = N/A" << endl;
-                        cout << "A regular Iron Sword... What else"
-                                "\ndo you expect?" << endl;
-                        cout << "Price = " << ANSI_COLOR_YELLOW << "10 gold" << endl;
-                        cout << ANSI_COLOR_RESET"Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
-                        cout << ANSI_COLOR_RESET"===========================" << endl;
-                        cout << "Enter 'y' to buy this." << endl;
-                        cout << "Enter 'z' to exit the shop" << endl;
-                        cin >> choice;
-                        if (choice=='y') {
-                            cout << "Are you sure? (y/n)" << endl;
-                            cin >> choice;
-                            if (choice=='y' && gold >= 10) {
-                                pweapon=11;
-                                gold=gold-10;
-                                cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
-                                getchar();
-                                cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
-                                getchar();
-                            }
-                            if (choice=='y' && gold < 10) {
-                                cout << ANSI_COLOR_RED"I'm sorry, you do not have"
-                                        "\nenough gold for this item." << endl;
-                                getchar();
-                            }
-                        }
-                    }} while (choice==' ' ||
-                              choice=='a' ||
-                              choice=='b' ||
-                              choice=='c' ||
-                              choice=='d' ||
-                              choice=='e' ||
-                              choice=='f' ||
-                              choice=='g' ||
-                              choice=='h' ||
-                              choice=='i' ||
-                              choice=='j' ||
-                              choice=='k' ||
-                              choice=='l' ||
-                              choice=='m' ||
-                              choice=='n' ||
-                              choice=='o' ||
-                              choice=='p' ||
-                              choice=='q' ||
-                              choice=='r' ||
-                              choice=='s' ||
-                              choice=='t' ||
-                              choice=='u' ||
-                              choice=='v' ||
-                              choice=='w' ||
-                              choice=='x' ||
-                              choice=='A' ||
-                              choice=='B' ||
-                              choice=='C' ||
-                              choice=='D' ||
-                              choice=='E' ||
-                              choice=='F' ||
-                              choice=='G' ||
-                              choice=='H' ||
-                              choice=='I' ||
-                              choice=='J' ||
-                              choice=='K' ||
-                              choice=='L' ||
-                              choice=='M' ||
-                              choice=='N' ||
-                              choice=='O' ||
-                              choice=='P' ||
-                              choice=='Q' ||
-                              choice=='R' ||
-                              choice=='S' ||
-                              choice=='T' ||
-                              choice=='U' ||
-                              choice=='V' ||
-                              choice=='W' ||
-                              choice=='X' );}
-                if (choice == 'b') {
-                    do {
-                        cout << "Iron Gloves" << endl;
-                        cout << "==========" << endl;
-                        if (pclass != 'f') {
-                            cout << ANSI_COLOR_RED"No one in your party is a Fighter" << endl;
-                            cout << "Enter 'z' to go back to exit the shop." << endl;
-                            cin >> choice;
-                            if (choice=='z') {
-                                continue;
-                            }
-                        }
-                        if (pclass == 'f') {
-                            cout << "Damage  = 10" << endl;
-                            cout << "Defense = 1" << endl;
-                            cout << "A pair of Iron Gloves. Good for beating"
-                                    "\nbeating up bullies!" << endl;
-                            cout << "Price = " << ANSI_COLOR_YELLOW << "10 gold" << endl;
-                            cout << ANSI_COLOR_RESET"Gold  = "<< ANSI_COLOR_YELLOW << gold << " gold" << endl;
-                            cout << ANSI_COLOR_RESET"===========================" << endl;
-                            cout << "Enter 'y' to buy this." << endl;
-                            cout << "Enter 'z' to go back to the main shop page." << endl;
-                            cin >> choice;
-                            if (choice=='y') {
-                                cout << "Are you sure? (y/n)" << endl;
+                    if (choice == 'a') {
+                        do {
+                            cout << "Iron Sword" << endl;
+                            cout << "==========" << endl;
+                            if (pclass != 's') {
+                                cout << ANSI_COLOR_RED"No one in your party is a Swordsman" << endl;
+                                cout << "Enter 'x' to go back to exit the shop." << endl;
                                 cin >> choice;
-                                if (choice=='y' && gold >= 10) {
-                                    pweapon=21;
-                                    pdefense=pdefense+1;
-                                    gold=gold-10;
-                                    cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
-                                    getchar();
-                                    cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
-                                    getchar();
-                                }
-                                if (choice=='y' && gold < 10) {
-                                    cout << ANSI_COLOR_RED"I'm sorry, you do not have"
-                                            "\nenough gold for this item." << endl;
-                                    getchar();
+                                if (choice == 'x') {
+                                    continue;
                                 }
                             }
-                        }} while (choice==' ' ||
-                                  choice=='a' ||
-                                  choice=='b' ||
-                                  choice=='c' ||
-                                  choice=='d' ||
-                                  choice=='e' ||
-                                  choice=='f' ||
-                                  choice=='g' ||
-                                  choice=='h' ||
-                                  choice=='i' ||
-                                  choice=='j' ||
-                                  choice=='k' ||
-                                  choice=='l' ||
-                                  choice=='m' ||
-                                  choice=='n' ||
-                                  choice=='o' ||
-                                  choice=='p' ||
-                                  choice=='q' ||
-                                  choice=='r' ||
-                                  choice=='s' ||
-                                  choice=='t' ||
-                                  choice=='u' ||
-                                  choice=='v' ||
-                                  choice=='w' ||
-                                  choice=='x' ||
-                                  choice=='A' ||
-                                  choice=='B' ||
-                                  choice=='C' ||
-                                  choice=='D' ||
-                                  choice=='E' ||
-                                  choice=='F' ||
-                                  choice=='G' ||
-                                  choice=='H' ||
-                                  choice=='I' ||
-                                  choice=='J' ||
-                                  choice=='K' ||
-                                  choice=='L' ||
-                                  choice=='M' ||
-                                  choice=='N' ||
-                                  choice=='O' ||
-                                  choice=='P' ||
-                                  choice=='Q' ||
-                                  choice=='R' ||
-                                  choice=='S' ||
-                                  choice=='T' ||
-                                  choice=='U' ||
-                                  choice=='V' ||
-                                  choice=='W' ||
-                                  choice=='X' );}
+                            if (pclass == 's') {
+                                cout << "Damage  = 10" << endl;
+                                cout << "Defense = N/A" << endl;
+                                cout << "A regular Iron Sword... What else"
+                                        "\ndo you expect?" << endl;
+                                cout << "Price = " << ANSI_COLOR_YELLOW << "10 gold" << endl;
+                                cout << ANSI_COLOR_RESET"Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
+                                cout << ANSI_COLOR_RESET"===========================" << endl;
+                                cout << "Enter 'y' to buy this." << endl;
+                                cout << "Enter 'x' to exit the shop" << endl;
+                                cin >> choice;
+                                if (choice == 'y') {
+                                    cout << "Are you sure? (y/n)" << endl;
+                                    cin >> choice;
+                                    if (choice == 'y' && gold >= 10) {
+                                        pweapon = 11;
+                                        gold = gold - 10;
+                                        cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
+                                        getchar();
+                                        cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
+                                        getchar();
+                                    }
+                                    if (choice == 'y' && gold < 10) {
+                                        cout << ANSI_COLOR_RED"I'm sorry, you do not have"
+                                                "\nenough gold for this item." << endl;
+                                        getchar();
+                                    }
+                                }
+                            }
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
+                    if (choice == 'b') {
+                        do {
+                            cout << "Iron Gloves" << endl;
+                            cout << "==========" << endl;
+                            if (pclass != 'f') {
+                                cout << ANSI_COLOR_RED"No one in your party is a Fighter" << endl;
+                                cout << "Enter 'x' to go back to exit the shop." << endl;
+                                cin >> choice;
+                                if (choice == 'x') {
+                                    continue;
+                                }
+                            }
+                            if (pclass == 'f') {
+                                cout << "Damage  = 10" << endl;
+                                cout << "Defense = 1" << endl;
+                                cout << "A pair of Iron Gloves. Good for beating"
+                                        "\nbeating up bullies!" << endl;
+                                cout << "Price = " << ANSI_COLOR_YELLOW << "10 gold" << endl;
+                                cout << ANSI_COLOR_RESET"Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
+                                cout << ANSI_COLOR_RESET"===========================" << endl;
+                                cout << "Enter 'y' to buy this." << endl;
+                                cout << "Enter 'x' to go back to the main shop page." << endl;
+                                cin >> choice;
+                                if (choice == 'y') {
+                                    cout << "Are you sure? (y/n)" << endl;
+                                    cin >> choice;
+                                    if (choice == 'y' && gold >= 10) {
+                                        pweapon = 21;
+                                        pdefense = pdefense + 1;
+                                        gold = gold - 10;
+                                        cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
+                                        getchar();
+                                        cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
+                                        getchar();
+                                    }
+                                    if (choice == 'y' && gold < 10) {
+                                        cout << ANSI_COLOR_RED"I'm sorry, you do not have"
+                                                "\nenough gold for this item." << endl;
+                                        getchar();
+                                    }
+                                }
+                            }
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
 
-                        if (choice == 'c') {
-                            do {
+                    if (choice == 'c') {
+                        do {
                             cout << "Iron Blaster" << endl;
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << ANSI_COLOR_RED"No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to exit the shop." << endl;
+                                cout << "Enter 'x' to go back to exit the shop." << endl;
                                 cin >> choice;
-                                if (choice=='z') {
+                                if (choice == 'x') {
                                     continue;
                                 }
                             }
@@ -1904,84 +1938,83 @@ void village(){
                                 cout << ANSI_COLOR_RESET"Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
                                 cout << ANSI_COLOR_RESET"===========================" << endl;
                                 cout << "Enter 'y' to buy this." << endl;
-                                cout << "Enter 'z' to go back to the main shop page." << endl;
+                                cout << "Enter 'x' to go back to the main shop page." << endl;
                                 cin >> choice;
-                                if (choice=='y') {
+                                if (choice == 'y') {
                                     cout << "Are you sure? (y/n)" << endl;
                                     cin >> choice;
-                                    if (choice=='y' && gold >= 10) {
-                                        pweapon=31;
-                                        gold=gold-10;
+                                    if (choice == 'y' && gold >= 10) {
+                                        pweapon = 31;
+                                        gold = gold - 10;
                                         cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
                                         getchar();
                                         cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
                                         getchar();
                                     }
-                                    if (choice=='y' && gold < 10) {
+                                    if (choice == 'y' && gold < 10) {
                                         cout << ANSI_COLOR_RED"I'm sorry, you do not have"
                                                 "\nenough gold for this item." << endl;
                                         getchar();
                                     }
                                 }
                             }
-                        } while (choice==' ' ||
-                                  choice=='a' ||
-                                  choice=='b' ||
-                                  choice=='c' ||
-                                  choice=='d' ||
-                                  choice=='e' ||
-                                  choice=='f' ||
-                                  choice=='g' ||
-                                  choice=='h' ||
-                                  choice=='i' ||
-                                  choice=='j' ||
-                                  choice=='k' ||
-                                  choice=='l' ||
-                                  choice=='m' ||
-                                  choice=='n' ||
-                                  choice=='o' ||
-                                  choice=='p' ||
-                                  choice=='q' ||
-                                  choice=='r' ||
-                                  choice=='s' ||
-                                  choice=='t' ||
-                                  choice=='u' ||
-                                  choice=='v' ||
-                                  choice=='w' ||
-                                  choice=='x' ||
-                                  choice=='A' ||
-                                  choice=='B' ||
-                                  choice=='C' ||
-                                  choice=='D' ||
-                                  choice=='E' ||
-                                  choice=='F' ||
-                                  choice=='G' ||
-                                  choice=='H' ||
-                                  choice=='I' ||
-                                  choice=='J' ||
-                                  choice=='K' ||
-                                  choice=='L' ||
-                                  choice=='M' ||
-                                  choice=='N' ||
-                                  choice=='O' ||
-                                  choice=='P' ||
-                                  choice=='Q' ||
-                                  choice=='R' ||
-                                  choice=='S' ||
-                                  choice=='T' ||
-                                  choice=='U' ||
-                                  choice=='V' ||
-                                  choice=='W' ||
-                                  choice=='X' );}
-                        if (choice == 'd') {
-                            do {
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
+                    if (choice == 'd') {
+                        do {
                             cout << "Iron Cores" << endl;
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << ANSI_COLOR_RED"No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to exit the shop." << endl;
+                                cout << "Enter 'x' to go back to exit the shop." << endl;
                                 cin >> choice;
-                                if (choice=='z') {
+                                if (choice == 'x') {
                                     continue;
                                 }
                             }
@@ -1992,13 +2025,14 @@ void village(){
                                 cout << "Iron cores for your blaster. They"
                                         "\nregenerate after three turns, but do a"
                                         "\ngood bit of damage." << endl;
-                                cout << "Price = " << ANSI_COLOR_YELLOW << "1 " << ANSI_COLOR_RESET << "per core" << endl;
+                                cout << "Price = " << ANSI_COLOR_YELLOW << "1 " << ANSI_COLOR_RESET << "per core"
+                                     << endl;
                                 cout << "Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
                                 cout << ANSI_COLOR_RESET"===========================" << endl;
                                 cout << "Enter 'y' to buy this." << endl;
                                 cout << "Enter 'z' to go back to the main shop page." << endl;
                                 cin >> choice;
-                                if (choice=='y') {
+                                if (choice == 'y') {
                                     cout << "How many do you want to buy?" << endl;
                                     cout << "You can currently buy up to " << pcoremax << " cores." << endl;
                                     cin >> count;
@@ -2007,80 +2041,79 @@ void village(){
                                     }
                                     cout << count << " cores will cost you " << 1 * count << " gold." << endl;
                                     cout << "Are you sure you want to buy this many?" << endl;
-                                    if (choice=='y' && gold >= (1 * count)) {
-                                        gold=gold - (1 * count);
+                                    if (choice == 'y' && gold >= (1 * count)) {
+                                        gold = gold - (1 * count);
                                         pcore = count;
-                                        pcoret=1;
+                                        pcoret = 1;
                                         cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
                                         getchar();
                                         cout << ANSI_COLOR_RESET"Gold left: " << gold << endl;
                                         getchar();
                                     }
-                                    if (choice=='y' && gold < (1*count)) {
+                                    if (choice == 'y' && gold < (1 * count)) {
                                         cout << ANSI_COLOR_RED"I'm sorry, you do not have"
                                                 "\nenough gold for this item." << endl;
                                         getchar();
                                     }
                                 }
                             }
-                        } while (choice==' ' ||
-                                  choice=='a' ||
-                                  choice=='b' ||
-                                  choice=='c' ||
-                                  choice=='d' ||
-                                  choice=='e' ||
-                                  choice=='f' ||
-                                  choice=='g' ||
-                                  choice=='h' ||
-                                  choice=='i' ||
-                                  choice=='j' ||
-                                  choice=='k' ||
-                                  choice=='l' ||
-                                  choice=='m' ||
-                                  choice=='n' ||
-                                  choice=='o' ||
-                                  choice=='p' ||
-                                  choice=='q' ||
-                                  choice=='r' ||
-                                  choice=='s' ||
-                                  choice=='t' ||
-                                  choice=='u' ||
-                                  choice=='v' ||
-                                  choice=='w' ||
-                                  choice=='x' ||
-                                  choice=='A' ||
-                                  choice=='B' ||
-                                  choice=='C' ||
-                                  choice=='D' ||
-                                  choice=='E' ||
-                                  choice=='F' ||
-                                  choice=='G' ||
-                                  choice=='H' ||
-                                  choice=='I' ||
-                                  choice=='J' ||
-                                  choice=='K' ||
-                                  choice=='L' ||
-                                  choice=='M' ||
-                                  choice=='N' ||
-                                  choice=='O' ||
-                                  choice=='P' ||
-                                  choice=='Q' ||
-                                  choice=='R' ||
-                                  choice=='S' ||
-                                  choice=='T' ||
-                                  choice=='U' ||
-                                  choice=='V' ||
-                                  choice=='W' ||
-                                  choice=='X' );}
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
                     if (choice == 'e') {
                         do {
                             cout << "Iron Backpack" << endl;
                             cout << "==========" << endl;
                             if (pclass != 'b') {
                                 cout << ANSI_COLOR_RED"No one in your party is a Blaster" << endl;
-                                cout << "Enter 'z' to go back to exit the shop." << endl;
+                                cout << "Enter 'x' to go back to exit the shop." << endl;
                                 cin >> choice;
-                                if (choice=='z') {
+                                if (choice == 'x') {
                                     continue;
                                 }
                             }
@@ -2096,73 +2129,73 @@ void village(){
                                 cout << "Enter 'y' to buy this." << endl;
                                 cout << "Enter 'z' to go back to the main shop page." << endl;
                                 cin >> choice;
-                                if (choice=='y') {
+                                if (choice == 'y') {
                                     cout << "Are you sure? (y/n)" << endl;
                                     cin >> choice;
-                                    if (choice=='y' && gold >= 25) {
-                                        pcoremax=10;
-                                        pdefense=pdefense+1;
-                                        gold=gold-25;
+                                    if (choice == 'y' && gold >= 25) {
+                                        pcoremax = 10;
+                                        pdefense = pdefense + 1;
+                                        gold = gold - 25;
                                         cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
                                         getchar();
                                         cout << ANSI_COLOR_RESET"Gold left: " << gold << endl;
                                         getchar();
                                     }
-                                    if (choice=='y' && gold < 25) {
+                                    if (choice == 'y' && gold < 25) {
                                         cout << ANSI_COLOR_RED"I'm sorry, you do not have"
                                                 "\nenough gold for this item." << endl;
                                         getchar();
                                     }
+                                }
                             }
-                        }} while (choice==' ' ||
-                                  choice=='a' ||
-                                  choice=='b' ||
-                                  choice=='c' ||
-                                  choice=='d' ||
-                                  choice=='e' ||
-                                  choice=='f' ||
-                                  choice=='g' ||
-                                  choice=='h' ||
-                                  choice=='i' ||
-                                  choice=='j' ||
-                                  choice=='k' ||
-                                  choice=='l' ||
-                                  choice=='m' ||
-                                  choice=='n' ||
-                                  choice=='o' ||
-                                  choice=='p' ||
-                                  choice=='q' ||
-                                  choice=='r' ||
-                                  choice=='s' ||
-                                  choice=='t' ||
-                                  choice=='u' ||
-                                  choice=='v' ||
-                                  choice=='w' ||
-                                  choice=='x' ||
-                                  choice=='A' ||
-                                  choice=='B' ||
-                                  choice=='C' ||
-                                  choice=='D' ||
-                                  choice=='E' ||
-                                  choice=='F' ||
-                                  choice=='G' ||
-                                  choice=='H' ||
-                                  choice=='I' ||
-                                  choice=='J' ||
-                                  choice=='K' ||
-                                  choice=='L' ||
-                                  choice=='M' ||
-                                  choice=='N' ||
-                                  choice=='O' ||
-                                  choice=='P' ||
-                                  choice=='Q' ||
-                                  choice=='R' ||
-                                  choice=='S' ||
-                                  choice=='T' ||
-                                  choice=='U' ||
-                                  choice=='V' ||
-                                  choice=='W' ||
-                                  choice=='X' );}
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
                     if (choice == 'f') {
                         do {
                             cout << "Iron Armor" << endl;
@@ -2175,246 +2208,241 @@ void village(){
                             cout << "Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
                             cout << ANSI_COLOR_RESET"===========================" << endl;
                             cout << "Enter 'y' to buy this." << endl;
-                            cout << "Enter 'z' to go back to exit the shop." << endl;
+                            cout << "Enter 'x' to go back to exit the shop." << endl;
                             cin >> choice;
-                            if (choice=='z') {
+                            if (choice == 'x') {
                                 continue;
                             }
-                        if (choice=='y') {
-                            cout << "Are you sure? (y/n)" << endl;
-                            cin >> choice;
-                            if (choice=='y' && gold >= 50) {
-                                parmor=1;
-                                pdefense=pdefense+5;
-                                gold=gold-50;
-                                cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
-                                getchar();
-                                cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
-                                getchar();
+                            if (choice == 'y') {
+                                cout << "Are you sure? (y/n)" << endl;
+                                cin >> choice;
+                                if (choice == 'y' && gold >= 50) {
+                                    parmor = 1;
+                                    pdefense = pdefense + 5;
+                                    gold = gold - 50;
+                                    cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
+                                    getchar();
+                                    cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
+                                    getchar();
+                                }
+                                if (choice == 'y' && gold < 50) {
+                                    cout << ANSI_COLOR_RED"I'm sorry, you do not have"
+                                            "\nenough gold for this item." << endl;
+                                    getchar();
+                                }
                             }
-                            if (choice=='y' && gold < 50) {
-                                cout << ANSI_COLOR_RED"I'm sorry, you do not have"
-                                        "\nenough gold for this item." << endl;
-                                getchar();
-                            }
-                        }
-                        } while (choice==' ' ||
-                             choice=='a' ||
-                             choice=='b' ||
-                             choice=='c' ||
-                             choice=='d' ||
-                             choice=='e' ||
-                             choice=='f' ||
-                             choice=='g' ||
-                             choice=='h' ||
-                             choice=='i' ||
-                             choice=='j' ||
-                             choice=='k' ||
-                             choice=='l' ||
-                             choice=='m' ||
-                             choice=='n' ||
-                             choice=='o' ||
-                             choice=='p' ||
-                             choice=='q' ||
-                             choice=='r' ||
-                             choice=='s' ||
-                             choice=='t' ||
-                             choice=='u' ||
-                             choice=='v' ||
-                             choice=='w' ||
-                             choice=='x' ||
-                             choice=='A' ||
-                             choice=='B' ||
-                             choice=='C' ||
-                             choice=='D' ||
-                             choice=='E' ||
-                             choice=='F' ||
-                             choice=='G' ||
-                             choice=='H' ||
-                             choice=='I' ||
-                             choice=='J' ||
-                             choice=='K' ||
-                             choice=='L' ||
-                             choice=='M' ||
-                             choice=='N' ||
-                             choice=='O' ||
-                             choice=='P' ||
-                             choice=='Q' ||
-                             choice=='R' ||
-                             choice=='S' ||
-                             choice=='T' ||
-                             choice=='U' ||
-                             choice=='V' ||
-                             choice=='W' ||
-                             choice=='X' );}
-                if (choice == 'z') {
-                    return village();
-                }
-            } while (choice==' ' ||
-                     choice=='g' ||
-                     choice=='h' ||
-                     choice=='i' ||
-                     choice=='j' ||
-                     choice=='k' ||
-                     choice=='l' ||
-                     choice=='m' ||
-                     choice=='n' ||
-                     choice=='o' ||
-                     choice=='p' ||
-                     choice=='q' ||
-                     choice=='r' ||
-                     choice=='s' ||
-                     choice=='t' ||
-                     choice=='u' ||
-                     choice=='v' ||
-                     choice=='w' ||
-                     choice=='x' ||
-                     choice=='y' ||
-                     choice=='G' ||
-                     choice=='H' ||
-                     choice=='I' ||
-                     choice=='J' ||
-                     choice=='K' ||
-                     choice=='L' ||
-                     choice=='M' ||
-                     choice=='N' ||
-                     choice=='O' ||
-                     choice=='P' ||
-                     choice=='Q' ||
-                     choice=='R' ||
-                     choice=='S' ||
-                     choice=='T' ||
-                     choice=='U' ||
-                     choice=='V' ||
-                     choice=='W' ||
-                     choice=='X' ||
-                     choice=='Y' );
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
+                    if (choice == 'x') {
+                        return village();
+                    }
+                } while (choice == ' ' ||
+                         choice == 'g' ||
+                         choice == 'h' ||
+                         choice == 'i' ||
+                         choice == 'j' ||
+                         choice == 'k' ||
+                         choice == 'l' ||
+                         choice == 'm' ||
+                         choice == 'n' ||
+                         choice == 'o' ||
+                         choice == 'p' ||
+                         choice == 'q' ||
+                         choice == 'r' ||
+                         choice == 's' ||
+                         choice == 't' ||
+                         choice == 'u' ||
+                         choice == 'v' ||
+                         choice == 'w' ||
+                         choice == 'y' ||
+                         choice == 'G' ||
+                         choice == 'H' ||
+                         choice == 'I' ||
+                         choice == 'J' ||
+                         choice == 'K' ||
+                         choice == 'L' ||
+                         choice == 'M' ||
+                         choice == 'N' ||
+                         choice == 'O' ||
+                         choice == 'P' ||
+                         choice == 'Q' ||
+                         choice == 'R' ||
+                         choice == 'S' ||
+                         choice == 'T' ||
+                         choice == 'U' ||
+                         choice == 'V' ||
+                         choice == 'W' ||
+                         choice == 'Y');
+            }
         }
-    }
-    if (choice=='i') {
-        getchar();
-        printf(ANSI_COLOR_CYAN"You go to one of the inns...\n");
-        if (pHP < pHPmax) {
-            printf("Welcome to the Sleeper's Inn!\n");
-            do {
-                printf("One night = 10 gold\n");
-                printf("Enter 'y' to stay for a night.\n");
-                printf("Enter 'n' to exit the inn.\n");
-                cin >> choice;
-                if (choice == 'y' && gold >= 10) {
-                    gold=gold-10;
-                    printf(ANSI_COLOR_CYAN"Have a great stay!\n");
-                    cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
-                    getchar();
-                    pHP=pHPmax;
-                    getchar();
-                    printf(ANSI_COLOR_RESET"You wake up refreshed...\n");
-                    return village();
-                }
-                if (choice == 'y' && gold < 10) {
-                    cout << ANSI_COLOR_RED"I'm sorry, you do not have"
-                            "\nenough gold to stay a night." << endl;
-                    getchar();
-                }
-            } while (choice==' ' ||
-                     choice=='a' ||
-                     choice=='b' ||
-                     choice=='c' ||
-                     choice=='d' ||
-                     choice=='e' ||
-                     choice=='f' ||
-                     choice=='g' ||
-                     choice=='h' ||
-                     choice=='i' ||
-                     choice=='j' ||
-                     choice=='k' ||
-                     choice=='l' ||
-                     choice=='m' ||
-                     choice=='o' ||
-                     choice=='p' ||
-                     choice=='q' ||
-                     choice=='r' ||
-                     choice=='s' ||
-                     choice=='t' ||
-                     choice=='u' ||
-                     choice=='v' ||
-                     choice=='w' ||
-                     choice=='x' ||
-                     choice=='z' ||
-                     choice=='A' ||
-                     choice=='B' ||
-                     choice=='C' ||
-                     choice=='D' ||
-                     choice=='E' ||
-                     choice=='F' ||
-                     choice=='G' ||
-                     choice=='H' ||
-                     choice=='I' ||
-                     choice=='J' ||
-                     choice=='K' ||
-                     choice=='L' ||
-                     choice=='M' ||
-                     choice=='O' ||
-                     choice=='P' ||
-                     choice=='Q' ||
-                     choice=='R' ||
-                     choice=='S' ||
-                     choice=='T' ||
-                     choice=='U' ||
-                     choice=='V' ||
-                     choice=='W' ||
-                     choice=='X' ||
-                     choice=='Z');
-        }
-        if (pHP==pHPmax) {
+        if (choice == 'i') {
             getchar();
-            cout << ANSI_COLOR_RESET"However, you don't feel tired..." << endl;
+            printf(ANSI_COLOR_CYAN"You go to one of the inns...\n");
+            if (pHP < pHPmax) {
+                printf("Welcome to the Sleeper's Inn!\n");
+                do {
+                    printf("One night = 10 gold\n");
+                    printf("Enter 'y' to stay for a night.\n");
+                    printf("Enter 'n' to exit the inn.\n");
+                    cin >> choice;
+                    if (choice == 'y' && gold >= 10) {
+                        gold = gold - 10;
+                        printf(ANSI_COLOR_CYAN"Have a great stay!\n");
+                        cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
+                        getchar();
+                        pHP = pHPmax;
+                        getchar();
+                        printf(ANSI_COLOR_RESET"You wake up refreshed...\n");
+                        return village();
+                    }
+                    if (choice == 'y' && gold < 10) {
+                        cout << ANSI_COLOR_RED"I'm sorry, you do not have"
+                                "\nenough gold to stay a night." << endl;
+                        getchar();
+                    }
+                } while (choice == ' ' ||
+                         choice == 'a' ||
+                         choice == 'b' ||
+                         choice == 'c' ||
+                         choice == 'd' ||
+                         choice == 'e' ||
+                         choice == 'f' ||
+                         choice == 'g' ||
+                         choice == 'h' ||
+                         choice == 'i' ||
+                         choice == 'j' ||
+                         choice == 'k' ||
+                         choice == 'l' ||
+                         choice == 'm' ||
+                         choice == 'o' ||
+                         choice == 'p' ||
+                         choice == 'q' ||
+                         choice == 'r' ||
+                         choice == 's' ||
+                         choice == 't' ||
+                         choice == 'u' ||
+                         choice == 'v' ||
+                         choice == 'w' ||
+                         choice == 'x' ||
+                         choice == 'z' ||
+                         choice == 'A' ||
+                         choice == 'B' ||
+                         choice == 'C' ||
+                         choice == 'D' ||
+                         choice == 'E' ||
+                         choice == 'F' ||
+                         choice == 'G' ||
+                         choice == 'H' ||
+                         choice == 'I' ||
+                         choice == 'J' ||
+                         choice == 'K' ||
+                         choice == 'L' ||
+                         choice == 'M' ||
+                         choice == 'O' ||
+                         choice == 'P' ||
+                         choice == 'Q' ||
+                         choice == 'R' ||
+                         choice == 'S' ||
+                         choice == 'T' ||
+                         choice == 'U' ||
+                         choice == 'V' ||
+                         choice == 'W' ||
+                         choice == 'X' ||
+                         choice == 'Z');
+            }
+            if (pHP == pHPmax) {
+                getchar();
+                cout << ANSI_COLOR_RESET"However, you don't feel tired..." << endl;
+                getchar();
+                village();
+            }
+        }
+        if (choice == 'b') {
+            getchar();
+            cout << ANSI_COLOR_CYAN"You head back to the board..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RESET"Unfortunately, there are no quests on"
+                    "\nthe board right now..." << endl;
             getchar();
             village();
         }
-    }
-    if (choice=='b') {
-        getchar();
-        cout << ANSI_COLOR_CYAN"You head back to the board..." << endl;
-        getchar();
-        cout << ANSI_COLOR_RESET"Unfortunately, there are no quests on"
-                "\nthe board right now..." << endl;
-        getchar();
-        village();
-    }
-    if (choice=='v') {
-        getchar();
-        cout << ANSI_COLOR_CYAN"You head back to the village square..." << endl;
-        getchar();
-        cout << ANSI_COLOR_RESET"When you get to the square, you see a"
-                "\nboy shouting at a man with a mask"
-                "\ncovering his face." << endl;
-        getchar();
-        cout << "'Give me my purse back!', the boy yells." << endl;
-        getchar();
-        cout << "'Make me give it back!', the masked"
-                "\nthief responds." << endl;
-        getchar();
-        cout << "The boy lunges at the thief, however,"
-                "\nhe's too slow." << endl;
-        getchar();
-        cout << "The thief dodges him, then takes off,"
-                "\nknocking you over in the process." << endl;
-        getchar();
-        cout << "The boy gets back up, yells, 'Get back"
-                "\nhere, you thief!', then takes off after him." << endl;
-        getchar();
-        pursenab=true;
-        cout << "You get back up, then look in the direction the"
-                "\nkid chased after, deciding that you have to go"
-                "\nafter him." << endl;
-        getchar();
-        cout << "But you'll need gear first..." << endl;
-        return village();
-    }
-    if (choice != 's' && choice != 'i' && choice != 'v' && choice != 'b') {
-        return field();
-    }
+        if (choice == 'v') {
+            getchar();
+            cout << ANSI_COLOR_CYAN"You head back to the village square..." << endl;
+            getchar();
+            cout << ANSI_COLOR_RESET"When you get to the square, you see a"
+                    "\nboy shouting at a man with a mask"
+                    "\ncovering his face." << endl;
+            getchar();
+            cout << "'Give me my purse back!', the boy yells." << endl;
+            getchar();
+            cout << "'Make me give it back!', the masked"
+                    "\nthief responds." << endl;
+            getchar();
+            cout << "The boy lunges at the thief, however,"
+                    "\nhe's too slow." << endl;
+            getchar();
+            cout << "The thief dodges him, then takes off,"
+                    "\nknocking you over in the process." << endl;
+            getchar();
+            cout << "The boy gets back up, yells, 'Get back"
+                    "\nhere, you thief!', then takes off after him." << endl;
+            getchar();
+            pursenab = true;
+            cout << "You get back up, then look in the direction the"
+                    "\nkid chased after, deciding that you have to go"
+                    "\nafter him." << endl;
+            getchar();
+            cout << "But you'll need gear first..." << endl;
+            return village();
+        }
+    } while (choice!='z');
 }
 
 void forest() {
@@ -2456,6 +2484,9 @@ void forest() {
             cout << ANSI_COLOR_CYAN"You continue forward..." << endl;
             getchar();
             forest13();
+        }
+        if (choice=='q') {
+            menu();
         }
     } while (choice == ' ' ||
              choice == 'a' ||
@@ -2564,483 +2595,520 @@ void goblinbat1() {
         firstb = false;
     }
     do {
-        if (pname != " ") {
-            cout << ANSI_COLOR_RESET << pname << "'s turn" << endl;
-            if (pHP <= (pHPmax * 0.1)) {
-                cout << ANSI_COLOR_RED"HP: " << pHP << endl;
+
+        cout << ANSI_COLOR_RESET << pname << "'s turn" << endl;
+        if (pHP <= (pHPmax * 0.1)) {
+            cout << ANSI_COLOR_RED"HP: " << pHP << endl;
+        }
+        if (pHP > (pHPmax * 0.1)) {
+            cout << ANSI_COLOR_RESET "HP: " << pHP << endl;
+        }
+        cout << ANSI_COLOR_RESET "Attack  (a)" << endl;
+        cout << "Special (w)" << endl;
+        cout << "Item    (d)" << endl;
+        cout << "Other   (s)" << endl;
+        cin >> choice;
+        if (choice == 'a') {
+            cout << "Select target" << endl;
+            if (goblin1HP > 0) {
+                cout << "Goblin 1 (a)" << endl;
+                cout << "HP: " << goblin1HP << endl;
             }
-            if (pHP > (pHPmax * 0.1)) {
-                cout << ANSI_COLOR_RESET "HP: " << pHP << endl;
+            if (goblin2HP > 0) {
+                cout << "Goblin 2 (b)" << endl;
+                cout << "HP: " << goblin2HP << endl;
             }
-            cout << ANSI_COLOR_RESET "Attack  (a)" << endl;
-            cout << "Special (w)" << endl;
-            cout << "Item    (d)" << endl;
-            cout << "Other   (s)" << endl;
+            if (goblin3HP > 0) {
+                cout << "Goblin 3 (c)" << endl;
+                cout << "HP: " << goblin3HP << endl;
+            }
+            cout << "Enter 'z' to cancel" << endl;
             cin >> choice;
             if (choice == 'a') {
-                cout << "Select target" << endl;
-                if (goblin1HP > 0) {
-                    cout << "Goblin 1 (a)" << endl;
-                    cout << "HP: " << goblin1HP << endl;
-                }
-                if (goblin2HP > 0) {
-                    cout << "Goblin 2 (b)" << endl;
-                    cout << "HP: " << goblin2HP << endl;
-                }
-                if (goblin3HP > 0) {
-                    cout << "Goblin 3 (c)" << endl;
-                    cout << "HP: " << goblin3HP << endl;
-                }
-                cout << "Enter 'z' to cancel" << endl;
-                cin >> choice;
-                if (choice == 'a') {
-                    if (pweapon == 11) {
+                if (pweapon == 11) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You struck Goblin 1 with your sword." << endl;
+                    getchar();
+                    goblin1HP = goblin1HP - 10;
+                    cout << ANSI_COLOR_GREEN "Goblin 1 took 10 damage." << endl;
+                    getchar();
+                    if (goblin1HP <= 0) {
+                        cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You struck Goblin 1 with your sword." << endl;
+                    } else if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
                         getchar();
-                        goblin1HP = goblin1HP - 10;
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        getchar();
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        getchar();
+                    }
+                } else if (pweapon == 21) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You gave Goblin 1 good punch to the face." << endl;
+                    goblin1HP = goblin1HP - 10;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN"Goblin 1 took 10 damage." << endl;
+                    getchar();
+                    if (goblin1HP == 0) {
+                        cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
+                        getchar();
+                    } else if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                    }
+                } else if (pweapon == 31) {
+                    getchar();
+                    pcore = pcore - 1;
+                    cout << "You have " << pcore << " cores left." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 1" << endl;
+                    getchar();
+                    if (pcoret == 1) {
+                        goblin1HP = goblin1HP - (1 * 10);
                         cout << ANSI_COLOR_GREEN "Goblin 1 took 10 damage." << endl;
                         getchar();
-                        if (goblin1HP <= 0) {
-                            cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
-                            getchar();
-                        } else if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
-                    } else if (pweapon == 21) {
+                    }
+                    if (goblin1HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 1 is now dead" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You gave Goblin 1 good punch to the face." << endl;
-                        goblin1HP = goblin1HP - 10;
+                    } else if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN"Goblin 1 took 10 damage." << endl;
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
                         getchar();
-                        if (goblin1HP == 0) {
-                            cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
-                            getchar();
-                        } else if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        }
-                    } else if (pweapon == 31) {
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
                         getchar();
-                        pcore = pcore - 1;
-                        cout << "You have " << pcore << " cores left." << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 1" << endl;
-                        getchar();
-                        if (pcoret == 1) {
-                            goblin1HP = goblin1HP - (1 * 10);
-                            cout << ANSI_COLOR_GREEN "Goblin 1 took 10 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 1 is now dead" << endl;
-                            getchar();
-                        } else if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
                 }
-                if (choice == 'b') {
-                    if (pweapon == 11) {
+            }
+            if (choice == 'b') {
+                if (pweapon == 11) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You struck Goblin 2 with your sword." << endl;
+                    goblin2HP = goblin2HP - 10;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                    getchar();
+                    if (goblin2HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You struck Goblin 2 with your sword." << endl;
-                        goblin2HP = goblin2HP - 10;
+                    } else if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
                         getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        getchar();
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        getchar();
+                    }
+                }
+                if (pweapon == 21) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You gave Goblin 2 good knuckle sandwich." << endl;
+                    goblin2HP = goblin2HP - 10;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                    getchar();
+                    if (goblin2HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                        getchar();
+                    } else if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        getchar();
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        getchar();
+                    }
+                }
+                if (pweapon == 31) {
+                    getchar();
+                    pcore = pcore - 1;
+                    cout << "You have " << pcore << " cores left." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 2" << endl;
+                    getchar();
+                    if (pcoret == 1) {
+                        goblin2HP = goblin2HP - (1 * 10);
                         cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
                         getchar();
-                        if (goblin2HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
-                            getchar();
-                        } else if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
-                    if (pweapon == 21) {
+                    if (goblin2HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You gave Goblin 2 good knuckle sandwich." << endl;
-                        goblin2HP = goblin2HP - 10;
+                    } else if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
                         getchar();
-                        if (goblin2HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
-                            getchar();
-                        } else if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
-                    if (pweapon == 31) {
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
                         getchar();
-                        pcore = pcore - 1;
-                        cout << "You have " << pcore << " cores left." << endl;
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 2" << endl;
-                        getchar();
-                        if (pcoret == 1) {
-                            goblin2HP = goblin2HP - (1 * 10);
-                            cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin2HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
-                            getchar();
-                        } else if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
                 }
-                if (choice == 'c') {
-                    if (pweapon == 11) {
+            }
+            if (choice == 'c') {
+                if (pweapon == 11) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You struck Goblin 3 with your sword." << endl;
+                    goblin3HP = goblin3HP - 10;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                    getchar();
+                    if (goblin3HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You struck Goblin 3 with your sword." << endl;
-                        goblin3HP = goblin3HP - 10;
+                    } else if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
                         getchar();
-                        if (goblin3HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
-                            getchar();
-                        } else if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
-                    if (pweapon == 21) {
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You gave Goblin 3 good punch to the face." << endl;
-                        goblin3HP = goblin3HP - 10;
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
-                        getchar();
-                        if (goblin3HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
-                            getchar();
-                        } else if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
-                    if (pweapon == 31) {
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
                         getchar();
-                        pcore = pcore - 1;
-                        cout << "You have " << pcore << " cores left." << endl;
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
                         getchar();
-                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
-                        getchar();
-                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
-                        getchar();
-                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 3" << endl;
-                        getchar();
-                        if (pcoret == 1) {
-                            goblin3HP = goblin3HP - (1 * 10);
-                            cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin3HP <= 0) {
-                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
-                            getchar();
-                        } else if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                            getchar();
-                        }
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 5;
-                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED"Goblin 2 punched you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 2;
-                            cout << ANSI_COLOR_RED"You took 2 damage" << endl;
-                            getchar();
-                        }
                     }
                 }
-                if (choice == 'z') {
+                if (pweapon == 21) {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You gave Goblin 3 good punch to the face." << endl;
+                    goblin3HP = goblin3HP - 10;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                    getchar();
+                    if (goblin3HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                        getchar();
+                    } else if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        getchar();
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        getchar();
+                    }
+                }
+                if (pweapon == 31) {
+                    getchar();
+                    pcore = pcore - 1;
+                    cout << "You have " << pcore << " cores left." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
+                    getchar();
+                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
+                    getchar();
+                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 3" << endl;
+                    getchar();
+                    if (pcoret == 1) {
+                        goblin3HP = goblin3HP - (1 * 10);
+                        cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin3HP <= 0) {
+                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                        getchar();
+                    } else if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        getchar();
+                    }
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 5;
+                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        getchar();
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED"Goblin 2 punched you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 2;
+                        cout << ANSI_COLOR_RED"You took 2 damage" << endl;
+                        getchar();
+                    }
+                }
+            }
+            if (choice == 'z') {
+                continue;
+            }
+        }
+        if (choice == 's') {
+            cout << "Defend (d)" << endl;
+            cout << "Run away (a)" << endl;
+            cout << "Enter 'z' to cancel" << endl;
+            cin >> choice;
+            if (choice == 'z') {
+                continue;
+            }
+            if (choice == 'a') {
+                cout << "Are you sure you want to run away? (y/n)" << endl;
+                cin >> choice;
+                if (choice == 'y') {
+                    cout << ANSI_COLOR_CYAN "You ran away..." ANSI_COLOR_RESET << endl;
+                    getchar();
+                    break;
+                }
+                if (choice != 'y') {
                     continue;
                 }
             }
-            if (choice == 's') {
-                cout << "Defend (d)" << endl;
-                cout << "Run away (a)" << endl;
+            if (choice == 'd') {
+                cout << "Defend yourself? (y/n)" << endl;
+                cin >> choice;
+                if (choice != 'y') {
+                    continue;
+                }
+                if (choice == 'y') {
+                    getchar();
+                    cout << ANSI_COLOR_CYAN "Your defense has been raised." ANSI_COLOR_RESET << endl;
+                    getchar();
+                    if (goblin1HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 1 attempted to shank you with a dagger." << endl;
+                        getchar();
+                        pHP = pHP - 0;
+                        cout << ANSI_COLOR_GREEN "However, you blocked it, so you took no damage." << endl;
+                        getchar();
+                    }
+                    if (goblin2HP > 0) {
+                        cout << ANSI_COLOR_RED"Goblin 2 attempted to punch you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 0;
+                        cout << ANSI_COLOR_GREEN "However, you blocked it, so you took no damage." << endl;
+                        getchar();
+                    }
+                    if (goblin3HP > 0) {
+                        cout << ANSI_COLOR_RED "Goblin 3 attempted to punch you in the gut." << endl;
+                        getchar();
+                        pHP = pHP - 0;
+                        cout << ANSI_COLOR_GREEN "However, you blocked it, so you took no damage." << endl;
+                        getchar();
+                    }
+                }
+            }
+        }
+        if (choice == 'w') {
+            if (pelement == 'f') {
+                if (fireball) {
+                    cout << "Small Fireball (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
+                }
                 cout << "Enter 'z' to cancel" << endl;
                 cin >> choice;
                 if (choice == 'z') {
                     continue;
                 }
-                if (choice == 'a') {
-                    cout << "Are you sure you want to run away? (y/n)" << endl;
-                    cin >> choice;
-                    if (choice == 'y') {
-                        cout << ANSI_COLOR_CYAN "You ran away..." ANSI_COLOR_RESET << endl;
-                        getchar();
-                        break;
-                    }
-                    if (choice != 'y') {
-                        continue;
-                    }
+            }
+            if (pelement == 'e') {
+                if (spark) {
+                    cout << "Spark (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
                 }
-                if (choice == 'd') {
-                    cout << "Defend yourself? (y/n)" << endl;
-                    cin >> choice;
-                    if (choice != 'y') {
-                        continue;
-                    }
-                    if (choice == 'y') {
-                        getchar();
-                        cout << ANSI_COLOR_CYAN "Your defense has been raised." ANSI_COLOR_RESET << endl;
-                        getchar();
-                        if (goblin1HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 1 attempted to shank you with a dagger." << endl;
-                            getchar();
-                            pHP = pHP - 0;
-                            cout << ANSI_COLOR_GREEN "However, you dodged it, so you took no damage." << endl;
-                            getchar();
-                        }
-                        if (goblin2HP > 0) {
-                            cout << ANSI_COLOR_RED"Goblin 2 attempted to punch you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 0;
-                            cout << ANSI_COLOR_GREEN "However, you blocked it, so you took no damage." << endl;
-                            getchar();
-                        }
-                        if (goblin3HP > 0) {
-                            cout << ANSI_COLOR_RED "Goblin 3 attempted to punch you in the gut." << endl;
-                            getchar();
-                            pHP = pHP - 0;
-                            cout << ANSI_COLOR_GREEN "However, you blocked it, so you took no damage." << endl;
-                            getchar();
-                        }
-                    }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice == 'z') {
+                    continue;
                 }
             }
-            if (choice == 'w') {
-                if (pelement == 'f') {
-                    if (fireball) {
-                        cout << "Small Fireball (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
+            if (pelement == 'w') {
+                if (swave) {
+                    cout << "Small Wave (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
                 }
-                if (pelement == 'e') {
-                    if (spark) {
-                        cout << "Spark (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
-                }
-                if (pelement == 'w') {
-                    if (swave) {
-                        cout << "Small Wave (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
-                }
-                if (pelement == 'i') {
-                    if (shard) {
-                        cout << "Ice Shard (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
-                }
-                if (pelement == 'l') {
-                    if (light) {
-                        cout << "Holy Light (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
-                }
-                if (pelement == 'd') {
-                    if (dark) {
-                        cout << "Darkness (a)" << endl;
-                    } else {
-                        cout << "You know no spells..." << endl;
-                    }
-                    cout << "Enter 'z' to cancel" << endl;
-                    cin >> choice;
-                    if (choice == 'z') {
-                        continue;
-                    }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice == 'z') {
+                    continue;
                 }
             }
+            if (pelement == 'i') {
+                if (shard) {
+                    cout << "Ice Shard (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
+                }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice == 'z') {
+                    continue;
+                }
+            }
+            if (pelement == 'l') {
+                if (light) {
+                    cout << "Holy Light (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
+                }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice == 'z') {
+                    continue;
+                }
+            }
+            if (pelement == 'd') {
+                if (dark) {
+                    cout << "Darkness (a)" << endl;
+                } else {
+                    cout << "You know no spells..." << endl;
+                }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice == 'z') {
+                    continue;
+                }
+            }
+        }
+        if (choice=='d') {
+            if (tealmush>0) {
+                cout << "Teal Mushroom(s): " << tealmush << " (a)" << endl;
+            }
+            if (flampeach>0) {
+                cout << "Flaming Peach(es): " << tealmush << " (b)" << endl;
+            }
+            if (shinrock>0) {
+                cout << "Shiny Rock(s): " << tealmush << " (c)" << endl;
+            }
+            if (watbulb>0) {
+                cout << "Water Bulb(s): " << tealmush << " (d)" << endl;
+            }
+            if (iceblos>0) {
+                cout << "Ice Blossom(s): " << tealmush << " (e)" << endl;
+            }
+            if (starbot>0) {
+                cout << "Bottled Star(s): " << tealmush << " (f)" << endl;
+            }
+            if (bholebot>0) {
+                cout << "Bottled Black Hole(s): " << tealmush << " (g)" << endl;
+            }
+            cin >> choice;
+                if (choice=='a' && tealmush>0) {
+                    getchar();
+                    cout << "You eat the smelly mushroom" << endl;
+                    getchar();
+                    cout << "You feel extremely nauseated..." << endl;
+                    getchar();
+                    cout << "But soon you feel better" << endl;
+                    getchar();
+                    cout << "You gained 50 HP" << endl;
+                    pHP=pHP+50;
+                    if (pHP>pHPmax) {
+                        pHP=pHPmax;
+                    }
+                }
         }
         if (goblin1HP<=0 && goblin2HP<=0 && goblin3HP<=0) {
             cout << ANSI_COLOR_GREEN"You won!" << endl;
@@ -3064,12 +3132,186 @@ void goblinbat1() {
              goblin2HP > 0 ||
              goblin3HP > 0);
 }
+
 void levelup() {
     if (plevel==2) {
         pHPmax = 65;
         pHP = pHPmax;
         pdefense=pdefense+2;
     }
+}
+
+void menu() {
+    do {
+        cout << "============================"
+                "\n          MENU"
+                "\nEquip         (a)"
+                "\nStats         (b)"
+                "\nSpecial       (c)"
+                "\nItem          (d)"
+                "\nExit the menu (z)"
+                "\n============================" << endl;
+        cin >> choice;
+        if (choice =='a') {
+            getchar();
+            cout << "========================="
+                    "\n          EQUIP"
+                    "\n" << pname << endl;
+            if (parmor==1) {
+                cout << "Iron Armor" << endl;
+            }
+            if (parmor==0) {
+                cout << "Armor" << endl;
+            }
+            if (pweapon==0) {
+                cout << "Weapon" << endl;
+            }
+            if (pweapon==11) {
+                cout << "Iron Sword" << endl;
+            }
+            if (pweapon==21) {
+                cout << "Iron Gloves" << endl;
+            }
+            if (pweapon==31) {
+                cout << "Iron Blaster" << endl;
+                cout << "Cores: " << pcore << "/" << pcoremax << endl;
+            }if (paccess==0) {
+                cout << "Accessory" << endl;
+            }
+            getchar();
+            cout << "Change Weapon    (a)" << endl;
+            cout << "Change Armor     (b)" << endl;
+            cout << "Change Accessory (c)" << endl;
+            cout << "Back             (x)" << endl;
+            cout << "Exit the menu    (z)" << endl;
+            cout << "=========================" << endl;
+            cin >> choice;
+            if (choice=='x') {
+                continue;
+            }
+        }
+        if (choice=='b') {
+            cout << "========================="
+                    "\n          STATS"
+                    "\n" << pname << endl;
+            cout << "HP: " << pHP << "/" << pHPmax << endl;
+            cout << "Back             (x)" << endl;
+            cout << "Exit the menu    (z)" << endl;
+            cout << "=========================" << endl;
+            cin >> choice;
+            if (choice=='x') {
+                continue;
+            }
+        }
+        if (choice=='c') {
+            cout << "==================================="
+                    "\n            SPECIAL"
+                    "\n" << pname << endl;
+            if (pelement=='f') {
+                if (fireball) {
+                    cout << "Small Fireball" << endl;
+                }
+                if (!fireball) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+            if (pelement=='e') {
+                if (spark) {
+                    cout << "Spark" << endl;
+                }
+                if (!spark) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+            if (pelement=='w') {
+                if (swave) {
+                    cout << "Small Wave" << endl;
+                }
+                if (!swave) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+            if (pelement=='i') {
+                if (shard) {
+                    cout << "Ice Shard" << endl;
+                }
+                if (!shard) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+            if (pelement=='l') {
+                if (light) {
+                    cout << "Holy Light" << endl;
+                }
+                if (!light) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+            if (pelement=='d') {
+                if (dark) {
+                    cout << "Darkness (a)" << endl;
+                }
+                if (!dark) {
+                    cout << "You know no Dark Spells" << endl;
+                }
+                cout << "Press the Spell's letter to view"
+                        "\ninformation about it" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "===================================" << endl;
+                cin >> choice;
+                if (choice=='x') {
+                    continue;
+                }
+            }
+        }
+    } while (choice != 'z');
+
 }
 
 //Choice template
