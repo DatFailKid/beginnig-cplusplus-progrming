@@ -87,29 +87,31 @@ int count;
 float pHP=50;
 int pHPmax=50;
 int pdefense=0;
-int pFP=10; //Fire Points
-int pFPmax=10; //Max Fire Points
-int pSP=10; //Spark Points
-int pSPmax=10; //Max Spark Points
-int pAP=10; //Aqua Points
-int pAPmax=10; //Max Aqua Points
-int pIP=10; //Ice Points
-int pIPmax=10; //Max Ice Points
-int pLP=10; //Light Points
-int pLPmax=10; //Max Light Points
-int pVP=10; //Void Points
-int pVPmax=10; //Max Void Points
+int pFP=0;     //Fire Points
+int pFPmax=0;  //Max Fire Points
+int pSP=0;     //Spark Points; However, SP is used to generally describe Spell Points
+int pSPmax=0;  //Max Spark Points
+int pAP=0;     //Aqua Points
+int pAPmax=0;  //Max Aqua Points
+int pIP=0;     //Ice Points
+int pIPmax=0;  //Max Ice Points
+int pLP=0;     //Light Points
+int pLPmax=0;  //Max Light Points
+int pVP=0;     //Void Points
+int pVPmax=0;  //Max Void Points
 
-int tealmush=0; //Teal Mushroom; Restores HP
-int flampeach=0; //Flaming Peach; Restore Fire Points (FP)
-int shinrock=0; //Shiny Rock; Restores Spark Points (SP)
-int watbulb=0; //Water Bulb; Restores Aqua Points (AP)
-int iceblos=0; //Ice Blossom; Restores Ice Points (IP)
-int starbot=0; //Bottled Star; Restores Light Points (LP)
-int bholebot=0; //Bottled Black Hole; Restores Void Points (VP)
+int tealmush=0;     //Teal Mushroom; Restores 50 HP
+int flampeach=0;    //Flaming Peach; Restore 10 Fire Points (FP)
+int shinrock=0;     //Shiny Rock; Restores 10 Spark Points (SP)
+int watbulb=0;      //Water Bulb; Restores 10 Aqua Points (AP)
+int iceblos=0;      //Ice Blossom; Restores 10 Ice Points (IP)
+int starbot=0;      //Star in a Bottle; Restores 10 Light Points (LP)
+int bholebot=0;     //Black Hole in a Bottle; Restores 10 Void Points (VP)
+int ltealmush=0;    //Large Teal Mushroom; Restores 30 of the party's HP
+int mcrock=0;       //Small Multi-colored Rock; Restores 5 of the party's Spell Points (FP, SP, etc.)
 
 int bagmax=10;
-int bag=tealmush+flampeach+shinrock+watbulb+iceblos+starbot+bholebot;
+int bag=tealmush+flampeach+shinrock+watbulb+iceblos+starbot+bholebot+ltealmush+mcrock;
 
 int gold=0;
 
@@ -198,17 +200,18 @@ void intro() {
     getchar();
     cout << ANSI_COLOR_YELLOW "Character customization!" << endl;
     getchar();
-    cout << "Here you can customize stuff that will alter your story." << endl;
+    cout << "Here you can customize stuff that will alter your stor and stats." << endl;
     getchar();
 
     do {
-        cout << ANSI_COLOR_YELLOW "Choose your character's gender! (This will only change conversations.)" << endl;
+        cout << ANSI_COLOR_YELLOW "Choose your character's gender!" << endl;
         getchar();
         cout << "(m) = Male" << endl;
-        cout << "(f) = Female" << endl;
+        cout << "(f) = Female (-5 Heath Points; +5 Spell Points)" << endl;
         cin >> pgender;
         if (pgender=='f') {
             getchar();
+            pHPmax=pHPmax-5;
             cout << ANSI_COLOR_CYAN"Gender = " << pgender << " (Female)" << endl;
             getchar();
             break;
@@ -222,6 +225,7 @@ void intro() {
         if (pgender=='F') {
             pgender='f';
             getchar();
+            pHPmax=pHPmax-5;
             cout << ANSI_COLOR_CYAN"Gender = " << pgender << " (Female)" << endl;
             getchar();
             break;
@@ -288,13 +292,11 @@ void intro() {
             pgender=='Z');
 
     do {
-        cout << ANSI_COLOR_YELLOW "Choose your weight! (This will determine how much your character can move around," << endl;
-        cout << "how much they can get knocked around," << endl;
-        cout << "and how much damage movement-based attacks will do.)" << endl;
+        cout << ANSI_COLOR_YELLOW "Choose your weight!" << endl;
         getchar();
         cout << "(f) = Feather-weight" << endl;
         cout << "(r) = Regular" << endl;
-        cout << "(t) = Tank" << endl;
+        cout << "(t) = Tank (+5 Defense; +5 HP; -5 SP)" << endl;
         cin >> pweight;
         if (pweight=='f') {
             getchar();
@@ -312,6 +314,9 @@ void intro() {
             getchar();
             cout << ANSI_COLOR_CYAN"Weight = " << pweight << " (Tank)" << endl;
             getchar();
+            pdefense=pdefense+5;
+            pHPmax=pHPmax+5;
+            pHP=pHPmax;
             break;
         }
         if (pweight=='F') {
@@ -333,6 +338,9 @@ void intro() {
             getchar();
             cout << ANSI_COLOR_CYAN"Weight = " << pweight << " (Tank)" << endl;
             getchar();
+            pdefense=pdefense+5;
+            pHPmax=pHPmax+5;
+            pHP=pHPmax;
             break;
         }
         else {
@@ -400,36 +408,96 @@ void intro() {
         cin >> pelement;
         if (pelement=='f') {
             getchar();
+            pFPmax=0;
+            pFP=pFPmax;
+            if (pgender=='f') {
+                pFPmax=pFPmax+5;
+                pFP=pFPmax;
+            }
+            if (pweight=='t') {
+                pFPmax=pFPmax-5;
+                pFP=pFPmax;
+            }
             cout << ANSI_COLOR_RED"Element = " << pelement << " (Fire)" << endl;
             getchar();
             break;
         }
         if (pelement=='e') {
             getchar();
+            pSPmax=0;
+            pSP=pSPmax;
+            if (pgender=='f') {
+                pSPmax=pSPmax+5;
+                pSP=pSPmax;
+            }
+            if (pweight=='t') {
+                pSPmax=pSPmax-5;
+                pSP=pSPmax;
+            }
             cout << ANSI_COLOR_YELLOW"Element = " << pelement << " (Electricity)" << endl;
             getchar();
             break;
         }
         if (pelement=='w') {
             getchar();
+            pAPmax=0;
+            pAP=pAPmax;
+            if (pgender=='f') {
+                pAPmax=pAPmax+5;
+                pAP=pAPmax;
+            }
+            if (pweight=='t') {
+                pAPmax=pAPmax-5;
+                pAP=pAPmax;
+            }
             cout << ANSI_COLOR_BLUE"Element = " << pelement << " (Water)" << endl;
             getchar();
             break;
         }
         if (pelement=='i') {
             getchar();
+            pIPmax=0;
+            pIP=pIPmax;
+            if (pgender=='f') {
+                pIPmax=pIPmax+5;
+                pIP=pIPmax;
+            }
+            if (pweight=='t') {
+                pIPmax=pIPmax-5;
+                pIP=pIPmax;
+            }
             cout << ANSI_COLOR_CYAN"Element = " << pelement << " (Ice)" << endl;
             getchar();
             break;
         }
         if (pelement=='d') {
             getchar();
+            pVPmax=0;
+            pVP=pVPmax;
+            if (pgender=='f') {
+                pVPmax=pVPmax+5;
+                pVP=pVPmax;
+            }
+            if (pweight=='t') {
+                pVPmax=pVPmax-5;
+                pVP=pVPmax;
+            }
             cout << ANSI_COLOR_PURPLE"Element = " << pelement << " (Darkness)" << endl;
             getchar();
             break;
         }
         if (pelement=='l') {
             getchar();
+            pLPmax=0;
+            pLP=pLPmax;
+            if (pgender=='f') {
+                pLPmax=pLPmax+5;
+                pLP=pLPmax;
+            }
+            if (pweight=='t') {
+                pLPmax=pLPmax-5;
+                pLP=pLPmax;
+            }
             cout << ANSI_COLOR_RESET"Element = " << pelement << " (Light)" << endl;
             getchar();
             break;
@@ -437,6 +505,16 @@ void intro() {
         if (pelement=='F') {
             pelement='f';
             getchar();
+            pFPmax=0;
+            pFP=pFPmax;
+            if (pgender=='f') {
+                pFPmax=pFPmax+5;
+                pFP=pFPmax;
+            }
+            if (pweight=='t') {
+                pFPmax=pFPmax-5;
+                pFP=pFPmax;
+            }
             cout << ANSI_COLOR_RED"Element = " << pelement << " (Fire)" << endl;
             getchar();
             break;
@@ -444,6 +522,16 @@ void intro() {
         if (pelement=='E') {
             pelement='e';
             getchar();
+            pSPmax=0;
+            pSP=pSPmax;
+            if (pgender=='f') {
+                pSPmax=pSPmax+5;
+                pSP=pSPmax;
+            }
+            if (pweight=='t') {
+                pSPmax=pSPmax-5;
+                pSP=pSPmax;
+            }
             cout << ANSI_COLOR_YELLOW"Element = " << pelement << " (Electricity)" << endl;
             getchar();
             break;
@@ -451,6 +539,16 @@ void intro() {
         if (pelement=='W') {
             pelement='w';
             getchar();
+            pAPmax=0;
+            pAP=pAPmax;
+            if (pgender=='f') {
+                pAPmax=pAPmax+5;
+                pAP=pAPmax;
+            }
+            if (pweight=='t') {
+                pAPmax=pAPmax-5;
+                pAP=pAPmax;
+            }
             cout << ANSI_COLOR_BLUE"Element = " << pelement << " (Water)" << endl;
             getchar();
             break;
@@ -458,6 +556,16 @@ void intro() {
         if (pelement=='I') {
             pelement='i';
             getchar();
+            pIPmax=0;
+            pIP=pIPmax;
+            if (pgender=='f') {
+                pIPmax=pIPmax+5;
+                pIP=pIPmax;
+            }
+            if (pweight=='t') {
+                pIPmax=pIPmax-5;
+                pIP=pIPmax;
+            }
             cout << ANSI_COLOR_CYAN"Element = " << pelement << " (Ice)" << endl;
             getchar();
             break;
@@ -465,6 +573,16 @@ void intro() {
         if (pelement=='D') {
             pelement='d';
             getchar();
+            pVPmax=0;
+            pVP=pVPmax;
+            if (pgender=='f') {
+                pVPmax=pVPmax+5;
+                pVP=pVPmax;
+            }
+            if (pweight=='t') {
+                pVPmax=pVPmax-5;
+                pVP=pVPmax;
+            }
             cout << ANSI_COLOR_PURPLE"Element = " << pelement << " (Darkness)" << endl;
             getchar();
             break;
@@ -472,6 +590,16 @@ void intro() {
         if (pelement=='L') {
             pelement='l';
             getchar();
+            pLPmax=0;
+            pLP=pLPmax;
+            if (pgender=='f') {
+                pLPmax=pLPmax+5;
+                pLP=pLPmax;
+            }
+            if (pweight=='t') {
+                pLPmax=pLPmax-5;
+                pLP=pLPmax;
+            }
             cout << ANSI_COLOR_RESET"Element = " << pelement << " (Light)" << endl;
             getchar();
             break;
@@ -621,7 +749,7 @@ void intro() {
             pclass=='Z');
 
     do {
-        cout << ANSI_COLOR_YELLOW "Choose your character's age! (This will change how characters interact with you.)" << endl;
+        cout << ANSI_COLOR_YELLOW "Choose your character's age!" << endl;
         getchar();
         cout << "(a) = Adult" << endl;
         cout << "(t) = Teenager" << endl;
@@ -1731,7 +1859,8 @@ void village(){
                     cout << ANSI_COLOR_RESET"Iron Blaster    (c) = " << ANSI_COLOR_YELLOW << "10 g" << endl;
                     cout << ANSI_COLOR_RESET"Iron Cores (x)  (d) = " << ANSI_COLOR_YELLOW << "?? g" << endl;
                     cout << ANSI_COLOR_RESET"Iron Backpack   (e) = " << ANSI_COLOR_YELLOW << "25 g" << endl;
-                    cout << ANSI_COLOR_RESET"Iron Armor      (f) = " << ANSI_COLOR_YELLOW << "50 g" << endl;
+                    cout << ANSI_COLOR_RESET"Small Backpack  (f) = " << ANSI_COLOR_YELLOW << "25 g" << endl;
+                    cout << ANSI_COLOR_RESET"Iron Armor      (g) = " << ANSI_COLOR_YELLOW << "50 g" << endl;
                     cout << ANSI_COLOR_RESET"===========================" << endl;
                     cout << "Enter an item's key to view it's information." << endl;
                     cout << "Enter 'x' to exit the shop." << endl;
@@ -2221,6 +2350,88 @@ void village(){
                                     parmor = 1;
                                     pdefense = pdefense + 5;
                                     gold = gold - 50;
+                                    cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
+                                    getchar();
+                                    cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
+                                    getchar();
+                                }
+                                if (choice == 'y' && gold < 50) {
+                                    cout << ANSI_COLOR_RED"I'm sorry, you do not have"
+                                            "\nenough gold for this item." << endl;
+                                    getchar();
+                                }
+                            }
+                        } while (choice == ' ' ||
+                                 choice == 'a' ||
+                                 choice == 'b' ||
+                                 choice == 'c' ||
+                                 choice == 'd' ||
+                                 choice == 'e' ||
+                                 choice == 'f' ||
+                                 choice == 'g' ||
+                                 choice == 'h' ||
+                                 choice == 'i' ||
+                                 choice == 'j' ||
+                                 choice == 'k' ||
+                                 choice == 'l' ||
+                                 choice == 'm' ||
+                                 choice == 'n' ||
+                                 choice == 'o' ||
+                                 choice == 'p' ||
+                                 choice == 'q' ||
+                                 choice == 'r' ||
+                                 choice == 's' ||
+                                 choice == 't' ||
+                                 choice == 'u' ||
+                                 choice == 'v' ||
+                                 choice == 'w' ||
+                                 choice == 'A' ||
+                                 choice == 'B' ||
+                                 choice == 'C' ||
+                                 choice == 'D' ||
+                                 choice == 'E' ||
+                                 choice == 'F' ||
+                                 choice == 'G' ||
+                                 choice == 'H' ||
+                                 choice == 'I' ||
+                                 choice == 'J' ||
+                                 choice == 'K' ||
+                                 choice == 'L' ||
+                                 choice == 'M' ||
+                                 choice == 'N' ||
+                                 choice == 'O' ||
+                                 choice == 'P' ||
+                                 choice == 'Q' ||
+                                 choice == 'R' ||
+                                 choice == 'S' ||
+                                 choice == 'T' ||
+                                 choice == 'U' ||
+                                 choice == 'V' ||
+                                 choice == 'W');
+                    }
+                    if (choice == 'g') {
+                        do {
+                            cout << "Small Backpack" << endl;
+                            cout << "==============" << endl;
+                            cout << "Damage  = N/A" << endl;
+                            cout << "Defense = N/A" << endl;
+                            cout << "Storage = 50" << endl;
+                            cout << "A backpack to hold more items in." << endl;
+                            cout << "Price = " << ANSI_COLOR_YELLOW << "25 gold" << endl;
+                            cout << "Gold  = " << ANSI_COLOR_YELLOW << gold << " gold" << endl;
+                            cout << ANSI_COLOR_RESET"===========================" << endl;
+                            cout << "Enter 'y' to buy this." << endl;
+                            cout << "Enter 'x' to go back to exit the shop." << endl;
+                            cin >> choice;
+                            if (choice == 'x') {
+                                continue;
+                            }
+                            if (choice == 'y') {
+                                cout << "Are you sure? (y/n)" << endl;
+                                cin >> choice;
+                                if (choice == 'y' && gold >= 25) {
+                                    bagmax=50;
+                                    gold = gold - 25;
                                     cout << ANSI_COLOR_CYAN"Thank you for your purchase!" << endl;
                                     getchar();
                                     cout << ANSI_COLOR_RESET"Gold left: " << ANSI_COLOR_YELLOW << gold << endl;
@@ -3139,7 +3350,69 @@ void levelup() {
         pHPmax = 65;
         pHP = pHPmax;
         pdefense=pdefense+2;
+        cout << "Level Up!" << endl;
+        getchar();
+        cout << "HP: " << pHPmax-15 << " +15" << endl;
+        if (pelement=='f') {
+            pFPmax=pFPmax+10;
+            pFP=pFPmax;
+            cout << "FP: " << pFPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Small Fireball'" << endl;
+            fireball=true;
+            getchar();
+        }
+        if (pelement=='e') {
+            pSPmax=pSPmax+10;
+            pSP=pSPmax;
+            cout << "SP: " << pSPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Spark'" << endl;
+            spark=true;
+            getchar();
+        }
+        if (pelement=='w') {
+            pAPmax=pAPmax+10;
+            pAP=pAPmax;
+            cout << "AP: " << pAPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Small Wave'" << endl;
+            swave=true;
+            getchar();
+        }
+        if (pelement=='i') {
+            pIPmax=pIPmax+10;
+            pIP=pIPmax;
+            cout << "IP: " << pIPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Ice Shard'" << endl;
+            shard=true;
+            getchar();
+        }
+        if (pelement=='d') {
+            pVPmax=pVPmax+10;
+            pVP=pVPmax;
+            cout << "VP: " << pVPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Darkness'" << endl;
+            dark=true;
+            getchar();
+        }
+        if (pelement=='l') {
+            pLPmax=pLPmax+10;
+            pLP=pLPmax;
+            cout << "LP: " << pLPmax-10 << " +10" << endl;
+            getchar();
+            cout << "You learned 'Holy Light'" << endl;
+            light=true;
+            getchar();
+        }
+        cout << "Defense: " << pdefense-2 << "+2" << endl;
     }
+    cout << "Choose a Stat to upgrade:"
+            "\nVitality"
+            "\nPhysical"
+            "\nMagic" << endl;
 }
 
 void menu() {
