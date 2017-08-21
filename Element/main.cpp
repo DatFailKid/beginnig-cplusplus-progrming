@@ -165,6 +165,7 @@ void title() {
          * Mouse input on/off*/
     }
         if (strcmp(command, credit) == 0) {
+            getchar();
             cout << ANSI_COLOR_RED "Credits" << endl;
             getchar();
             cout << "This text-based RPG was inspired by a few RPG's that I've loved." << endl;
@@ -3161,10 +3162,10 @@ void menu() {
                 cout << "Iron Armor" << endl;
             }
             if (parmor==0) {
-                cout << "Armor" << endl;
+                cout << "No Armor" << endl;
             }
             if (pweapon==0) {
-                cout << "Weapon" << endl;
+                cout << "No Weapon" << endl;
             }
             if (pweapon==11) {
                 cout << "Iron Sword" << endl;
@@ -3176,7 +3177,7 @@ void menu() {
                 cout << "Iron Blaster" << endl;
                 cout << "Cores: " << pcore << "/" << pcoremax << endl;
             }if (paccess==0) {
-                cout << "Accessory" << endl;
+                cout << "No Accessory" << endl;
             }
             getchar();
             cout << "Change Weapon    (a)" << endl;
@@ -3195,6 +3196,16 @@ void menu() {
                     "\n          STATS"
                     "\n" << pname << endl;
             cout << "HP: " << pHP << "/" << pHPmax << endl;
+            cout << "Class: ";
+            if (pclass=='s') {
+                cout << "Swordsman" << endl;
+            }
+            if (pclass=='f') {
+                cout << "Fighter" << endl;
+            }
+            if (pclass=='b') {
+                cout << "Blaster" << endl;
+            }
             cout << "Back             (x)" << endl;
             cout << "Exit the menu    (z)" << endl;
             cout << "=========================" << endl;
@@ -3212,7 +3223,7 @@ void menu() {
                     cout << "Small Fireball" << endl;
                 }
                 if (!fireball) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Fire Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3229,7 +3240,7 @@ void menu() {
                     cout << "Spark" << endl;
                 }
                 if (!spark) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Electric Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3246,7 +3257,7 @@ void menu() {
                     cout << "Small Wave" << endl;
                 }
                 if (!swave) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Water Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3263,7 +3274,7 @@ void menu() {
                     cout << "Ice Shard" << endl;
                 }
                 if (!shard) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Ice Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3280,7 +3291,7 @@ void menu() {
                     cout << "Holy Light" << endl;
                 }
                 if (!light) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Light Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3297,7 +3308,7 @@ void menu() {
                     cout << "Darkness (a)" << endl;
                 }
                 if (!dark) {
-                    cout << "You know no Dark Spells" << endl;
+                    cout << "You don't know any Dark Spells" << endl;
                 }
                 cout << "Press the Spell's letter to view"
                         "\ninformation about it" << endl;
@@ -3310,8 +3321,44 @@ void menu() {
                 }
             }
         }
+        if (choice=='d') {
+            cout << "========================="
+                    "\n       ITEMS" << endl;
+            if (tealmush>0) {
+                cout << "Teal Mushrooms: " << tealmush << " (a)" << endl;
+            }
+            if (flampeach>0) {
+                cout << "Flaming Peaches: " << flampeach << " (b)" << endl;
+            }
+            if (shinrock>0) {
+                cout << "Shiny Rocks: " << shinrock << " (c)" << endl;
+            }
+            if (watbulb>0) {
+                cout << "Water Bulbs: " << watbulb << " (d)" << endl;
+            }
+            if (iceblos>0) {
+                cout << "Ice Blossoms: " << iceblos << " (e)" << endl;
+            }
+            if (starbot>0) {
+                cout << "Star in a Bottle: " << starbot << " (f)" << endl;
+            }
+            if (bholebot>0) {
+                cout << "Black Hole in a Bottle: " << bholebot << " (g)" << endl;
+            }
+            if (tealmush<=0 && flampeach<=0 && shinrock<=0 && watbulb<=0 && iceblos<0 && starbot<=0 && bholebot<=0) {
+                cout << "You have no items..." << endl;
+            }
+            cout << "Press the Item's letter to use"
+                    "\nit" << endl;
+            cout << "Back             (x)" << endl;
+            cout << "Exit the menu    (z)" << endl;
+            cout << "=========================" << endl;
+            cin >> choice;
+            if (choice=='x') {
+                continue;
+            }
+        }
     } while (choice != 'z');
-
 }
 
 //Choice template
