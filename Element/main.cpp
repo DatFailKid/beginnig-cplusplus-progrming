@@ -70,8 +70,11 @@ int pcore=0; //How many Blaster cores a player is holding
 int pcoret=0; //The type of cores the player is holding
 int pcoremax=3; //The maximum amount of Blaster cores a player can hold at once
 int paccess=0; //The Player's Accessory
-int pdamage;
-int pcrit;
+double pdamage=1; //Player's damage multiplier
+double pbreak=1.5; //Player's break attack multiplier
+int pbreakm=0; //Player's Break Meter; Once it gets full, the player can do a Break Attack
+int pbreakmax=100; //How much the player's Break Meter must get to to do a Break Attack, get's higher with the player's level
+double pmdamage=1; //Player's Magic Damage Multiplier
 
 //Basic Spells
 bool fireball=false;    //"Small Fireball" Spell
@@ -395,9 +398,8 @@ void intro() {
             pweight=='Y' ||
             pweight=='Z');
     do {
-        cout << ANSI_COLOR_YELLOW "Choose your character's element! (This will determine your character's weakness, " << endl;
-        cout << "and what spells they will start out with." << endl;
-        cout << "This does not change what spells your character can learn, though.)" << endl;
+        cout << ANSI_COLOR_YELLOW "Choose your character's element! This will determine your character's weakness, " << endl;
+        cout << "and what spells they can learn." << endl;
         getchar();
         cout << "(f) = Fire" << endl;
         cout << "(e) = Electricity" << endl;
@@ -2766,9 +2768,9 @@ void forest13() {
 }
 
 void goblinbat1() {
-    int goblin1HP = 10;
-    int goblin2HP = 10;
-    int goblin3HP = 10;
+    double goblin1HP = 10;
+    double goblin2HP = 10;
+    double goblin3HP = 10;
 
     if (firstb) {
         cout << ANSI_COLOR_RESET"This how battling works in the game:" << endl;
@@ -2807,7 +2809,6 @@ void goblinbat1() {
         firstb = false;
     }
     do {
-
         cout << ANSI_COLOR_RESET << pname << "'s turn" << endl;
         if (pHP <= (pHPmax * 0.1)) {
             cout << ANSI_COLOR_RED"HP: " << pHP << endl;
@@ -2841,8 +2842,8 @@ void goblinbat1() {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You struck Goblin 1 with your sword." << endl;
                     getchar();
-                    goblin1HP = goblin1HP - 10;
-                    cout << ANSI_COLOR_GREEN "Goblin 1 took 10 damage." << endl;
+                    goblin1HP = goblin1HP - (pdamage*10);
+                    cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin1HP <= 0) {
                         cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
@@ -2871,9 +2872,9 @@ void goblinbat1() {
                 } else if (pweapon == 21) {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You gave Goblin 1 good punch to the face." << endl;
-                    goblin1HP = goblin1HP - 10;
+                    goblin1HP = goblin1HP - (pdamage*10);
                     getchar();
-                    cout << ANSI_COLOR_GREEN"Goblin 1 took 10 damage." << endl;
+                    cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin1HP == 0) {
                         cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
@@ -2908,8 +2909,8 @@ void goblinbat1() {
                     cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 1" << endl;
                     getchar();
                     if (pcoret == 1) {
-                        goblin1HP = goblin1HP - (1 * 10);
-                        cout << ANSI_COLOR_GREEN "Goblin 1 took 10 damage." << endl;
+                        goblin1HP = goblin1HP - (pdamage*(1 * 10));
+                        cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*(1*10) << " damage." << endl;
                         getchar();
                     }
                     if (goblin1HP <= 0) {
@@ -2942,9 +2943,9 @@ void goblinbat1() {
                 if (pweapon == 11) {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You struck Goblin 2 with your sword." << endl;
-                    goblin2HP = goblin2HP - 10;
+                    goblin2HP = goblin2HP - (pdamage*10);
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                    cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin2HP <= 0) {
                         cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
@@ -2974,9 +2975,9 @@ void goblinbat1() {
                 if (pweapon == 21) {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You gave Goblin 2 good knuckle sandwich." << endl;
-                    goblin2HP = goblin2HP - 10;
+                    goblin2HP = goblin2HP - (pdamage*10);
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                    cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin2HP <= 0) {
                         cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
@@ -3015,9 +3016,9 @@ void goblinbat1() {
                     cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 2" << endl;
                     getchar();
                     if (pcoret == 1) {
-                        goblin2HP = goblin2HP - (1 * 10);
-                        cout << ANSI_COLOR_GREEN "Goblin 2 took 10 damage." << endl;
+                        goblin2HP = goblin2HP - (pdamage*(1*10));
                         getchar();
+                        cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*(1*10) << " damage." << endl;
                     }
                     if (goblin2HP <= 0) {
                         cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
@@ -3049,9 +3050,9 @@ void goblinbat1() {
                 if (pweapon == 11) {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You struck Goblin 3 with your sword." << endl;
-                    goblin3HP = goblin3HP - 10;
+                    goblin3HP = goblin3HP - (pdamage*10);
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                    cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin3HP <= 0) {
                         cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
@@ -3081,9 +3082,9 @@ void goblinbat1() {
                 if (pweapon == 21) {
                     getchar();
                     cout << ANSI_COLOR_CYAN"You gave Goblin 3 good punch to the face." << endl;
-                    goblin3HP = goblin3HP - 10;
+                    goblin3HP = goblin3HP - (pdamage*10);
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                    cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage*10 << " damage." << endl;
                     getchar();
                     if (goblin3HP <= 0) {
                         cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
@@ -3122,8 +3123,8 @@ void goblinbat1() {
                     cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 3" << endl;
                     getchar();
                     if (pcoret == 1) {
-                        goblin3HP = goblin3HP - (1 * 10);
-                        cout << ANSI_COLOR_GREEN "Goblin 3 took 10 damage." << endl;
+                        goblin3HP = goblin3HP - (pdamage*(1 * 10));
+                        cout << ANSI_COLOR_GREEN "Goblin 3 took "<< pdamage*(1*10) << " damage." << endl;
                         getchar();
                     }
                     if (goblin3HP <= 0) {
@@ -3350,6 +3351,10 @@ void levelup() {
         pHPmax = 65;
         pHP = pHPmax;
         pdefense=pdefense+2;
+        pdamage=pdamage+0.5;
+        pbreak=pbreak+0.25;
+        pbreakmax=150;
+        pmdamage=pmdamage+0.5;
         cout << "Level Up!" << endl;
         getchar();
         cout << "HP: " << pHPmax-15 << " +15" << endl;
@@ -3399,20 +3404,72 @@ void levelup() {
             getchar();
         }
         if (pelement=='l') {
-            pLPmax=pLPmax+10;
-            pLP=pLPmax;
-            cout << "LP: " << pLPmax-10 << " +10" << endl;
+            pLPmax = pLPmax + 10;
+            pLP = pLPmax;
+            cout << "LP: " << pLPmax - 10 << " +10" << endl;
             getchar();
             cout << "You learned 'Holy Light'" << endl;
-            light=true;
+            light = true;
             getchar();
         }
-        cout << "Defense: " << pdefense-2 << "+2" << endl;
+        cout << "Defense: " << pdefense-2 << " +2" << endl;
+        cout << "Attack: x" << pdamage-0.5 << " +0.5" << endl;
+        cout << "Break: x" << pbreak-0.25 << " +0.25" << endl;
+        cout << "Magic Attack: x" << pmdamage-0.5 << " +0.5" << endl;
     }
-    cout << "Choose a Stat to upgrade:"
-            "\nVitality"
-            "\nPhysical"
-            "\nMagic" << endl;
+    do {
+        cout << "Choose an attribute to upgrade:"
+                "\nVitality (a)"
+                "\nPhysical (b)"
+                "\nMagic    (c)" << endl;
+        cin >> choice;
+        if (choice == 'a') {
+            cout << "HP: " << pHPmax << " +5" << endl;
+            cout << "Confirm? (y/n)" << endl;
+            cin >> choice;
+            if (choice=='y') {
+                pHPmax=pHPmax+5;
+                pHP = pHPmax;
+                cout << "Confirmed!" << endl;
+                getchar();
+                break;
+            }
+            if (choice=='n') {
+                continue;
+            }
+        }
+        if (choice == 'b') {
+            cout << "Attack: x" << pdamage << " +1" << endl;
+            cout << "Defense: " << pdefense << " +2" << endl;
+            cout << "Break: x" << pbreak << " +0.5" << endl;
+            cout << "Confirm? (y/n)" << endl;
+            cin >> choice;
+            if (choice=='y') {
+                pdefense=pdefense+2;
+                pdamage=pdamage+1;
+                pbreak=pbreak+0.5;
+                cout << "Confirmed!" << endl;
+                getchar();
+                break;
+            }
+            if (choice=='n') {
+                continue;
+            }
+        }
+        if (choice =='c') {
+            cout << "Magic Damage: x" << pmdamage << " +1" << endl;
+            cout << "Confirm? (y/n)" << endl;
+            cin >> choice;
+            if (choice=='y') {
+                pmdamage=pmdamage+1;
+                cout << "Confirmed!" << endl;
+                break;
+            }
+            if (choice=='n') {
+                continue;
+            }
+        }
+    } while (choice);
 }
 
 void menu() {
@@ -3465,27 +3522,75 @@ void menu() {
             }
         }
         if (choice=='b') {
-            cout << "========================="
-                    "\n          STATS"
-                    "\n" << pname << endl;
-            cout << "HP: " << pHP << "/" << pHPmax << endl;
-            cout << "Class: ";
-            if (pclass=='s') {
-                cout << "Swordsman" << endl;
-            }
-            if (pclass=='f') {
-                cout << "Fighter" << endl;
-            }
-            if (pclass=='b') {
-                cout << "Blaster" << endl;
-            }
-            cout << "Back             (x)" << endl;
-            cout << "Exit the menu    (z)" << endl;
-            cout << "=========================" << endl;
-            cin >> choice;
-            if (choice=='x') {
-                continue;
-            }
+            do {
+                cout << "========================="
+                        "\n        STATS" << endl;
+                cout << pname << " (a)" << endl;
+                cout << "\nEnter the letter of"
+                        "\nthe character whose stats"
+                        "\nyou want to view" << endl;
+                cout << "Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "=========================" << endl;
+                cin >> choice;
+                if (choice == 'x') {
+                    break;
+                }
+                if (choice=='a') {
+                    cout << "========================="
+                            "\n" << pname << endl;
+                    cout << "HP: " << pHP << "/" << pHPmax << endl;
+                    cout << "Attack: x" << pdamage << endl;
+                    cout << "Magic Attack: x" << pmdamage << endl;
+                    cout << "Defense: " << pdefense << endl;
+                    cout << "Class: ";
+                    if (pclass == 's') {
+                        cout << "Swordsman" << endl;
+                    }
+                    if (pclass == 'f') {
+                        cout << "Fighter" << endl;
+                    }
+                    if (pclass == 'b') {
+                        cout << "Blaster" << endl;
+                    }
+                    if (pclass != 's' && pclass != 'f' && pclass != 'b') {
+                        cout << ANSI_TEXT_BOLD"SOMETHING IS NOT"
+                                "\nRIGHT, EITHER THERE IS A BUG"
+                                "\nOR YOU HAVE MODIFIED THE GAME" << endl;
+                    }
+                    cout << "Element: ";
+                    if (pelement == 'f') {
+                        cout << ANSI_COLOR_RED"Fire" << endl;
+                    }
+                    if (pelement == 'e') {
+                        cout << ANSI_COLOR_YELLOW"Electricity" << endl;
+                    }
+                    if (pelement == 'w') {
+                        cout << ANSI_COLOR_BLUE"Water" << endl;
+                    }
+                    if (pelement == 'i') {
+                        cout << ANSI_COLOR_CYAN"Ice" << endl;
+                    }
+                    if (pelement == 'd') {
+                        cout << ANSI_COLOR_PURPLE"Darkness" << endl;
+                    }
+                    if (pelement == 'l') {
+                        cout << ANSI_COLOR_RESET"Light" << endl;
+                    }
+                    if (pelement != 'f' && pelement != 'e' && pelement != 'w' && pelement != 'i' && pelement != 'd' && pelement != 'l') {
+                        cout << ANSI_TEXT_BOLD"SOMETHING IS NOT"
+                                "\nRIGHT, EITHER THERE IS A BUG"
+                                "\nOR YOU HAVE MODIFIED THE GAME" << endl;
+                    }
+                }
+                cout << ANSI_COLOR_RESET"Back             (x)" << endl;
+                cout << "Exit the menu    (z)" << endl;
+                cout << "=========================" << endl;
+                cin >> choice;
+                if (choice == 'x') {
+                    continue;
+                }
+            } while (choice!='z');
         }
         if (choice=='c') {
             cout << "==================================="
@@ -3613,12 +3718,18 @@ void menu() {
                 cout << "Ice Blossoms: " << iceblos << " (e)" << endl;
             }
             if (starbot>0) {
-                cout << "Star in a Bottle: " << starbot << " (f)" << endl;
+                cout << "Bottled Stars: " << starbot << " (f)" << endl;
             }
             if (bholebot>0) {
-                cout << "Black Hole in a Bottle: " << bholebot << " (g)" << endl;
+                cout << "Bottled Black Hole: " << bholebot << " (g)" << endl;
             }
-            if (tealmush<=0 && flampeach<=0 && shinrock<=0 && watbulb<=0 && iceblos<0 && starbot<=0 && bholebot<=0) {
+            if (ltealmush>0) {
+                cout << "Large Teal Mushrooms: " << ltealmush << " (h)" << endl;
+            }
+            if (mcrock>0) {
+                cout << "Multi-Colored Rocks: " << mcrock << " (i)" << endl;
+            }
+            if (tealmush<=0 && flampeach<=0 && shinrock<=0 && watbulb<=0 && iceblos<0 && starbot<=0 && bholebot<=0 && mcrock<=0 && ltealmush <=0) {
                 cout << "You have no items..." << endl;
             }
             cout << "Press the Item's letter to use"
