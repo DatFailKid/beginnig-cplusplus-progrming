@@ -418,6 +418,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pFPmax=pFPmax-5;
+                if (pFPmax<0) {
+                    pFPmax=0;
+                }
                 pFP=pFPmax;
             }
             cout << ANSI_COLOR_RED"Element = " << pelement << " (Fire)" << endl;
@@ -434,6 +437,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pSPmax=pSPmax-5;
+                if (pSPmax<0) {
+                    pSPmax=0;
+                }
                 pSP=pSPmax;
             }
             cout << ANSI_COLOR_YELLOW"Element = " << pelement << " (Electricity)" << endl;
@@ -450,6 +456,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pAPmax=pAPmax-5;
+                if (pAPmax<0) {
+                    pAPmax=0;
+                }
                 pAP=pAPmax;
             }
             cout << ANSI_COLOR_BLUE"Element = " << pelement << " (Water)" << endl;
@@ -466,6 +475,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pIPmax=pIPmax-5;
+                if (pIPmax<0) {
+                    pIPmax=0;
+                }
                 pIP=pIPmax;
             }
             cout << ANSI_COLOR_CYAN"Element = " << pelement << " (Ice)" << endl;
@@ -482,6 +494,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pVPmax=pVPmax-5;
+                if (pVPmax<0) {
+                    pVPmax=0;
+                }
                 pVP=pVPmax;
             }
             cout << ANSI_COLOR_PURPLE"Element = " << pelement << " (Darkness)" << endl;
@@ -498,6 +513,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pLPmax=pLPmax-5;
+                if (pLPmax<0) {
+                    pLPmax=0;
+                }
                 pLP=pLPmax;
             }
             cout << ANSI_COLOR_RESET"Element = " << pelement << " (Light)" << endl;
@@ -515,6 +533,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pFPmax=pFPmax-5;
+                if (pFPmax<0) {
+                    pFPmax=0;
+                }
                 pFP=pFPmax;
             }
             cout << ANSI_COLOR_RED"Element = " << pelement << " (Fire)" << endl;
@@ -532,6 +553,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pSPmax=pSPmax-5;
+                if (pSPmax<0) {
+                    pSPmax=0;
+                }
                 pSP=pSPmax;
             }
             cout << ANSI_COLOR_YELLOW"Element = " << pelement << " (Electricity)" << endl;
@@ -549,6 +573,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pAPmax=pAPmax-5;
+                if (pAPmax<0) {
+                    pAPmax=0;
+                }
                 pAP=pAPmax;
             }
             cout << ANSI_COLOR_BLUE"Element = " << pelement << " (Water)" << endl;
@@ -566,6 +593,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pIPmax=pIPmax-5;
+                if (pIPmax<0) {
+                    pIPmax=0;
+                }
                 pIP=pIPmax;
             }
             cout << ANSI_COLOR_CYAN"Element = " << pelement << " (Ice)" << endl;
@@ -583,6 +613,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pVPmax=pVPmax-5;
+                if (pVPmax<0) {
+                    pVPmax=0;
+                }
                 pVP=pVPmax;
             }
             cout << ANSI_COLOR_PURPLE"Element = " << pelement << " (Darkness)" << endl;
@@ -600,6 +633,9 @@ void intro() {
             }
             if (pweight=='t') {
                 pLPmax=pLPmax-5;
+                if (pLPmax<0) {
+                    pLPmax=0;
+                }
                 pLP=pLPmax;
             }
             cout << ANSI_COLOR_RESET"Element = " << pelement << " (Light)" << endl;
@@ -1831,8 +1867,7 @@ void village(){
         cout << "(v) = village square" << endl;
         cout << "(b) = board" << endl;
         cout << "(q) = menu" << endl;
-        cout << "(Any other character)"
-                "\n= exit village" << endl;
+        cout << "(z) = exit village" << endl;
         cin >> choice;
         if (choice == 'q') {
             menu();
@@ -1966,7 +2001,7 @@ void village(){
                                 cout << "Enter 'x' to go back to exit the shop." << endl;
                                 cin >> choice;
                                 if (choice == 'x') {
-                                    continue;
+                                    break;
                                 }
                             }
                             if (pclass == 'f') {
@@ -2328,7 +2363,7 @@ void village(){
                                  choice == 'V' ||
                                  choice == 'W');
                     }
-                    if (choice == 'f') {
+                    if (choice == 'g') {
                         do {
                             cout << "Iron Armor" << endl;
                             cout << "==========" << endl;
@@ -2411,7 +2446,7 @@ void village(){
                                  choice == 'V' ||
                                  choice == 'W');
                     }
-                    if (choice == 'g') {
+                    if (choice == 'f') {
                         do {
                             cout << "Small Backpack" << endl;
                             cout << "==============" << endl;
@@ -2803,8 +2838,14 @@ void goblinbat1() {
         getchar();
         cout << "Other does... well... other stuff." << endl;
         getchar();
-        cout << "You can run away from a battle (in most cases), or you can defend yourself and stop taking damage."
+        cout << "You can run away from a battle (in"
+                "\nmost cases), or you can defend"
+                "\nyourself and stop taking damage."
              << endl;
+        getchar();
+        cout << "Your Break Attack is a charged"
+                "\nattack. You can use it once"
+                "\nyour Break Meter has been filled." << endl;
         getchar();
         firstb = false;
     }
@@ -2816,13 +2857,22 @@ void goblinbat1() {
         if (pHP > (pHPmax * 0.1)) {
             cout << ANSI_COLOR_RESET "HP: " << pHP << endl;
         }
+        if (pbreakm<pbreakmax) {
+            cout << ANSI_COLOR_RESET"Break: " << pbreakm << endl;
+        }
+        if (pbreakm==pbreakmax) {
+            cout << ANSI_COLOR_YELLOW"Break: " << pbreakm << endl;
+        }
         cout << ANSI_COLOR_RESET "Attack  (a)" << endl;
         cout << "Special (w)" << endl;
         cout << "Item    (d)" << endl;
         cout << "Other   (s)" << endl;
+        if (pbreakm==pbreakmax) {
+            cout << ANSI_COLOR_YELLOW"BREAK   (e)" << endl;
+        }
         cin >> choice;
         if (choice == 'a') {
-            cout << "Select target" << endl;
+            cout << ANSI_COLOR_RESET"Select target" << endl;
             if (goblin1HP > 0) {
                 cout << "Goblin 1 (a)" << endl;
                 cout << "HP: " << goblin1HP << endl;
@@ -2838,318 +2888,343 @@ void goblinbat1() {
             cout << "Enter 'z' to cancel" << endl;
             cin >> choice;
             if (choice == 'a') {
-                if (pweapon == 11) {
+                if (goblin1HP<=0) {
                     getchar();
-                    cout << ANSI_COLOR_CYAN"You struck Goblin 1 with your sword." << endl;
+                    cout << "It's not good to beat at a dead horse." << endl;
                     getchar();
-                    goblin1HP = goblin1HP - (pdamage*10);
-                    cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin1HP <= 0) {
-                        cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
+                    continue;
+                }
+                if (goblin1HP>0) {
+                    if (pweapon == 11) {
                         getchar();
-                    } else if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        cout << ANSI_COLOR_CYAN"You struck Goblin 1 with your sword." << endl;
                         getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                        goblin1HP = goblin1HP - (pdamage * 10);
+                        cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage * 10 << " damage." << endl;
                         getchar();
-                    }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        if (goblin1HP <= 0) {
+                            cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
+                            getchar();
+                        } else if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
+                    } else if (pweapon == 21) {
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        cout << ANSI_COLOR_CYAN"You gave Goblin 1 good punch to the face." << endl;
+                        goblin1HP = goblin1HP - (pdamage * 10);
                         getchar();
-                    }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage * 10 << " damage." << endl;
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        if (goblin1HP == 0) {
+                            cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
+                            getchar();
+                        } else if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        }
+                        if (goblin3HP > 0) {
+                            getchar();
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        }
+                    } else if (pweapon == 31) {
                         getchar();
-                    }
-                } else if (pweapon == 21) {
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You gave Goblin 1 good punch to the face." << endl;
-                    goblin1HP = goblin1HP - (pdamage*10);
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin1HP == 0) {
-                        cout << ANSI_COLOR_GREEN"Goblin 1 is now dead" << endl;
+                        pcore = pcore - 1;
+                        cout << "You have " << pcore << " cores left." << endl;
                         getchar();
-                    } else if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
                         getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
-                    }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                    }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 1" << endl;
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                    }
-                } else if (pweapon == 31) {
-                    getchar();
-                    pcore = pcore - 1;
-                    cout << "You have " << pcore << " cores left." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 1" << endl;
-                    getchar();
-                    if (pcoret == 1) {
-                        goblin1HP = goblin1HP - (pdamage*(1 * 10));
-                        cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage*(1*10) << " damage." << endl;
-                        getchar();
-                    }
-                    if (goblin1HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 1 is now dead" << endl;
-                        getchar();
-                    } else if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                        getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage." << endl;
-                        getchar();
-                    }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        getchar();
-                    }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        getchar();
+                        if (pcoret == 1) {
+                            goblin1HP = goblin1HP - (pdamage * (1 * 10));
+                            cout << ANSI_COLOR_GREEN "Goblin 1 took " << pdamage * (1 * 10) << " damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 1 is now dead" << endl;
+                            getchar();
+                        } else if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
                 }
             }
             if (choice == 'b') {
-                if (pweapon == 11) {
+                if (goblin2HP<=0) {
                     getchar();
-                    cout << ANSI_COLOR_CYAN"You struck Goblin 2 with your sword." << endl;
-                    goblin2HP = goblin2HP - (pdamage*10);
+                    cout << "It's not good to beat at a dead horse." << endl;
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin2HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
-                        getchar();
-                    } else if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                        getchar();
-                    }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                        getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                        getchar();
-                    }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        getchar();
-                    }
+                    continue;
                 }
-                if (pweapon == 21) {
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You gave Goblin 2 good knuckle sandwich." << endl;
-                    goblin2HP = goblin2HP - (pdamage*10);
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin2HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                if (goblin2HP>0) {
+                    if (pweapon == 11) {
                         getchar();
-                    } else if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_CYAN"You struck Goblin 2 with your sword." << endl;
+                        goblin2HP = goblin2HP - (pdamage * 10);
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage * 10 << " damage." << endl;
                         getchar();
+                        if (goblin2HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                            getchar();
+                        } else if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                    if (pweapon == 21) {
                         getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        cout << ANSI_COLOR_CYAN"You gave Goblin 2 good knuckle sandwich." << endl;
+                        goblin2HP = goblin2HP - (pdamage * 10);
                         getchar();
+                        cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage * 10 << " damage." << endl;
+                        getchar();
+                        if (goblin2HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                            getchar();
+                        } else if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                    if (pweapon == 31) {
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        pcore = pcore - 1;
+                        cout << "You have " << pcore << " cores left." << endl;
                         getchar();
-                    }
-                }
-                if (pweapon == 31) {
-                    getchar();
-                    pcore = pcore - 1;
-                    cout << "You have " << pcore << " cores left." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 2" << endl;
-                    getchar();
-                    if (pcoret == 1) {
-                        goblin2HP = goblin2HP - (pdamage*(1*10));
+                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
                         getchar();
-                        cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage*(1*10) << " damage." << endl;
-                    }
-                    if (goblin2HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
                         getchar();
-                    } else if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                        getchar();
-                    }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                        getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                        getchar();
-                    }
-                    if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        getchar();
+                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 2" << endl;
+                        if (pcoret == 1) {
+                            goblin2HP = goblin2HP - (pdamage * (1 * 10));
+                            getchar();
+                            cout << ANSI_COLOR_GREEN "Goblin 2 took " << pdamage * (1 * 10) << " damage." << endl;
+                            getchar();
+                        }
+                        if (goblin2HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 2 is now dead" << endl;
+                            getchar();
+                        } else if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
                 }
             }
             if (choice == 'c') {
-                if (pweapon == 11) {
+                if (goblin3HP<=0) {
                     getchar();
-                    cout << ANSI_COLOR_CYAN"You struck Goblin 3 with your sword." << endl;
-                    goblin3HP = goblin3HP - (pdamage*10);
+                    cout << "It's not good to beat at a dead horse." << endl;
                     getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin3HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
-                        getchar();
-                    } else if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                        getchar();
-                    }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                        getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                        getchar();
-                    }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
-                        getchar();
-                    }
+                    continue;
                 }
-                if (pweapon == 21) {
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You gave Goblin 3 good punch to the face." << endl;
-                    goblin3HP = goblin3HP - (pdamage*10);
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage*10 << " damage." << endl;
-                    getchar();
-                    if (goblin3HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                if (goblin3HP>0) {
+                    if (pweapon == 11) {
                         getchar();
-                    } else if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_CYAN"You struck Goblin 3 with your sword." << endl;
+                        goblin3HP = goblin3HP - (pdamage * 10);
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                        cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage * 10 << " damage." << endl;
                         getchar();
+                        if (goblin3HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                            getchar();
+                        } else if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                    if (pweapon == 21) {
                         getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                        cout << ANSI_COLOR_CYAN"You gave Goblin 3 good punch to the face." << endl;
+                        goblin3HP = goblin3HP - (pdamage * 10);
                         getchar();
+                        cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage * 10 << " damage." << endl;
+                        getchar();
+                        if (goblin3HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                            getchar();
+                        } else if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                    if (pweapon == 31) {
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                        pcore = pcore - 1;
+                        cout << "You have " << pcore << " cores left." << endl;
                         getchar();
-                    }
-                }
-                if (pweapon == 31) {
-                    getchar();
-                    pcore = pcore - 1;
-                    cout << "You have " << pcore << " cores left." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
-                    getchar();
-                    cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
-                    getchar();
-                    cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 3" << endl;
-                    getchar();
-                    if (pcoret == 1) {
-                        goblin3HP = goblin3HP - (pdamage*(1 * 10));
-                        cout << ANSI_COLOR_GREEN "Goblin 3 took "<< pdamage*(1*10) << " damage." << endl;
+                        cout << ANSI_COLOR_CYAN"You charged up your blaster...." << endl;
                         getchar();
-                    }
-                    if (goblin3HP <= 0) {
-                        cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                        cout << ANSI_COLOR_CYAN"Then BOOOOM!" << endl;
                         getchar();
-                    } else if (goblin3HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                        cout << ANSI_COLOR_GREEN "You shot a beam of raw energy at Goblin 3" << endl;
                         getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED "You took 2 damage." << endl;
-                        getchar();
-                    }
-                    if (goblin1HP > 0) {
-                        cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
-                        getchar();
-                        pHP = pHP - 5;
-                        cout << ANSI_COLOR_RED "You took 5 damage" << endl;
-                        getchar();
-                    }
-                    if (goblin2HP > 0) {
-                        cout << ANSI_COLOR_RED"Goblin 2 punched you in the gut." << endl;
-                        getchar();
-                        pHP = pHP - 2;
-                        cout << ANSI_COLOR_RED"You took 2 damage" << endl;
-                        getchar();
+                        if (pcoret == 1) {
+                            goblin3HP = goblin3HP - (pdamage * (1 * 10));
+                            cout << ANSI_COLOR_GREEN "Goblin 3 took " << pdamage * (1 * 10) << " damage." << endl;
+                            getchar();
+                        }
+                        if (goblin3HP <= 0) {
+                            cout << ANSI_COLOR_GREEN "Goblin 3 is now dead" << endl;
+                            getchar();
+                        } else if (goblin3HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED "You took 2 damage." << endl;
+                            getchar();
+                        }
+                        if (goblin1HP > 0) {
+                            cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                            getchar();
+                            pHP = pHP - 5;
+                            cout << ANSI_COLOR_RED "You took 5 damage" << endl;
+                            getchar();
+                        }
+                        if (goblin2HP > 0) {
+                            cout << ANSI_COLOR_RED"Goblin 2 punched you in the gut." << endl;
+                            getchar();
+                            pHP = pHP - 2;
+                            cout << ANSI_COLOR_RED"You took 2 damage" << endl;
+                            getchar();
+                        }
                     }
                 }
             }
@@ -3289,6 +3364,9 @@ void goblinbat1() {
             if (tealmush>0) {
                 cout << "Teal Mushroom(s): " << tealmush << " (a)" << endl;
             }
+            if (ltealmush>0) {
+                cout << "Large Teal Mushroom(s): " << ltealmush << endl;
+            }
             if (flampeach>0) {
                 cout << "Flaming Peach(es): " << tealmush << " (b)" << endl;
             }
@@ -3307,21 +3385,557 @@ void goblinbat1() {
             if (bholebot>0) {
                 cout << "Bottled Black Hole(s): " << tealmush << " (g)" << endl;
             }
+            if (mcrock<0) {
+                cout << "Multi-Colored Rock(s):" << mcrock << endl;
+            }
             cin >> choice;
-                if (choice=='a' && tealmush>0) {
-                    getchar();
-                    cout << "You eat the smelly mushroom" << endl;
-                    getchar();
-                    cout << "You feel extremely nauseated..." << endl;
-                    getchar();
-                    cout << "But soon you feel better" << endl;
-                    getchar();
-                    cout << "You gained 50 HP" << endl;
-                    pHP=pHP+50;
-                    if (pHP>pHPmax) {
-                        pHP=pHPmax;
+            if (choice=='a' && tealmush>0) {
+                getchar();
+                tealmush=tealmush-1;
+                cout << "You eat the smelly mushroom" << endl;
+                getchar();
+                cout << "You feel extremely nauseated..." << endl;
+                getchar();
+                cout << "But soon you feel better" << endl;
+                getchar();
+                cout << "You gained 50 HP" << endl;
+                pHP=pHP+50;
+                if (pHP>pHPmax) {
+                    pHP=pHPmax;
+                }
+            }
+            if (choice=='a' && tealmush<=0) {
+                cout << "You don't have any of those..." << endl;
+                continue;
+            }
+        }
+        if (choice=='e') {
+            if (pbreakm!=pbreakmax) {
+                cout << ANSI_COLOR_RESET"Your Break Meter isn't full yet" << endl;
+                getchar();
+            }
+            if (pbreakm==pbreakmax) {
+                cout << ANSI_COLOR_YELLOW"Select target" << endl;
+                if (goblin1HP > 0) {
+                    cout << "Goblin 1 (a)" << endl;
+                    cout << "HP: " << goblin1HP << endl;
+                }
+                if (goblin2HP > 0) {
+                    cout << "Goblin 2 (b)" << endl;
+                    cout << "HP: " << goblin2HP << endl;
+                }
+                if (goblin3HP > 0) {
+                    cout << "Goblin 3 (c)" << endl;
+                    cout << "HP: " << goblin3HP << endl;
+                }
+                cout << "Enter 'z' to cancel" << endl;
+                cin >> choice;
+                if (choice=='a') {
+                    if (goblin1HP<=0) {
+                        getchar();
+                        cout << "Good Job, you were about to wait your attack on a dead horse." << endl;
+                        getchar();
+                        cout << "Give yourself a slow clap" << endl;
+                        getchar();
+                        continue;
+                    }
+                    if (goblin1HP>0) {
+                        if (pweapon == 11) {
+                            getchar();
+                            pbreakm = 0;
+                            cout << "LIGHT SPEED SWORD" << endl;
+                            getchar();
+                            cout << "You dash at Goblin 1, slicing right through him." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again!" << endl;
+                            getchar();
+                            cout << "And again!!" << endl;
+                            getchar();
+                            cout << "Then, you drop down from the sky! Stabbing him in the head!" << endl;
+                            getchar();
+                            goblin1HP = goblin1HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 1 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin1HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 1 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin1HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon == 21) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "LIGHTING PUNCH!" << endl;
+                            getchar();
+                            cout << "You go up to Goblin 1 and punch him" << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "Ok, now you're punching the guy to fast..." << endl;
+                            getchar();
+                            cout << "You finish the attack with a swift and powerful uppercut!" << endl;
+                            getchar();
+                            goblin1HP = goblin1HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 1 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin1HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 1 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin1HP > 0) {
+                                cout << "Goblin 1 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon==31) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "MEGA BLAST!" << endl;
+                            getchar();
+                            cout << "You charge up your blaster..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "Ok, you should probably stop" << endl;
+                            getchar();
+                            cout << "Dude, stop" << endl;
+                            getchar();
+                            cout << "No, seriously, stop" << endl;
+                            getchar();
+                            cout << "You shoot giant beam of energy,"
+                                    "\nfrying all of your opponents up!" << endl;
+                            getchar();
+                            goblin1HP = goblin1HP - pbreak * (5 * (pdamage * 10));
+                            goblin2HP = goblin2HP - pbreak * (5 * (pdamage * 10));
+                            goblin3HP = goblin3HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"All of the goblins took " << pbreak * (5 * (pdamage * 10)) << " damage EACH!" << endl;
+                            getchar();
+                            if (goblin1HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 1 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 2 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin3HP <=0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 3 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            else if (goblin1HP > 0) {
+                                cout << "Goblin 1 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << "Goblin 2 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << "Goblin 3 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
                     }
                 }
+                if (choice=='b') {
+                    if (goblin2HP<=0) {
+                        getchar();
+                        cout << "Good Job, you were about to wait your attack on a dead horse." << endl;
+                        getchar();
+                        cout << "Give yourself a slow clap" << endl;
+                        getchar();
+                        continue;
+                    }
+                    if (goblin2HP>0) {
+                        if (pweapon == 11) {
+                            getchar();
+                            pbreakm = 0;
+                            cout << "LIGHT SPEED SWORD" << endl;
+                            getchar();
+                            cout << "You dash at Goblin 2, slicing right through him." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again!" << endl;
+                            getchar();
+                            cout << "And again!!" << endl;
+                            getchar();
+                            cout << "Then, you drop down from the sky! Stabbing him in the head!" << endl;
+                            getchar();
+                            goblin2HP = goblin2HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 2 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin2HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 2 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin1HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon == 21) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "LIGHTING PUNCH!" << endl;
+                            getchar();
+                            cout << "You go up to Goblin 2 and punch him" << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "Ok, now you're punching the guy to fast..." << endl;
+                            getchar();
+                            cout << "You finish the attack with a swift and powerful uppercut!" << endl;
+                            getchar();
+                            goblin2HP = goblin2HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 2 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin2HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 2 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin1HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon==31) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "MEGA BLAST!" << endl;
+                            getchar();
+                            cout << "You charge up your blaster..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "Ok, you should probably stop" << endl;
+                            getchar();
+                            cout << "Dude, stop" << endl;
+                            getchar();
+                            cout << "No, seriously, stop" << endl;
+                            getchar();
+                            cout << "You shoot giant beam of energy,"
+                                    "\nfrying all of your opponents up!" << endl;
+                            getchar();
+                            goblin1HP = goblin1HP - pbreak * (5 * (pdamage * 10));
+                            goblin2HP = goblin2HP - pbreak * (5 * (pdamage * 10));
+                            goblin3HP = goblin3HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"All of the goblins took " << pbreak * (5 * (pdamage * 10)) << " damage EACH!" << endl;
+                            getchar();
+                            if (goblin1HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 1 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 2 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin3HP <=0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 3 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            else if (goblin1HP > 0) {
+                                cout << "Goblin 1 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << "Goblin 2 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << "Goblin 3 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                    }
+                }
+                if (choice=='c') {
+                    if (goblin3HP<=0) {
+                        getchar();
+                        cout << "Good Job, you were about to wait your attack on a dead horse." << endl;
+                        getchar();
+                        cout << "Give yourself a slow clap" << endl;
+                        getchar();
+                        continue;
+                    }
+                    if (goblin3HP>0) {
+                        if (pweapon == 11) {
+                            getchar();
+                            pbreakm = 0;
+                            cout << "LIGHT SPEED SWORD" << endl;
+                            getchar();
+                            cout << "You dash at Goblin 3, slicing right through him." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again!" << endl;
+                            getchar();
+                            cout << "And again!!" << endl;
+                            getchar();
+                            cout << "Then, you drop down from the sky! Stabbing him in the head!" << endl;
+                            getchar();
+                            goblin3HP = goblin3HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 3 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin3HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 3 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin3HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 3 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin1HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon == 21) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "LIGHTING PUNCH!" << endl;
+                            getchar();
+                            cout << "You go up to Goblin 3 and punch him" << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "And again." << endl;
+                            getchar();
+                            cout << "Ok, now you're punching the guy to fast..." << endl;
+                            getchar();
+                            cout << "You finish the attack with a swift and powerful uppercut!" << endl;
+                            getchar();
+                            goblin3HP = goblin3HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN"Goblin 3 took " << pbreak * (5 * (pdamage * 10)) << " damage!" << endl;
+                            getchar();
+                            if (goblin3HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 3 is most certainly dead." << endl;
+                                getchar();
+                            } else if (goblin3HP > 0) {
+                                cout << "Goblin 3 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 2 punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin1HP > 0) {
+                                cout << ANSI_COLOR_RED "Goblin 1 shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                        }
+                        if (pweapon==31) {
+                            getchar();
+                            pbreakm=0;
+                            cout << "MEGA BLAST!" << endl;
+                            getchar();
+                            cout << "You charge up your blaster..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "A little bit more..." << endl;
+                            getchar();
+                            cout << "Ok, you should probably stop" << endl;
+                            getchar();
+                            cout << "Dude, stop" << endl;
+                            getchar();
+                            cout << "No, seriously, stop" << endl;
+                            getchar();
+                            cout << "You shoot giant beam of energy,"
+                                    "\nfrying all of your opponents up!" << endl;
+                            getchar();
+                            goblin1HP = goblin1HP - pbreak * (5 * (pdamage * 10));
+                            goblin2HP = goblin2HP - pbreak * (5 * (pdamage * 10));
+                            goblin3HP = goblin3HP - pbreak * (5 * (pdamage * 10));
+                            cout << ANSI_COLOR_GREEN "All of the goblins took " << pbreak * (5 * (pdamage * 10)) << " damage EACH!" << endl;
+                            getchar();
+                            if (goblin1HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 1 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP <= 0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 2 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            if (goblin3HP <=0) {
+                                cout << ANSI_COLOR_GREEN"Goblin 3 is most certainly dead." << endl;
+                                getchar();
+                            }
+                            else if (goblin1HP > 0) {
+                                cout << "Goblin 1 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he shanked you with a dagger." << endl;
+                                getchar();
+                                pHP = pHP - 5;
+                                cout << ANSI_COLOR_RED "You took 5 damage." << endl;
+                                getchar();
+                            }
+                            if (goblin2HP > 0) {
+                                cout << "Goblin 2 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                            if (goblin3HP > 0) {
+                                cout << "Goblin 3 is somehow still alive..." << endl;
+                                getchar();
+                                cout << ANSI_COLOR_RED "So he punched you in the gut." << endl;
+                                getchar();
+                                pHP = pHP - 2;
+                                cout << ANSI_COLOR_RED "You took 2 damage" << endl;
+                                getchar();
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (goblin1HP<=0 && goblin2HP<=0 && goblin3HP<=0) {
             cout << ANSI_COLOR_GREEN"You won!" << endl;
@@ -3331,7 +3945,8 @@ void goblinbat1() {
             cout << ANSI_COLOR_GREEN"Gold: " << ANSI_COLOR_YELLOW << gold << " + 1" << endl;
             pexp=pexp+6;
             getchar();
-            if (pexp<=20) {
+            if (pexp>=20) {
+                pexp=pexp-20;
                 plevel=2;
                 levelup();
             }
@@ -3339,7 +3954,7 @@ void goblinbat1() {
         if (pHP <=0) {
             cout << ANSI_COLOR_RED "GAME OVER..." << endl;
             getchar();
-            forest13();
+            village();
         }
     } while (goblin1HP > 0 ||
              goblin2HP > 0 ||
@@ -3348,7 +3963,7 @@ void goblinbat1() {
 
 void levelup() {
     if (plevel==2) {
-        pHPmax = 65;
+        pHPmax = pHPmax+15;
         pHP = pHPmax;
         pdefense=pdefense+2;
         pdamage=pdamage+0.5;
@@ -3357,7 +3972,7 @@ void levelup() {
         pmdamage=pmdamage+0.5;
         cout << "Level Up!" << endl;
         getchar();
-        cout << "HP: " << pHPmax-15 << " +15" << endl;
+        cout << ANSI_COLOR_RESET"HP: " << pHPmax-15 << " +15" << endl;
         if (pelement=='f') {
             pFPmax=pFPmax+10;
             pFP=pFPmax;
@@ -3416,6 +4031,7 @@ void levelup() {
         cout << "Attack: x" << pdamage-0.5 << " +0.5" << endl;
         cout << "Break: x" << pbreak-0.25 << " +0.25" << endl;
         cout << "Magic Attack: x" << pmdamage-0.5 << " +0.5" << endl;
+        getchar();
     }
     do {
         cout << "Choose an attribute to upgrade:"
